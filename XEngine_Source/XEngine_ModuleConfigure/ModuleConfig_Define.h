@@ -25,13 +25,13 @@ typedef struct tag_XEngine_ServiceConfig
 		int nMaxQueue;                        //最大队列个数
 		int nIOThread;                        //网络IO线程数
 		int nTCPThread;                       //TCP任务处理线程数
-		int nHttpThread;                      //HTTP任务处理线程数
+		int nHTTPThread;                      //HTTP任务处理线程数
 	}st_XMax;
 	struct
 	{
 		int nTimeCheck;                       //检测次数
 		int nTCPTimeOut;                      //TCP超时时间
-		int nHttpTimeOut;                     //HTTP超时时间
+		int nHTTPTimeOut;                     //HTTP超时时间
 	}st_XTime;                                //次数*时间=超时
 	struct
 	{
