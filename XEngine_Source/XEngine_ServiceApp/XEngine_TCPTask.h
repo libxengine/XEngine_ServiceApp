@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 /********************************************************************
 //    Created:     2021/12/02  17:06:56
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_TCPTask.h
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
 //    File Base:   XEngine_TCPTask
 //    File Ext:    h
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     TCPÈÎÎñ´¦Àí´úÂë
+//    Purpose:     TCPä»»åŠ¡å¤„ç†ä»£ç 
 //    History:
 *********************************************************************/
-//ÈÎÎñ´¦Àí³Ø,ÓÃÀ´»ñÈ¡Ò»¸öÍêÕû°ü
+//ä»»åŠ¡å¤„ç†æ± ,ç”¨æ¥è·å–ä¸€ä¸ªå®Œæ•´åŒ…
 XHTHREAD CALLBACK XEngine_TCPTask_Thread(LPVOID lParam);
-//ÈÎÎñ´¦ÀíÏà¹Øº¯Êı,´¦Àí°üµÄÄÚÈİ
+//ä»»åŠ¡å¤„ç†ç›¸å…³å‡½æ•°,å¤„ç†åŒ…çš„å†…å®¹
 BOOL XEngine_TCPTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen);

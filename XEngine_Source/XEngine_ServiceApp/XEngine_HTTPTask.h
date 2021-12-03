@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 /********************************************************************
 //    Created:     2021/12/02  17:14:41
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HTTPTask.h
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
 //    File Base:   XEngine_HTTPTask
 //    File Ext:    h
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     HTTPÈÎÎñ´¦Àí´úÂë
+//    Purpose:     HTTPä»»åŠ¡å¤„ç†ä»£ç 
 //    History:
 *********************************************************************/
-//ÈÎÎñ´¦Àí³Ø,ÓÃÀ´»ñÈ¡Ò»¸öÍêÕû°ü
+//ä»»åŠ¡å¤„ç†æ± ,ç”¨æ¥è·å–ä¸€ä¸ªå®Œæ•´åŒ…
 XHTHREAD CALLBACK XEngine_HTTPTask_Thread(LPVOID lParam);
-//ÈÎÎñ´¦ÀíÏà¹Øº¯Êı,´¦Àí°üµÄÄÚÈİ
+//ä»»åŠ¡å¤„ç†ç›¸å…³å‡½æ•°,å¤„ç†åŒ…çš„å†…å®¹
 BOOL XEngine_HTTPTask_Handle(RFCCOMPONENTS_HTTP_REQPARAM* pSt_HTTPParam, LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen, TCHAR** pptszListHdr, int nHdrCount);

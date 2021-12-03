@@ -1,64 +1,64 @@
-#include "XEngine_Hdr.h"
+ï»¿#include "XEngine_Hdr.h"
 /********************************************************************
 //    Created:     2021/12/02  16:40:28
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_Network.cpp
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
 //    File Base:   XEngine_Network
 //    File Ext:    cpp
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     ÍøÂçIOÏà¹Ø´úÂë
+//    Purpose:     ç½‘ç»œIOç›¸å…³ä»£ç 
 //    History:
 *********************************************************************/
-//////////////////////////////////////////////////////////////////////////ÏÂÃæÊÇTCPÍøÂçIOÏà¹Ø´úÂë´¦Àíº¯Êı
+//////////////////////////////////////////////////////////////////////////ä¸‹é¢æ˜¯TCPç½‘ç»œIOç›¸å…³ä»£ç å¤„ç†å‡½æ•°
 BOOL __stdcall Network_Callback_TCPLogin(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
 {
-	//¿Í»§¶ËÁ¬½ÓºóÒª°Ñ¿Í»§¶Ë²åÈëĞÄÌø¹ÜÀíÆ÷ÖĞ²ÅÓĞĞ§
+	//å®¢æˆ·ç«¯è¿æ¥åè¦æŠŠå®¢æˆ·ç«¯æ’å…¥å¿ƒè·³ç®¡ç†å™¨ä¸­æ‰æœ‰æ•ˆ
 	SocketOpt_HeartBeat_InsertAddrEx(xhTCPHeart, lpszClientAddr);
-	//²¢ÇÒ»¹Òª´´½¨Ò»¸öTCP°ü¹ÜÀíÆ÷¶ÔÏó,²»È»ÎŞ·¨×é°ü
+	//å¹¶ä¸”è¿˜è¦åˆ›å»ºä¸€ä¸ªTCPåŒ…ç®¡ç†å™¨å¯¹è±¡,ä¸ç„¶æ— æ³•ç»„åŒ…
 	HelpComponents_Datas_CreateEx(xhTCPPacket, lpszClientAddr, 0);
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("TCP¿Í»§¶Ë:%s,Á¬½Óµ½·şÎñÆ÷"), lpszClientAddr);
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("TCPå®¢æˆ·ç«¯:%s,è¿æ¥åˆ°æœåŠ¡å™¨"), lpszClientAddr);
 	return TRUE;
 }
 void __stdcall Network_Callback_TCPRecv(LPCTSTR lpszClientAddr, SOCKET hSocket, LPCTSTR lpszRecvMsg, int nMsgLen, LPVOID lParam)
 {
-	//½ÓÊÜµ½Êı¾İºóÖ±½ÓÍ¶µİ¸øTCP°ü¹ÜÀíÆ÷,ÒòÎª¿ÉÄÜ²»ÊÇÒ»¸öÍêÕûµÄ°ü,ËùÒÔÎÒÃÇµÄÆÚÍûÊÇÍ¨¹ı´ËµÃµ½Ò»¸öÍêÕûµÄ°ü
+	//æ¥å—åˆ°æ•°æ®åç›´æ¥æŠ•é€’ç»™TCPåŒ…ç®¡ç†å™¨,å› ä¸ºå¯èƒ½ä¸æ˜¯ä¸€ä¸ªå®Œæ•´çš„åŒ…,æ‰€ä»¥æˆ‘ä»¬çš„æœŸæœ›æ˜¯é€šè¿‡æ­¤å¾—åˆ°ä¸€ä¸ªå®Œæ•´çš„åŒ…
 	if (!HelpComponents_Datas_PostEx(xhTCPPacket, lpszClientAddr, lpszRecvMsg, nMsgLen))
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("TCP¿Í»§¶Ë:%s,Í¶µİÊı¾İ°üµ½×é°ü¶ÓÁĞÊ§°Ü£¬´íÎó:%lX"), lpszClientAddr, Packets_GetLastError());
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("TCPå®¢æˆ·ç«¯:%s,æŠ•é€’æ•°æ®åŒ…åˆ°ç»„åŒ…é˜Ÿåˆ—å¤±è´¥ï¼Œé”™è¯¯:%lX"), lpszClientAddr, Packets_GetLastError());
 		return;
 	}
-	//ĞèÒª¼¤»îÒ»´Î
+	//éœ€è¦æ¿€æ´»ä¸€æ¬¡
 	SocketOpt_HeartBeat_ActiveAddrEx(xhTCPHeart, lpszClientAddr);
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG, _T("TCP¿Í»§¶Ë:%s,Í¶µİÊı¾İ°üµ½×é°ü¶ÓÁĞ³É¹¦,´óĞ¡:%d"), lpszClientAddr, nMsgLen);
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG, _T("TCPå®¢æˆ·ç«¯:%s,æŠ•é€’æ•°æ®åŒ…åˆ°ç»„åŒ…é˜Ÿåˆ—æˆåŠŸ,å¤§å°:%d"), lpszClientAddr, nMsgLen);
 }
 void __stdcall Network_Callback_TCPLeave(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
 {
-	//½»¸øÖ¸¶¨º¯ÊıÀ´´¦Àí¿Í»§¶ËÀë¿ªÏûÏ¢
+	//äº¤ç»™æŒ‡å®šå‡½æ•°æ¥å¤„ç†å®¢æˆ·ç«¯ç¦»å¼€æ¶ˆæ¯
 	XEngine_Network_Close(lpszClientAddr, XENGINE_CLIENT_NETTYPE_TCP, FALSE);
 }
 void __stdcall Network_Callback_TCPHeart(LPCSTR lpszClientAddr, SOCKET hSocket, int nStatus, LPVOID lParam)
 {
-	//Í¬ÉÏ
+	//åŒä¸Š
 	XEngine_Network_Close(lpszClientAddr, XENGINE_CLIENT_NETTYPE_TCP, TRUE);
 }
-//////////////////////////////////////////////////////////////////////////ÏÂÃæÊÇHTTPÍøÂçIOÏà¹Ø´úÂë´¦Àíº¯Êı
+//////////////////////////////////////////////////////////////////////////ä¸‹é¢æ˜¯HTTPç½‘ç»œIOç›¸å…³ä»£ç å¤„ç†å‡½æ•°
 BOOL __stdcall Network_Callback_HTTPLogin(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
 {
 	SocketOpt_HeartBeat_InsertAddrEx(xhHTTPHeart, lpszClientAddr);
 	RfcComponents_HttpServer_CreateClientEx(xhHTTPPacket, lpszClientAddr, 0);
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("HTTP¿Í»§¶Ë:%s,Á¬½Óµ½·şÎñÆ÷"), lpszClientAddr);
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("HTTPå®¢æˆ·ç«¯:%s,è¿æ¥åˆ°æœåŠ¡å™¨"), lpszClientAddr);
 	return TRUE;
 }
 void __stdcall Network_Callback_HTTPRecv(LPCTSTR lpszClientAddr, SOCKET hSocket, LPCTSTR lpszRecvMsg, int nMsgLen, LPVOID lParam)
 {
 	if (!RfcComponents_HttpServer_InserQueueEx(xhHTTPPacket, lpszClientAddr, lpszRecvMsg, nMsgLen))
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("HTTP¿Í»§¶Ë:%s,Í¶µİHTTPÊı¾İ°üµ½ÏûÏ¢¶ÓÁĞÊ§°Ü£¬´íÎó:%lX"), lpszClientAddr, HttpServer_GetLastError());
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("HTTPå®¢æˆ·ç«¯:%s,æŠ•é€’HTTPæ•°æ®åŒ…åˆ°æ¶ˆæ¯é˜Ÿåˆ—å¤±è´¥ï¼Œé”™è¯¯:%lX"), lpszClientAddr, HttpServer_GetLastError());
 		return;
 	}
 	SocketOpt_HeartBeat_ActiveAddrEx(xhHTTPHeart, lpszClientAddr);
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG, _T("HTTP¿Í»§¶Ë:%s,Í¶µİÊı¾İ°üµ½×é°ü¶ÓÁĞ³É¹¦,´óĞ¡:%d"), lpszClientAddr, nMsgLen);
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG, _T("HTTPå®¢æˆ·ç«¯:%s,æŠ•é€’æ•°æ®åŒ…åˆ°ç»„åŒ…é˜Ÿåˆ—æˆåŠŸ,å¤§å°:%d"), lpszClientAddr, nMsgLen);
 }
 void __stdcall Network_Callback_HTTPLeave(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
 {
@@ -68,25 +68,25 @@ void __stdcall Network_Callback_HTTPHeart(LPCTSTR lpszClientAddr, SOCKET hSocket
 {
 	XEngine_Network_Close(lpszClientAddr, XENGINE_CLIENT_NETTYPE_HTTP, TRUE);
 }
-//////////////////////////////////////////////////////////////////////////ÍøÂçIO¹Ø±Õ²Ù×÷
+//////////////////////////////////////////////////////////////////////////ç½‘ç»œIOå…³é—­æ“ä½œ
 void XEngine_Network_Close(LPCTSTR lpszClientAddr, int nIPProto, BOOL bHeart)
 {
 	if (XENGINE_CLIENT_NETTYPE_TCP == nIPProto)
 	{
-		//ÏÈ¹Ø±ÕÍøÂçºÍĞÄÌø,ËûÃÇÖ÷¶¯»Øµ÷µÄÊı¾İÎÒÃÇ¿ÉÒÔ²»ÓÃÖ÷¶¯µ÷ÓÃ¹Ø±Õ
+		//å…ˆå…³é—­ç½‘ç»œå’Œå¿ƒè·³,ä»–ä»¬ä¸»åŠ¨å›è°ƒçš„æ•°æ®æˆ‘ä»¬å¯ä»¥ä¸ç”¨ä¸»åŠ¨è°ƒç”¨å…³é—­
 		if (bHeart)
 		{
-			//ĞÄÌø³¬Ê±ÊôÓÚÖ÷¶¯¹Ø±Õ,ËùÒÔÒªÖ÷¶¯µ÷ÓÃÍøÂç¹Ø±Õ
+			//å¿ƒè·³è¶…æ—¶å±äºä¸»åŠ¨å…³é—­,æ‰€ä»¥è¦ä¸»åŠ¨è°ƒç”¨ç½‘ç»œå…³é—­
 			NetCore_TCPXCore_CloseForClientEx(xhTCPSocket, lpszClientAddr);
 		}
 		else
 		{
-			//Í¬ÉÏ
+			//åŒä¸Š
 			SocketOpt_HeartBeat_DeleteAddrEx(xhTCPHeart, lpszClientAddr);
 		}
-		//ĞèÒªÖ÷¶¯É¾³ıÓë¿Í»§¶Ë¶ÔÓ¦µÄ×é°üÆ÷¶ÓÁĞÖĞµÄ×ÊÔ´
+		//éœ€è¦ä¸»åŠ¨åˆ é™¤ä¸å®¢æˆ·ç«¯å¯¹åº”çš„ç»„åŒ…å™¨é˜Ÿåˆ—ä¸­çš„èµ„æº
 		HelpComponents_Datas_DeleteEx(xhTCPPacket, lpszClientAddr);
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("TCP¿Í»§¶Ë:%s,Àë¿ª·şÎñÆ÷"), lpszClientAddr);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("TCPå®¢æˆ·ç«¯:%s,ç¦»å¼€æœåŠ¡å™¨"), lpszClientAddr);
 	}
 	else if (XENGINE_CLIENT_NETTYPE_HTTP == nIPProto)
 	{
@@ -99,40 +99,40 @@ void XEngine_Network_Close(LPCTSTR lpszClientAddr, int nIPProto, BOOL bHeart)
 			SocketOpt_HeartBeat_DeleteAddrEx(xhHTTPHeart, lpszClientAddr);
 		}
 		RfcComponents_HttpServer_CloseClinetEx(xhHTTPPacket, lpszClientAddr);
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("HTTP¿Í»§¶Ë:%s,Àë¿ª·şÎñÆ÷"), lpszClientAddr);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("HTTPå®¢æˆ·ç«¯:%s,ç¦»å¼€æœåŠ¡å™¨"), lpszClientAddr);
 	}
 	else
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("Î´Öª¿Í»§¶Ë:%s,Àë¿ª·şÎñÆ÷"), lpszClientAddr);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("æœªçŸ¥å®¢æˆ·ç«¯:%s,ç¦»å¼€æœåŠ¡å™¨"), lpszClientAddr);
 	}
 }
 //////////////////////////////////////////////////////////////////////////
 BOOL XEngine_Network_Send(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen, int nIPProto)
 {
-	//¸ù¾İ¿Í»§¶ËÀàĞÍÀ´´¦Àí·¢ËÍÒµÎñÂß¼­
+	//æ ¹æ®å®¢æˆ·ç«¯ç±»å‹æ¥å¤„ç†å‘é€ä¸šåŠ¡é€»è¾‘
 	if (XENGINE_CLIENT_NETTYPE_TCP == nIPProto)
 	{
-		//·¢ËÍÊı¾İ¸øÖ¸¶¨¿Í»§¶Ë
+		//å‘é€æ•°æ®ç»™æŒ‡å®šå®¢æˆ·ç«¯
 		if (!NetCore_TCPXCore_SendEx(xhTCPSocket, lpszClientAddr, lpszMsgBuffer, nMsgLen))
 		{
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("TCP¿Í»§¶Ë:%s,·¢ËÍÊı¾İÊ§°Ü£¬´íÎó:%lX"), lpszClientAddr, NetCore_GetLastError());
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("TCPå®¢æˆ·ç«¯:%s,å‘é€æ•°æ®å¤±è´¥ï¼Œé”™è¯¯:%lX"), lpszClientAddr, NetCore_GetLastError());
 			return FALSE;
 		}
-		//·¢ËÍ³É¹¦¼¤»îÒ»´ÎĞÄÌø
+		//å‘é€æˆåŠŸæ¿€æ´»ä¸€æ¬¡å¿ƒè·³
 		SocketOpt_HeartBeat_ActiveAddrEx(xhTCPHeart, lpszClientAddr);
 	}
 	else if (XENGINE_CLIENT_NETTYPE_HTTP == nIPProto)
 	{
 		if (!NetCore_TCPXCore_SendEx(xhHTTPSocket, lpszClientAddr, lpszMsgBuffer, nMsgLen))
 		{
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("HTTP¿Í»§¶Ë:%s,·¢ËÍÊı¾İÊ§°Ü£¬´íÎó:%lX"), lpszClientAddr, NetCore_GetLastError());
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("HTTPå®¢æˆ·ç«¯:%s,å‘é€æ•°æ®å¤±è´¥ï¼Œé”™è¯¯:%lX"), lpszClientAddr, NetCore_GetLastError());
 			return FALSE;
 		}
 		SocketOpt_HeartBeat_ActiveAddrEx(xhHTTPHeart, lpszClientAddr);
 	}
 	else 
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("Î´Öª¿Í»§¶Ë:%s,·¢ËÍÊı¾İ¸øÊ§°Ü£¬´íÎó:%lX"), lpszClientAddr, NetCore_GetLastError());
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("æœªçŸ¥å®¢æˆ·ç«¯:%s,å‘é€æ•°æ®ç»™å¤±è´¥ï¼Œé”™è¯¯:%lX"), lpszClientAddr, NetCore_GetLastError());
 	}
 	return TRUE;
 }

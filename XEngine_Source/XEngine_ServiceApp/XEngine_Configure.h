@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 /********************************************************************
 //    Created:     2021/12/02  16:33:25
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_Configure.h
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
 //    File Base:   XEngine_Configure
 //    File Ext:    h
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     ÅäÖÃÎÄ¼ş²Ù×÷´úÂë
+//    Purpose:     é…ç½®æ–‡ä»¶æ“ä½œä»£ç 
 //    History:
 *********************************************************************/
 BOOL XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pSt_Configure);

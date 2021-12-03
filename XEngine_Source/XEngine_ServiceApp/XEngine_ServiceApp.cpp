@@ -99,6 +99,11 @@ int main(int argc, char** argv)
 	{
 		return -1;
 	}
+	//判断是否以守护进程启动
+	if (st_ServiceConfig.bDeamon)
+	{
+		ServiceApp_Deamon();
+	}
 	//初始日志
 	xhLog = HelpComponents_XLog_Init(HELPCOMPONENTS_XLOG_OUTTYPE_STD | HELPCOMPONENTS_XLOG_OUTTYPE_FILE, &st_XLogConfig);
 	if (NULL == xhLog)

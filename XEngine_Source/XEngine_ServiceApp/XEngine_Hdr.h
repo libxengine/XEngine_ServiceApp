@@ -1,23 +1,21 @@
-#pragma once
-//¼ÓÔØÏµÍ³Í·ÎÄ¼ş
+ï»¿#pragma once
+//åŠ è½½ç³»ç»Ÿå¤´æ–‡ä»¶
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <inttypes.h>
 #include <signal.h>
 #include <errno.h>
 #include <thread>
 #ifdef _WINDOWS
 #include <Windows.h>
 #include <tchar.h>
-#include <io.h>
 #else
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #endif
 using namespace std;
-//¼ÓÔØXEngineÍ·ÎÄ¼ş
+//åŠ è½½XEngineå¤´æ–‡ä»¶
 #include <XEngine_Include/XEngine_CommHdr.h>
 #include <XEngine_Include/XEngine_Types.h>
 #include <XEngine_Include/XEngine_ProtocolHdr.h>
@@ -33,10 +31,10 @@ using namespace std;
 #include <XEngine_Include/XEngine_HelpComponents/Packets_Error.h>
 #include <XEngine_Include/XEngine_RfcComponents/HttpServer_Define.h>
 #include <XEngine_Include/XEngine_RfcComponents/HttpServer_Error.h>
-//¼ÓÔØÏîÄ¿Ïà¹ØÍ·ÎÄ¼ş
+//åŠ è½½é¡¹ç›®ç›¸å…³å¤´æ–‡ä»¶
 #include "../XEngine_ModuleConfigure/ModuleConfig_Define.h"
 #include "../XEngine_ModuleConfigure/ModuleConfig_Error.h"
-//¼ÓÔØ×Ô¼ºµÄÍ·ÎÄ¼ş
+//åŠ è½½è‡ªå·±çš„å¤´æ–‡ä»¶
 #include "XEngine_Configure.h"
 #include "XEngine_Network.h"
 #include "XEngine_TCPTask.h"
@@ -47,32 +45,32 @@ using namespace std;
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
 //    File Base:   XEngine_Hdr
 //    File Ext:    h
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     ¹«ÓÃÍ·ÎÄ¼ş
+//    Purpose:     å…¬ç”¨å¤´æ–‡ä»¶
 //    History:
 *********************************************************************/
 extern BOOL bIsRun;
 extern XLOG xhLog;
-//TCP·şÎñÆ÷
+//TCPæœåŠ¡å™¨
 extern XNETHANDLE xhTCPSocket;
 extern XNETHANDLE xhTCPHeart;
 extern XNETHANDLE xhTCPPool;
 extern XHANDLE xhTCPPacket;
-//HTTP·şÎñÆ÷
+//HTTPæœåŠ¡å™¨
 extern XNETHANDLE xhHTTPSocket;
 extern XNETHANDLE xhHTTPHeart;
 extern XNETHANDLE xhHTTPPool;
 extern XHANDLE xhHTTPPacket;
-//ÅäÖÃÎÄ¼ş
+//é…ç½®æ–‡ä»¶
 extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
-//ÍøÂçÀàĞÍ¶¨Òå
+//ç½‘ç»œç±»å‹å®šä¹‰
 #define XENGINE_CLIENT_NETTYPE_TCP 1
 #define XENGINE_CLIENT_NETTYPE_HTTP 2
 
 
-//Á¬½Ó¿â
+//è¿æ¥åº“
 #ifdef _WINDOWS
 #ifdef _WIN64
 #pragma comment(lib,"../x64/Release/XEngine_ModuleConfigure.lib")

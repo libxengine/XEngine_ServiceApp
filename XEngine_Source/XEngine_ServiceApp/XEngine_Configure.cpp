@@ -1,13 +1,13 @@
-#include "XEngine_Hdr.h"
+ï»¿#include "XEngine_Hdr.h"
 /********************************************************************
 //    Created:     2021/12/02  16:34:09
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_Configure.cpp
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
 //    File Base:   XEngine_Configure
 //    File Ext:    cpp
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     ÅäÖÃÎÄ¼ş¶ÁĞ´´úÂë
+//    Purpose:     é…ç½®æ–‡ä»¶è¯»å†™ä»£ç 
 //    History:
 *********************************************************************/
 BOOL XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pSt_Configure)
@@ -16,7 +16,7 @@ BOOL XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 
 	if (!ModuleConfigure_Json_File(lpszConfigFile, pSt_Configure))
 	{
-		printf("½âÎöÅäÖÃÎÄ¼şÊ§°Ü,ModuleConfigure_Json_File:%lX\n", ModuleConfigure_GetLastError());
+		printf("è§£æé…ç½®æ–‡ä»¶å¤±è´¥,ModuleConfigure_Json_File:%lX\n", ModuleConfigure_GetLastError());
 		return FALSE;
 	}
 
@@ -46,11 +46,11 @@ BOOL XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 
 void XEngine_Configure_Help()
 {
-	printf(_T("--------------------------Æô¶¯²ÎÊı°ïÖú¿ªÊ¼--------------------------\n"));
-	printf(_T("ÍøÂçÏûÏ¢¶ÓÁĞ·şÎñÆô¶¯²ÎÊı£º³ÌĞò ²ÎÊı ²ÎÊıÖµ£¬²ÎÊıÊÇÇø·Ö´óĞ¡Ğ´µÄ¡£Èç¹û²»Ö¸¶¨½«»á¼ÓÔØÄ¬ÈÏµÄiniÅäÖÃÎÄ¼şÀïÃæµÄ²ÎÊı\n"));
-	printf(_T("-h or -H£ºÆô¶¯²ÎÊı°ïÖúÌáÊ¾ĞÅÏ¢\n"));
-	printf(_T("-TP£ºÉèÖÃÏûÏ¢¶ÓÁĞTCP·şÎñ¶Ë¿ÚºÅ\n"));
-	printf(_T("-HP£ºÉèÖÃÏûÏ¢¶ÓÁĞHTTP·şÎñ¶Ë¿ÚºÅ\n"));
-	printf(_T("-d£º1 ÆôÓÃÊØ»¤½ø³Ì£¬2²»ÆôÓÃ\n"));
-	printf(_T("--------------------------Æô¶¯²ÎÊı°ïÖú½áÊø--------------------------\n"));
+	printf(_T("--------------------------å¯åŠ¨å‚æ•°å¸®åŠ©å¼€å§‹--------------------------\n"));
+	printf(_T("ç½‘ç»œæ¶ˆæ¯é˜Ÿåˆ—æœåŠ¡å¯åŠ¨å‚æ•°ï¼šç¨‹åº å‚æ•° å‚æ•°å€¼ï¼Œå‚æ•°æ˜¯åŒºåˆ†å¤§å°å†™çš„ã€‚å¦‚æœä¸æŒ‡å®šå°†ä¼šåŠ è½½é»˜è®¤çš„inié…ç½®æ–‡ä»¶é‡Œé¢çš„å‚æ•°\n"));
+	printf(_T("-h or -Hï¼šå¯åŠ¨å‚æ•°å¸®åŠ©æç¤ºä¿¡æ¯\n"));
+	printf(_T("-TPï¼šè®¾ç½®æ¶ˆæ¯é˜Ÿåˆ—TCPæœåŠ¡ç«¯å£å·\n"));
+	printf(_T("-HPï¼šè®¾ç½®æ¶ˆæ¯é˜Ÿåˆ—HTTPæœåŠ¡ç«¯å£å·\n"));
+	printf(_T("-dï¼š1 å¯ç”¨å®ˆæŠ¤è¿›ç¨‹ï¼Œ2ä¸å¯ç”¨\n"));
+	printf(_T("--------------------------å¯åŠ¨å‚æ•°å¸®åŠ©ç»“æŸ--------------------------\n"));
 }
