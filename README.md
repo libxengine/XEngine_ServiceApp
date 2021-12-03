@@ -5,6 +5,7 @@ c c++网络后台服务器开发框架
 c c++ network backend server development framework  
 这是基于XEngine的一个开发框架代码.这套代码使用最基础的代码演示了如何编写一个后台服务器  
 你们可以直接在这套代码的基础之上编写自己的后台服务器  
+代码拥有详细的注释,你可以非常方便的了解它是如何运作的    
 
 ## 软件特性
 支持以下技术  
@@ -43,9 +44,9 @@ make FLAGS=CleanAll 清理编译
 GITEE:https://gitee.com/xyry/libxengine
 GITHUB:https://github.com/libxengine/xengine
 
-## 测试服务器
-地址:app.xyry.org 或者 159.75.200.173
-端口:tcp端口 5300,websocket端口 5301,传输验证密码:无加密
+## 如何开发
+你可以直接在XEngine_TCPTask.cpp 中编写你的业务代码,用于处理TCP相关协议业务内容  
+你可以直接在XEngine_HTTPTask.cpp 中编写你的业务代码,用于处理HTTP相关的协议业务内容  
 
 ## 参与贡献
 

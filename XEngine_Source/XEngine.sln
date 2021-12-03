@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine_ServiceApp", "XEngi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine_ModuleConfigure", "XEngine_ModuleConfigure\XEngine_ModuleConfigure.vcxproj", "{F54F152C-594F-4465-A44E-2DB915B39760}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XEngine_UserHdr", "XEngine_UserHdr", "{9E4F2158-9AC1-4C19-A3F7-375A9DBCF856}"
+	ProjectSection(SolutionItems) = preProject
+		XEngine_UserProtocol.h = XEngine_UserProtocol.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

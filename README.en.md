@@ -5,6 +5,7 @@ c c++网络后台服务器开发框架
 c c++ network backend server development framework  
 It is a development framework code based on XEngine. This set of code uses the most basic code to demonstrate how to write a back-end server  
 You can write your own backend server directly on the basis of this code  
+The code has detailed comments, so you can easily understand how it works  
 
 ## Software feature
 support feature list:  
@@ -41,9 +42,9 @@ make complie
 make FLAGS=InstallAll Install File  
 make FLAGS=CleanAll Clear Complie  
 
-## test server
-address:app.xyry.org or 159.75.200.173
-port :tcp port 5300,websocket port 5301,Transmission verification password: no encryption
+## How to develop
+You can directly write your code in XEngine_TCPTask.cpp,to process TCP-related protocol business content
+You can directly write your code in XEngine_HTTPTask.cpp,to process HTTP-related protocol business content
 
 ## Participate in contribution
 

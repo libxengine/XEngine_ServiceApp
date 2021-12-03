@@ -56,18 +56,24 @@ XHTHREAD CALLBACK XEngine_TCPTask_Thread(LPVOID lParam)
 BOOL XEngine_TCPTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen)
 {
 	//这里开始编写你的代码
-	if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_NORMAL == pSt_ProtocolHdr->unOperatorType)
+	if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG == pSt_ProtocolHdr->unOperatorType)
 	{
-		//我们收到一个包可以对他进行回复
-		TCHAR tszMsgBuffer[2048];
-		memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
-		//我们推荐你新建一个模块项目来处理协议组包和解包相关代码
-		memcpy(tszMsgBuffer, pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
-		memcpy(tszMsgBuffer + sizeof(XENGINE_PROTOCOLHDR), lpszMsgBuffer, nMsgLen);
-		//发送TCP包,对方发送的内容我们返回相同的内容给对方,所以不需要改协议头
-		XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, sizeof(XENGINE_PROTOCOLHDR) + nMsgLen, XENGINE_CLIENT_NETTYPE_TCP);
-		//回复完毕打印客户端发送的数据
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("TCP客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ == pSt_ProtocolHdr->unOperatorCode)
+		{
+			//我们收到一个包可以对他进行回复
+			TCHAR tszMsgBuffer[2048];
+			memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
+			//我们推荐你新建一个模块项目来处理协议组包和解包相关代码
+			pSt_ProtocolHdr->byIsReply = FALSE;
+			pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREP;
+
+			memcpy(tszMsgBuffer, pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
+			memcpy(tszMsgBuffer + sizeof(XENGINE_PROTOCOLHDR), lpszMsgBuffer, nMsgLen);
+			//发送TCP包,对方发送的内容我们返回相同的内容给对方,所以不需要改负载大小
+			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, sizeof(XENGINE_PROTOCOLHDR) + nMsgLen, XENGINE_CLIENT_NETTYPE_TCP);
+			//回复完毕打印客户端发送的数据
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("TCP客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+		}
 	}
 	else if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_AUTH == pSt_ProtocolHdr->unOperatorType)
 	{

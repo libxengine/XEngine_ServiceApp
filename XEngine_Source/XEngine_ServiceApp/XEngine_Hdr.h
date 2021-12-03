@@ -32,6 +32,7 @@ using namespace std;
 #include <XEngine_Include/XEngine_RfcComponents/HttpServer_Define.h>
 #include <XEngine_Include/XEngine_RfcComponents/HttpServer_Error.h>
 //加载项目相关头文件
+#include "../XEngine_UserProtocol.h"
 #include "../XEngine_ModuleConfigure/ModuleConfig_Define.h"
 #include "../XEngine_ModuleConfigure/ModuleConfig_Error.h"
 //加载自己的头文件
