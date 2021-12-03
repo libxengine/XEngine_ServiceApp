@@ -30,9 +30,6 @@ XEngine版本需要V7.25或者以上版本
 Linux使用Makefile编译  
 UBUNTU20.04 x64或者CENTOS8 x64均可  
 
-##### XEngine环境
-XEngine可以通过脚本文件安装sudo XEngine_RunEnv.sh -i 3
-
 ##### 编译命令
 在XEngine_Source目录下执行命令  
 make 编译  
@@ -40,9 +37,9 @@ make FLAGS=InstallAll 安装库程序
 make FLAGS=CleanAll 清理编译  
 
 #### XEngine环境
-安装XEngine可以参考其Readme文档
-GITEE:https://gitee.com/xyry/libxengine
-GITHUB:https://github.com/libxengine/xengine
+安装XEngine可以参考其Readme文档  
+GITEE:https://gitee.com/xyry/libxengine  
+GITHUB:https://github.com/libxengine/xengine  
 
 ## 如何开发
 你可以直接在XEngine_TCPTask.cpp 中编写你的业务代码,用于处理TCP相关协议业务内容  

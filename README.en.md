@@ -31,20 +31,20 @@ You need to configure the environment in the following way, otherwise you may ne
 Linux use Makefile complie  
 UBUNTU20.04 x64 or CENTOS8 x64  
 
-#### XEngine Env
-install XEngine can be refer to xengine Readme docment
-GITEE:https://gitee.com/xyry/libxengine
-GITHUB:https://github.com/libxengine/xengine
-
 ##### Screenshot of the program
 execute command in XEngine_Source path   
 make complie  
 make FLAGS=InstallAll Install File  
 make FLAGS=CleanAll Clear Complie  
 
+#### XEngine Env
+install XEngine can be refer to xengine Readme docment  
+GITEE:https://gitee.com/xyry/libxengine  
+GITHUB:https://github.com/libxengine/xengine  
+
 ## How to develop
-You can directly write your code in XEngine_TCPTask.cpp,to process TCP-related protocol business content
-You can directly write your code in XEngine_HTTPTask.cpp,to process HTTP-related protocol business content
+You can directly write your code in XEngine_TCPTask.cpp,to process TCP-related protocol business content  
+You can directly write your code in XEngine_HTTPTask.cpp,to process HTTP-related protocol business content  
 
 ## Participate in contribution
 
