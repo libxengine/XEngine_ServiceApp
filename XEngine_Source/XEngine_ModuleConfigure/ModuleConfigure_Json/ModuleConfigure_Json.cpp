@@ -61,11 +61,11 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_OPENFILE;
 		return FALSE;
 	}
-	int nCount = 0;
+	size_t nCount = 0;
 	TCHAR tszMsgBuffer[4096];
 	while (1)
 	{
-		int nRet = fread(tszMsgBuffer + nCount, 1, 2048, pSt_File);
+		size_t nRet = fread(tszMsgBuffer + nCount, 1, 2048, pSt_File);
 		if (nRet <= 0)
 		{
 			break;
@@ -83,8 +83,8 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 	}
 	_tcscpy(pSt_ServerConfig->tszIPAddr, st_JsonRoot["tszIPAddr"].asCString());
 	pSt_ServerConfig->bDeamon = st_JsonRoot["bDeamon"].asInt();
-	pSt_ServerConfig->nTCPPort = st_JsonRoot["nTCPPort"].asInt();
 	pSt_ServerConfig->nHttpPort = st_JsonRoot["nHttpPort"].asInt();
+	pSt_ServerConfig->nCenterPort = st_JsonRoot["nCenterPort"].asInt();
 
 	if (st_JsonRoot["XMax"].empty() || (5 != st_JsonRoot["XMax"].size()))
 	{
@@ -96,8 +96,8 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XMax.nMaxClient = st_JsonXMax["nMaxClient"].asInt();
 	pSt_ServerConfig->st_XMax.nMaxQueue = st_JsonXMax["nMaxQueue"].asInt();
 	pSt_ServerConfig->st_XMax.nIOThread = st_JsonXMax["nIOThread"].asInt();
-	pSt_ServerConfig->st_XMax.nTCPThread = st_JsonXMax["nTCPThread"].asInt();
 	pSt_ServerConfig->st_XMax.nHTTPThread = st_JsonXMax["nHttpThread"].asInt();
+	pSt_ServerConfig->st_XMax.nCenterThread = st_JsonXMax["nCenterThread"].asInt();
 
 	if (st_JsonRoot["XTime"].empty() || (3 != st_JsonRoot["XTime"].size()))
 	{
@@ -107,8 +107,8 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 	}
 	Json::Value st_JsonXTime = st_JsonRoot["XTime"];
 	pSt_ServerConfig->st_XTime.nTimeCheck = st_JsonXTime["nTimeCheck"].asInt();
-	pSt_ServerConfig->st_XTime.nTCPTimeOut = st_JsonXTime["nTCPTimeOut"].asInt();
 	pSt_ServerConfig->st_XTime.nHTTPTimeOut = st_JsonXTime["nHttpTimeOut"].asInt();
+	pSt_ServerConfig->st_XTime.nCenterTimeOut = st_JsonXTime["nTCPTimeOut"].asInt();
 
 	if (st_JsonRoot["XLog"].empty() || (3 != st_JsonRoot["XLog"].size()))
 	{

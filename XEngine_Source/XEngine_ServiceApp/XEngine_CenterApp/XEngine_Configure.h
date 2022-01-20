@@ -1,8 +1,8 @@
 ﻿#pragma once
 /********************************************************************
-//    Created:     2021/12/02  16:33:25
-//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_Configure.h
-//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
+//    Created:     2022/01/20  14:32:42
+//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_CenterApp\XEngine_Configure.h
+//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_CenterApp
 //    File Base:   XEngine_Configure
 //    File Ext:    h
 //    Project:     XEngine(网络通信引擎)

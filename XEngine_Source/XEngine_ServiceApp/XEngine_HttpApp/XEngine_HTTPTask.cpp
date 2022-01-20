@@ -1,8 +1,8 @@
 ﻿#include "XEngine_Hdr.h"
 /********************************************************************
-//    Created:     2021/12/02  17:15:57
-//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HTTPTask.cpp
-//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp
+//    Created:     2022/01/20  14:44:17
+//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HttpApp\XEngine_HTTPTask.cpp
+//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HttpApp
 //    File Base:   XEngine_HTTPTask
 //    File Ext:    cpp
 //    Project:     XEngine(网络通信引擎)
@@ -82,7 +82,7 @@ BOOL XEngine_HTTPTask_Handle(RFCCOMPONENTS_HTTP_REQPARAM* pSt_HTTPParam, LPCTSTR
 		//通过此函数来打包成我们要发送的数据,就是打包成一条标准的HTTP协议
 		RfcComponents_HttpServer_SendMsgEx(xhHTTPPacket, tszMsgBuffer, &nLen, &st_HDRParam, lpszMsgBuffer, _tcslen(lpszMsgBuffer));
 		//打包完毕后才能发送给客户端
-		XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen, XENGINE_CLIENT_NETTYPE_HTTP);
+		XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("HTTP客户端:%s,发送GET请求给服务器"), lpszClientAddr);
 	}
 	else

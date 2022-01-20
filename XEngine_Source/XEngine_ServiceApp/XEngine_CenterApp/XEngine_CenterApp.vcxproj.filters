@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="XEngine_ServiceApp.cpp">
+    <ClCompile Include="XEngine_CenterApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="XEngine_Configure.cpp">
@@ -24,27 +24,21 @@
     <ClCompile Include="XEngine_Network.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="XEngine_TCPTask.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="XEngine_HTTPTask.cpp">
+    <ClCompile Include="XEngine_CenterTask.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="XEngine_Hdr.h">
+    <ClInclude Include="XEngine_Configure.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="XEngine_Configure.h">
+    <ClInclude Include="XEngine_Hdr.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="XEngine_Network.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="XEngine_TCPTask.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="XEngine_HTTPTask.h">
+    <ClInclude Include="XEngine_CenterTask.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
