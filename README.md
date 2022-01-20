@@ -24,7 +24,7 @@ XEngine版本需要V7.25或者以上版本
 ## 编译
 
 #### Windows
-使用VS2019 x86(debug release)或者x64(release)打开并且编译 你需要按照下面的方式配置环境,不然你可能需要自己在项目中设置库目录
+使用VS2019 x86或者x64打开并且编译 你需要按照下面的方式配置环境,不然你可能需要自己在项目中设置库目录
 
 #### Linux
 Linux使用Makefile编译  
@@ -42,8 +42,8 @@ GITEE:https://gitee.com/xyry/libxengine
 GITHUB:https://github.com/libxengine/xengine  
 
 ## 如何开发
-你可以直接在XEngine_TCPTask.cpp 中编写你的业务代码,用于处理TCP相关协议业务内容  
-你可以直接在XEngine_HTTPTask.cpp 中编写你的业务代码,用于处理HTTP相关的协议业务内容  
+XEngine_CenterApp 服务主要是用于TCP协议,可在这里面编写你的业务服务相关处理代码  
+XEngine_HttpApp 服务主要用于HTTP协议,可在这里编写你的HTTP操作相关处理代码
 
 ## 参与贡献
 

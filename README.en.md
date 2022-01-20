@@ -24,7 +24,7 @@ XEngine need V7.25 or above
 ## complie
 
 #### Windows
-use vs2019 x86(debug or release) x64(only release) open and complie  
+use vs2019 x86 and x64 open and complie  
 You need to configure the environment in the following way, otherwise you may need to set the library directory in the project yourself  
 
 #### Linux
@@ -43,8 +43,8 @@ GITEE:https://gitee.com/xyry/libxengine
 GITHUB:https://github.com/libxengine/xengine  
 
 ## How to develop
-You can directly write your code in XEngine_TCPTask.cpp,to process TCP-related protocol business content  
-You can directly write your code in XEngine_HTTPTask.cpp,to process HTTP-related protocol business content  
+XEngine_CenterApp service is mainly used for TCP protocol, you can write your TCP(Business) operation related processing code here  
+XEngine_HttpApp service is mainly used for HTTP protocol, you can write your HTTP operation related processing code here
 
 ## Participate in contribution
 
