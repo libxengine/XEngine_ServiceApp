@@ -1,32 +1,32 @@
-#pragma once
+ï»¿#pragma once
 /********************************************************************
 //    Created:     2021/12/03  14:16:27
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_UserProtocol.h
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source
 //    File Base:   XEngine_UserProtocol
 //    File Ext:    h
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     ÓÃ»§×Ô¶¨ÒåĞ­ÒéÍ·
+//    Purpose:     ç”¨æˆ·è‡ªå®šä¹‰åè®®å¤´
 //    History:
 *********************************************************************/
 //////////////////////////////////////////////////////////////////////////
-//                          Ö÷Ğ­Òé¶¨Òå;unOperatorType
+//                          ä¸»åè®®å®šä¹‰;unOperatorType
 //////////////////////////////////////////////////////////////////////////
 typedef enum 
 {
-	//ÓÃ»§ÏûÏ¢
+	//ç”¨æˆ·æ¶ˆæ¯
 	ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG = ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_USER + 1
 }ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_CUSTOM;
 //////////////////////////////////////////////////////////////////////////
-//                          ×ÓĞ­Òé¶¨Òå:unOperatorCode
+//                          å­åè®®å®šä¹‰:unOperatorCode
 //////////////////////////////////////////////////////////////////////////
-#define XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ 0x0001   //·¢ËÍÏûÏ¢
-#define XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREP 0x0002   //»Ø¸´ÏûÏ¢
+#define XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ 0x0001   //å‘é€æ¶ˆæ¯
+#define XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREP 0x0002   //å›å¤æ¶ˆæ¯
 ///////////////////////////////////////////////////////////////////////////
-//                          µ¼³öµÄÊı¾İ½á¹¹
+//                          å¯¼å‡ºçš„æ•°æ®ç»“æ„
 ///////////////////////////////////////////////////////////////////////////
 #pragma pack(push)
 #pragma pack(1)
-//Ìí¼Ó×Ô¼ºµÄÏûÏ¢Êı¾İ½á¹¹
+//æ·»åŠ è‡ªå·±çš„æ¶ˆæ¯æ•°æ®ç»“æ„
 #pragma pack(pop)

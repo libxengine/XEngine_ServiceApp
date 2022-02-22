@@ -1,68 +1,68 @@
-#pragma once
+ï»¿#pragma once
 /********************************************************************
 //    Created:     2021/12/02  16:09:03
 //    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ModuleConfigure\ModuleConfig_Define.h
 //    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ModuleConfigure
 //    File Base:   ModuleConfig_Define
 //    File Ext:    h
-//    Project:     XEngine(ÍøÂçÍ¨ĞÅÒıÇæ)
+//    Project:     XEngine(ç½‘ç»œé€šä¿¡å¼•æ“)
 //    Author:      qyt
-//    Purpose:     ÅäÖÃÄ£¿éµ¼³ö¶¨Òå
+//    Purpose:     é…ç½®æ¨¡å—å¯¼å‡ºå®šä¹‰
 //    History:
 *********************************************************************/
 //////////////////////////////////////////////////////////////////////////
-//                        µ¼³öµÄÊı¾İ½á¹¹
+//                        å¯¼å‡ºçš„æ•°æ®ç»“æ„
 //////////////////////////////////////////////////////////////////////////
 typedef struct tag_XEngine_ServiceConfig
 {
-	TCHAR tszIPAddr[128];                     //±¾»úIPµØÖ·,¸ù¾İĞèÒªÅäÖÃ
-	BOOL bDeamon;                             //ÊÇ·ñÒÔÊØ»¤½ø³ÌÆô¶¯,LINUXÓĞĞ§
-	int nHttpPort;                            //HTTP·şÎñ¶Ë¿Ú
-	int nCenterPort;                          //ÒµÎñ¶Ë¿Ú
+	TCHAR tszIPAddr[128];                     //æœ¬æœºIPåœ°å€,æ ¹æ®éœ€è¦é…ç½®
+	BOOL bDeamon;                             //æ˜¯å¦ä»¥å®ˆæŠ¤è¿›ç¨‹å¯åŠ¨,LINUXæœ‰æ•ˆ
+	int nHttpPort;                            //HTTPæœåŠ¡ç«¯å£
+	int nCenterPort;                          //ä¸šåŠ¡ç«¯å£
 	struct
 	{
-		int nMaxClient;                       //×î´ó¿Í»§¶Ë¸öÊı
-		int nMaxQueue;                        //×î´ó¶ÓÁĞ¸öÊı
-		int nIOThread;                        //ÍøÂçIOÏß³ÌÊı
-		int nHTTPThread;                      //HTTPÈÎÎñ´¦ÀíÏß³ÌÊı
-		int nCenterThread;                    //ÒµÎñÈÎÎñ´¦ÀíÏß³ÌÊı
+		int nMaxClient;                       //æœ€å¤§å®¢æˆ·ç«¯ä¸ªæ•°
+		int nMaxQueue;                        //æœ€å¤§é˜Ÿåˆ—ä¸ªæ•°
+		int nIOThread;                        //ç½‘ç»œIOçº¿ç¨‹æ•°
+		int nHTTPThread;                      //HTTPä»»åŠ¡å¤„ç†çº¿ç¨‹æ•°
+		int nCenterThread;                    //ä¸šåŠ¡ä»»åŠ¡å¤„ç†çº¿ç¨‹æ•°
 	}st_XMax;
 	struct
 	{
-		int nTimeCheck;                       //¼ì²â´ÎÊı
-		int nHTTPTimeOut;                     //HTTP³¬Ê±Ê±¼ä
-		int nCenterTimeOut;                   //ÒµÎñ³¬Ê±Ê±¼ä
-	}st_XTime;                                //´ÎÊı*Ê±¼ä=³¬Ê±
+		int nTimeCheck;                       //æ£€æµ‹æ¬¡æ•°
+		int nHTTPTimeOut;                     //HTTPè¶…æ—¶æ—¶é—´
+		int nCenterTimeOut;                   //ä¸šåŠ¡è¶…æ—¶æ—¶é—´
+	}st_XTime;                                //æ¬¡æ•°*æ—¶é—´=è¶…æ—¶
 	struct
 	{
-		int nMaxSize;                         //×î´óÈÕÖ¾´óĞ¡
-		int nMaxCount;                        //×î´óÈÕÖ¾¸öÊı
-		int nLogLeave;                        //ÈÕÖ¾µÈ¼¶
+		int nMaxSize;                         //æœ€å¤§æ—¥å¿—å¤§å°
+		int nMaxCount;                        //æœ€å¤§æ—¥å¿—ä¸ªæ•°
+		int nLogLeave;                        //æ—¥å¿—ç­‰çº§
 	}st_XLog;
 }XENGINE_SERVICECONFIG;
 //////////////////////////////////////////////////////////////////////////
-//                        µ¼³öº¯Êı¶¨Òå
+//                        å¯¼å‡ºå‡½æ•°å®šä¹‰
 //////////////////////////////////////////////////////////////////////////
 extern "C" DWORD ModuleConfigure_GetLastError(int* pInt_ErrorCode = NULL);
 /************************************************************************/
-/*                        ÎÄ¼şÅäÖÃ¶ÁÈ¡                                  */
+/*                        æ–‡ä»¶é…ç½®è¯»å–                                  */
 /************************************************************************/
 /********************************************************************
-º¯ÊıÃû³Æ£ºModuleConfigure_Json_File
-º¯Êı¹¦ÄÜ£º¶ÁÈ¡JSONÅäÖÃÎÄ¼ş
- ²ÎÊı.Ò»£ºlpszConfigFile
-  In/Out£ºIn
-  ÀàĞÍ£º³£Á¿×Ö·ûÖ¸Õë
-  ¿É¿Õ£ºN
-  ÒâË¼£ºÊäÈëÒª¶ÁÈ¡µÄÅäÖÃÎÄ¼ş
- ²ÎÊı.¶ş£ºpSt_ServerConfig
-  In/Out£ºOut
-  ÀàĞÍ£ºÊı¾İ½á¹¹Ö¸Õë
-  ¿É¿Õ£ºN
-  ÒâË¼£ºÊä³ö·şÎñÅäÖÃĞÅÏ¢
-·µ»ØÖµ
-  ÀàĞÍ£ºÂß¼­ĞÍ
-  ÒâË¼£ºÊÇ·ñ³É¹¦
-±¸×¢£º
+å‡½æ•°åç§°ï¼šModuleConfigure_Json_File
+å‡½æ•°åŠŸèƒ½ï¼šè¯»å–JSONé…ç½®æ–‡ä»¶
+ å‚æ•°.ä¸€ï¼šlpszConfigFile
+  In/Outï¼šIn
+  ç±»å‹ï¼šå¸¸é‡å­—ç¬¦æŒ‡é’ˆ
+  å¯ç©ºï¼šN
+  æ„æ€ï¼šè¾“å…¥è¦è¯»å–çš„é…ç½®æ–‡ä»¶
+ å‚æ•°.äºŒï¼špSt_ServerConfig
+  In/Outï¼šOut
+  ç±»å‹ï¼šæ•°æ®ç»“æ„æŒ‡é’ˆ
+  å¯ç©ºï¼šN
+  æ„æ€ï¼šè¾“å‡ºæœåŠ¡é…ç½®ä¿¡æ¯
+è¿”å›å€¼
+  ç±»å‹ï¼šé€»è¾‘å‹
+  æ„æ€ï¼šæ˜¯å¦æˆåŠŸ
+å¤‡æ³¨ï¼š
 *********************************************************************/
 extern "C" BOOL ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XENGINE_SERVICECONFIG* pSt_ServerConfig);
