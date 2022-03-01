@@ -29,7 +29,7 @@ extern "C" DWORD ModuleDB_GetLastError(int* pInt_SysError)
 	return DBModule_dwErrorCode;
 }
 /************************************************************************/
-/*                         导出的数据库操作函数                         */
+/*                         导出的SQLITE操作函数                         */
 /************************************************************************/
 extern "C" BOOL ModuleDatabase_SQlite_Init(LPCTSTR lpszSQLFile)
 {
@@ -39,6 +39,9 @@ extern "C" BOOL ModuleDatabase_SQlite_Destory()
 {
 	return m_DBSQlite.ModuleDatabase_SQlite_Destory();
 }
+/************************************************************************/
+/*                         导出的MYSQL操作函数                          */
+/************************************************************************/
 extern "C" BOOL ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO * pSt_MySQLConnector)
 {
 	return m_DBMysql.ModuleDatabase_MySql_Init(pSt_MySQLConnector);
