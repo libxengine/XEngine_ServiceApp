@@ -29,10 +29,16 @@ using namespace std;
 #include <XEngine_Include/XEngine_HelpComponents/XLog_Error.h>
 #include <XEngine_Include/XEngine_RfcComponents/HttpServer_Define.h>
 #include <XEngine_Include/XEngine_RfcComponents/HttpServer_Error.h>
+#include <XEngine_Include/XEngine_HelpComponents/DataBase_Define.h>
+#include <XEngine_Include/XEngine_HelpComponents/DataBase_Error.h>
 //加载项目相关头文件
 #include "../../XEngine_UserProtocol.h"
 #include "../../XEngine_ModuleConfigure/ModuleConfig_Define.h"
 #include "../../XEngine_ModuleConfigure/ModuleConfig_Error.h"
+#include "../../XEngine_ModuleDatabase/ModuleDB_Define.h"
+#include "../../XEngine_ModuleDatabase/ModuleDB_Error.h"
+#include "../../XEngine_ModuleProtocol/ModuleProtocol_Define.h"
+#include "../../XEngine_ModuleProtocol/ModuleProtocol_Error.h"
 //加载自己的头文件
 #include "XEngine_Configure.h"
 #include "XEngine_Network.h"
@@ -63,14 +69,22 @@ extern XENGINE_SERVICECONFIG st_ServiceConfig;
 #ifdef _WIN64
 #ifdef _DEBUG
 #pragma comment(lib,"../../x64/Debug/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../x64/Debug/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../x64/Debug/XEngine_ModuleProtocol.lib")
 #else
 #pragma comment(lib,"../../x64/Release/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../x64/Release/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../x64/Release/XEngine_ModuleProtocol.lib")
 #endif
 #else
 #ifdef _DEBUG
 #pragma comment(lib,"../../Debug/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../Debug/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../Debug/XEngine_ModuleProtocol.lib")
 #else
 #pragma comment(lib,"../../Release/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../Release/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../Release/XEngine_ModuleProtocol.lib")
 #endif
 #endif
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib.lib")

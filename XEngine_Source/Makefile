@@ -7,11 +7,13 @@ FLAGS = RELEASE=$(RELEASE)
 THIRDPART_MODULE_JSONCPP = ./XEngine_ThirdPart/jsoncpp
 
 MODULE_CONFIGURE_PATH = ./XEngine_ModuleConfigure
+MODULE_DATABASE_PATH = ./XEngine_ModuleDatabase
+MODULE_PROTOCOL_PATH = ./XEngine_ModuleProtocol
 APP_CENTER_PATH = ./XEngine_ServiceApp/XEngine_CenterApp
 APP_HTTP_PATH = ./XEngine_ServiceApp/XEngine_HttpApp
 
 XENGINE_MODULES = libjsoncpp.so                                   \
-                  libXEngine_ModuleConfigure.so                   \
+                  libXEngine_ModuleConfigure.so libXEngine_ModuleDatabase.so libXEngine_ModuleProtocol.so                 \
 				  XEngine_CenterApp.exe XEngine_HttpApp.exe
 
 .PHONY:MakeAll 
@@ -22,7 +24,11 @@ libjsoncpp.so:
 
 libXEngine_ModuleConfigure.so:
 	make -C $(MODULE_CONFIGURE_PATH) $(FLAGS)
-	
+libXEngine_ModuleDatabase.so:
+	make -C $(MODULE_DATABASE_PATH) $(FLAGS)
+libXEngine_ModuleProtocol.so:
+	make -C $(MODULE_PROTOCOL_PATH) $(FLAGS)
+
 XEngine_CenterApp.exe:
 	make -C $(APP_CENTER_PATH) $(FLAGS)
 XEngine_HttpApp.exe:
