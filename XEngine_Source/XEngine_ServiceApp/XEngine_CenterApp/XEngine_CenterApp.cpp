@@ -117,7 +117,7 @@ int main(int argc, char** argv)
 	if (st_ServiceConfig.nCenterPort > 0)
 	{
 		//组包器
-		xhCenterPacket = HelpComponents_Datas_Init(st_ServiceConfig.st_XMax.nMaxQueue, 0, st_ServiceConfig.st_XMax.nCenterThread);
+		xhCenterPacket = HelpComponents_Datas_Init(st_ServiceConfig.st_XMax.nMaxQueue, st_ServiceConfig.st_XMax.nCenterThread);
 		if (NULL == xhCenterPacket)
 		{
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,初始化业务组包器失败,错误：%lX"), Packets_GetLastError());
