@@ -16,4 +16,5 @@
 #define ERROR_MODULE_CONFIGURE_JSON_XMAX 0xA0004                     //读取XMAX配置失败 
 #define ERROR_MODULE_CONFIGURE_JSON_XTIME 0xA0005                    //读取XTIME配置失败
 #define ERROR_MODULE_CONFIGURE_JSON_XLOG 0xA0006                     //读取XLOG配置失败
-#define ERROR_MODULE_CONFIGURE_JSON_XVER 0xA0007                     //版本列表
+#define ERROR_MODULE_CONFIGURE_JSON_XVER 0xA0007                     //读取版本列表失败
+#define ERROR_MODULE_CONFIGURE_JSON_MALLOC 0xA0008                   //申请内存失败

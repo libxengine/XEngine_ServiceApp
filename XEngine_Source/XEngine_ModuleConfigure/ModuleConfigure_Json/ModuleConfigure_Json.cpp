@@ -126,6 +126,24 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XLog.nMaxSize = st_JsonXLog["MaxSize"].asInt();
 	pSt_ServerConfig->st_XLog.nMaxCount = st_JsonXLog["MaxCount"].asInt();
 	pSt_ServerConfig->st_XLog.nLogLeave = st_JsonXLog["LogLeave"].asInt();
-
+	//版本列表
+	if (st_JsonRoot["XVer"].empty())
+	{
+		Config_IsErrorOccur = TRUE;
+		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_XVER;
+		return FALSE;
+	}
+	Json::Value st_JsonXVer = st_JsonRoot["XVer"];
+	pSt_ServerConfig->st_XVer.pStl_ListVer = new list<string>;
+	if (NULL == pSt_ServerConfig->st_XVer.pStl_ListVer)
+	{
+		Config_IsErrorOccur = TRUE;
+		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_MALLOC;
+		return FALSE;
+	}
+	for (unsigned int i = 0; i < st_JsonXVer.size(); i++)
+	{
+		pSt_ServerConfig->st_XVer.pStl_ListVer->push_back(st_JsonXVer[i].asCString());
+	}
 	return TRUE;
 }
