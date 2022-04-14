@@ -17,21 +17,27 @@ typedef struct tag_XEngine_ServiceConfig
 {
 	TCHAR tszIPAddr[128];                     //本机IP地址,根据需要配置
 	BOOL bDeamon;                             //是否以守护进程启动,LINUX有效
-	int nHttpPort;                            //HTTP服务端口
 	int nCenterPort;                          //业务端口
+	int nHttpPort;                            //HTTP服务端口
+	int nHttp2Port;                           //HTTP2服务端口
+	int nWSPort;                              //WEBSOCKET端口
 	struct
 	{
 		int nMaxClient;                       //最大客户端个数
 		int nMaxQueue;                        //最大队列个数
 		int nIOThread;                        //网络IO线程数
-		int nHTTPThread;                      //HTTP任务处理线程数
 		int nCenterThread;                    //业务任务处理线程数
+		int nHTTPThread;                      //HTTP任务处理线程数
+		int nHTTP2Thread;                     //HTTP2任务处理线程数
+		int nWSThread;                        //WEBSOCKET处理线程数
 	}st_XMax;
 	struct
 	{
 		int nTimeCheck;                       //检测次数
-		int nHTTPTimeOut;                     //HTTP超时时间
 		int nCenterTimeOut;                   //业务超时时间
+		int nHTTPTimeOut;                     //HTTP超时时间
+		int nHTTP2TimeOut;                    //HTTP2超时时间
+		int nWSTimeOut;                       //WEBSOCKET超时时间
 	}st_XTime;                                //次数*时间=超时
 	struct
 	{
