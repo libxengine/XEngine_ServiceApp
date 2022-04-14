@@ -5,7 +5,9 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <string>
 #include <thread>
+#include <list>
 #ifdef _WINDOWS
 #include <Windows.h>
 #include <tchar.h>

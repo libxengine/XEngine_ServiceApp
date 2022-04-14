@@ -39,7 +39,7 @@ BOOL XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 void XEngine_Configure_Help()
 {
 	printf(_T("--------------------------启动参数帮助开始--------------------------\n"));
-	printf(_T("网络消息队列服务启动参数：程序 参数 参数值，参数是区分大小写的。如果不指定将会加载默认的ini配置文件里面的参数\n"));
+	printf(_T("网络服务启动参数：程序 参数 参数值，参数是区分大小写的。如果不指定将会加载默认的配置文件里面的参数\n"));
 	printf(_T("-h or -H：启动参数帮助提示信息\n"));
 	printf(_T("-d：1 启用守护进程，2不启用\n"));
 	printf(_T("--------------------------启动参数帮助结束--------------------------\n"));

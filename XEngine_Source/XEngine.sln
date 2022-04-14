@@ -24,6 +24,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine_ModuleProtocol", "X
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine_ModuleDatabase", "XEngine_ModuleDatabase\XEngine_ModuleDatabase.vcxproj", "{140AD4A9-4918-4345-B352-507C345AEBE0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine_HTTP2App", "XEngine_ServiceApp\XEngine_HTTP2App\XEngine_HTTP2App.vcxproj", "{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -80,6 +82,14 @@ Global
 		{140AD4A9-4918-4345-B352-507C345AEBE0}.Release|x64.Build.0 = Release|x64
 		{140AD4A9-4918-4345-B352-507C345AEBE0}.Release|x86.ActiveCfg = Release|Win32
 		{140AD4A9-4918-4345-B352-507C345AEBE0}.Release|x86.Build.0 = Release|Win32
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Debug|x64.ActiveCfg = Debug|x64
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Debug|x64.Build.0 = Debug|x64
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Debug|x86.ActiveCfg = Debug|Win32
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Debug|x86.Build.0 = Debug|Win32
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Release|x64.ActiveCfg = Release|x64
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Release|x64.Build.0 = Release|x64
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Release|x86.ActiveCfg = Release|Win32
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +98,7 @@ Global
 		{E756B7D2-D40D-4106-9C14-1D90F20A712E} = {79A9A569-7DA8-4D9D-AD34-D11115199EA1}
 		{20946145-EFE0-4B44-845C-031E487687ED} = {79A9A569-7DA8-4D9D-AD34-D11115199EA1}
 		{F1736B3F-03A2-4FC7-B045-A12BA8D724FB} = {1F64BA84-8754-4FD3-87F8-9102F124EBC1}
+		{9BA08383-9908-46C8-A6FE-803BAB0C8AA4} = {79A9A569-7DA8-4D9D-AD34-D11115199EA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B202F91-A601-429E-BB0F-880DDEE096FE}
