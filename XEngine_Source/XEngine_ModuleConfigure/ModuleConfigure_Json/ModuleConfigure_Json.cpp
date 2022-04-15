@@ -100,7 +100,7 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XMax.nIOThread = st_JsonXMax["nIOThread"].asInt();
 	pSt_ServerConfig->st_XMax.nCenterThread = st_JsonXMax["nCenterThread"].asInt();
 	pSt_ServerConfig->st_XMax.nHTTPThread = st_JsonXMax["nHttpThread"].asInt();
-	pSt_ServerConfig->st_XMax.nHTTP2Thread = st_JsonXMax["nHTTP2Thread"].asInt();
+	pSt_ServerConfig->st_XMax.nHTTP2Thread = st_JsonXMax["nHttp2Thread"].asInt();
 	pSt_ServerConfig->st_XMax.nWSThread = st_JsonXMax["nWSThread"].asInt();
 	//时间配置
 	if (st_JsonRoot["XTime"].empty() || (5 != st_JsonRoot["XTime"].size()))
@@ -113,7 +113,7 @@ BOOL CModuleConfigure_Json::ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XTime.nTimeCheck = st_JsonXTime["nTimeCheck"].asInt();
 	pSt_ServerConfig->st_XTime.nCenterTimeOut = st_JsonXTime["nTCPTimeOut"].asInt();
 	pSt_ServerConfig->st_XTime.nHTTPTimeOut = st_JsonXTime["nHttpTimeOut"].asInt();
-	pSt_ServerConfig->st_XTime.nHTTP2TimeOut = st_JsonXTime["nHTTP2TimeOut"].asInt();
+	pSt_ServerConfig->st_XTime.nHTTP2TimeOut = st_JsonXTime["nHttp2TimeOut"].asInt();
 	pSt_ServerConfig->st_XTime.nWSTimeOut = st_JsonXTime["nWSTimeOut"].asInt();
 	//日志配置
 	if (st_JsonRoot["XLog"].empty() || (3 != st_JsonRoot["XLog"].size()))
