@@ -97,7 +97,7 @@ BOOL XEngine_HTTP2Task_Handle(XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE enFrameType
 			RfcComponents_Http2Server_PKTHeaderEx(xhHTTP2Packet, tszMsgBuffer, &nLen, &st_HDRParam, 6);
 			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
 			//最后发送DATA数据包
-			RfcComponents_Http2Server_PKTDataEx(xhHTTP2Packet, tszMsgBuffer, &nLen, st_HDRParam.nStreamID, "123456", 6);
+			RfcComponents_Http2Server_PKTDataEx(xhHTTP2Packet, tszMsgBuffer, &nLen, st_HDRParam.nStreamID, lpszMsgBuffer, _tcslen(lpszMsgBuffer));
 			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("HTTP2客户端:%s,发送GET请求给服务器"), lpszClientAddr);
 		}
