@@ -49,9 +49,6 @@ XHTHREAD CALLBACK XEngine_WSTask_Thread(LPVOID lParam)
 }
 BOOL XEngine_WSTask_Handle(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE enOPCode)
 {
-	int nLen = 4096;
-	TCHAR tszMsgBuffer[4096];
-	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
 	//开始处理协议
 	if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_CONTINUE == enOPCode)
 	{
