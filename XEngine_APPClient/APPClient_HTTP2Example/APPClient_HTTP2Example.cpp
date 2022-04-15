@@ -19,7 +19,7 @@
 //需要优先配置XEngine
 //WINDOWS支持VS2019 x86 debug 编译调试
 //linux使用下面的命令编译
-//g++ -std=c++17 -Wall -g APPClient_HTTPExample.cpp -o APPClient_HTTPExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_NetHelp -lXEngine_BaseLib -lNetHelp_APIHelp
+//g++ -std=c++17 -Wall -g APPClient_HTTP2Example.cpp -o APPClient_HTTP2Example.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_NetHelp -lXEngine_BaseLib -lNetHelp_APIHelp
 
 int main()
 {
@@ -28,10 +28,14 @@ int main()
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
 	int nLen = 0;
-	TCHAR *ptszMsgBuffer = NULL;
-	LPCTSTR lpszUrl = _T("http://127.0.0.1:5001");
-	
-	if (!APIHelp_HttpRequest_Get(lpszUrl, &ptszMsgBuffer, &nLen))
+	TCHAR* ptszMsgBuffer = NULL;
+	LPCTSTR lpszUrl = _T("http://127.0.0.1:5002");
+
+	APIHELP_HTTPPARAMENT st_HTTPParam;
+	memset(&st_HTTPParam, '\0', sizeof(APIHELP_HTTPPARAMENT));
+
+	st_HTTPParam.bHTTP2Enable = TRUE;
+	if (!APIHelp_HttpRequest_Get(lpszUrl, &ptszMsgBuffer, &nLen, NULL, NULL, NULL, &st_HTTPParam))
 	{
 		printf("发送投递失败！\n");
 		return 0;
