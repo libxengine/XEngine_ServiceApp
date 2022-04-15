@@ -66,10 +66,6 @@ extern XHANDLE xhHTTP2Packet;
 //配置文件
 extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
-typedef struct 
-{
-	BOOL bFirstPkt;                     
-}HTTP2_CLIENTINFO;
 //连接库
 #ifdef _MSC_BUILD
 #ifdef _WIN64

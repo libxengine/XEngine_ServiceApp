@@ -1,13 +1,13 @@
 ﻿#include "XEngine_Hdr.h"
 /********************************************************************
-//    Created:     2022/01/20  14:44:17
-//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HttpApp\XEngine_HTTPTask.cpp
-//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HttpApp
-//    File Base:   XEngine_HTTPTask
+//    Created:     2022/04/15  14:18:24
+//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HTTP2App\XEngine_HTTP2Task.cpp
+//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HTTP2App
+//    File Base:   XEngine_HTTP2Task
 //    File Ext:    cpp
 //    Project:     XEngine(网络通信引擎)
 //    Author:      qyt
-//    Purpose:     HTTP任务处理代码
+//    Purpose:     HTTP2任务处理代码
 //    History:
 *********************************************************************/
 XHTHREAD CALLBACK XEngine_HTTP2Task_Thread(LPVOID lParam)

@@ -1,8 +1,8 @@
 ﻿#include "XEngine_Hdr.h"
 /********************************************************************
-//    Created:     2022/01/20  14:44:40
-//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HttpApp\XEngine_Network.cpp
-//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HttpApp
+//    Created:     2022/04/15  14:18:10
+//    File Name:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HTTP2App\XEngine_Network.cpp
+//    File Path:   D:\XEngine_ServiceApp\XEngine_Source\XEngine_ServiceApp\XEngine_HTTP2App
 //    File Base:   XEngine_Network
 //    File Ext:    cpp
 //    Project:     XEngine(网络通信引擎)
@@ -10,7 +10,7 @@
 //    Purpose:     网络IO相关代码
 //    History:
 *********************************************************************/
-//////////////////////////////////////////////////////////////////////////下面是HTTP网络IO相关代码处理函数
+//////////////////////////////////////////////////////////////////////////下面是HTTP2网络IO相关代码处理函数
 BOOL __stdcall Network_Callback_HTTPLogin(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
 {
 	SocketOpt_HeartBeat_InsertAddrEx(xhHTTP2Heart, lpszClientAddr);

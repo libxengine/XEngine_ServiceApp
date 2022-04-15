@@ -43,5 +43,5 @@ CleanAll:CleanObj CleanMk
 CleanObj:                                              
 	rm *.o
 CleanMk:                                  
-	rm XEngine_HttpApp     
+	rm XEngine_Http2App     
 	       
