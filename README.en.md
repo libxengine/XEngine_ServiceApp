@@ -11,9 +11,11 @@ The code has detailed comments, so you can easily understand how it works
 support feature list:  
 1. use standard private protocol to handle network communication
 2. Support http protocol
-3. Support task pool
-4. Support thread pool processing tasks
-5. Support Log Management
+3. support http2 protocol
+4. support websocket protocol
+5. Support task pool
+6. Support thread pool processing tasks
+7. Support Log Management
 
 ## install
 
