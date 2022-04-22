@@ -1,3 +1,4 @@
+[中文](README.md) ||  [English](README.en.md)  
 # XEngine_ServiceFramework
 
 ## Introduction
@@ -25,9 +26,13 @@ XEngine need V7.25 or above
 
 ## complie
 
+#### XEngine environment
+you have to install xengine before complie,You can refer to its Readme document  
+GITEE:https://gitee.com/xyry/libxengine  
+GITHUB:https://github.com/libxengine/xengine  
+
 #### Windows
-use vs2019 x86 and x64 open and complie  
-You need to configure the environment in the following way, otherwise you may need to set the library directory in the project yourself  
+use vs open and complie  
 
 #### Linux
 Linux use Makefile complie  
@@ -39,14 +44,11 @@ make complie
 make FLAGS=InstallAll Install File  
 make FLAGS=CleanAll Clear Complie  
 
-#### XEngine Env
-install XEngine can be refer to xengine Readme docment  
-GITEE:https://gitee.com/xyry/libxengine  
-GITHUB:https://github.com/libxengine/xengine  
-
 ## How to develop
 XEngine_CenterApp service is mainly used for TCP protocol, you can write your TCP(Business) operation related processing code here  
-XEngine_HttpApp service is mainly used for HTTP protocol, you can write your HTTP operation related processing code here
+XEngine_HttpApp service is mainly used for HTTP protocol, you can write your HTTP operation related processing code here  
+XEngine_Http2App service is mainly used for HTTP2 protocol, you can write your HTTP2 operation related processing code here  
+XEngine_WebSocketApp service is mainly used for Websocket protocol, you can write your Websocket operation related processing code here  
 
 ## Participate in contribution
 

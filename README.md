@@ -1,3 +1,4 @@
+[中文](README.md) ||  [English](README.en.md)  
 # XEngine_ServiceFramework
 
 ## 介绍
@@ -25,8 +26,13 @@ XEngine版本需要V7.25或者以上版本
 
 ## 编译
 
+#### XEngine环境
+在编译之前必须安装XEngine,可以参考其Readme文档  
+GITEE:https://gitee.com/xyry/libxengine  
+GITHUB:https://github.com/libxengine/xengine  
+
 #### Windows
-使用VS2019 x86或者x64打开并且编译 你需要按照下面的方式配置环境,不然你可能需要自己在项目中设置库目录
+使用VS打开并且编译
 
 #### Linux
 Linux使用Makefile编译  
@@ -38,14 +44,11 @@ make 编译
 make FLAGS=InstallAll 安装库程序  
 make FLAGS=CleanAll 清理编译  
 
-#### XEngine环境
-安装XEngine可以参考其Readme文档  
-GITEE:https://gitee.com/xyry/libxengine  
-GITHUB:https://github.com/libxengine/xengine  
-
 ## 如何开发
 XEngine_CenterApp 服务主要是用于TCP协议,可在这里面编写你的业务服务相关处理代码  
-XEngine_HttpApp 服务主要用于HTTP协议,可在这里编写你的HTTP操作相关处理代码
+XEngine_HttpApp 服务主要用于HTTP协议,可在这里编写你的HTTP操作相关处理代码  
+XEngine_Http2App 服务主要用于HTTP2协议,可在这里编写你的HTTP2操作相关处理代码  
+XEngine_WebSocketApp 服务主要用于WEBSOCKET协议,可在这里编写你的WEBSOCKET操作相关处理代码  
 
 ## 参与贡献
 
