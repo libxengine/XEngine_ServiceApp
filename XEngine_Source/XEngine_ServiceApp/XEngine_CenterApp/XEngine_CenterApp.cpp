@@ -34,7 +34,7 @@ void ServiceApp_Stop(int signo)
 		//销毁日志资源
 		HelpComponents_XLog_Destroy(xhLog);
 	}
-#ifdef _WINDOWS
+#ifdef _MSC_BUILD
 	WSACleanup();
 #endif
 	exit(0);
@@ -42,7 +42,7 @@ void ServiceApp_Stop(int signo)
 //LINUX守护进程
 static int ServiceApp_Deamon()
 {
-#ifndef _WINDOWS
+#ifndef _MSC_BUILD
 	pid_t nPID = 0;
 	int nStatus = 0;
 	nPID = fork();
@@ -72,7 +72,7 @@ static int ServiceApp_Deamon()
 
 int main(int argc, char** argv)
 {
-#ifdef _WINDOWS
+#ifdef _MSC_BUILD
 	WSADATA st_WSAData;
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
@@ -188,7 +188,7 @@ XENGINE_SERVICEAPP_EXIT:
 		//销毁日志资源
 		HelpComponents_XLog_Destroy(xhLog);
 	}
-#ifdef _WINDOWS
+#ifdef _MSC_BUILD
 	WSACleanup();
 #endif
 	return 0;
