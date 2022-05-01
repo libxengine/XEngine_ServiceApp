@@ -8,7 +8,7 @@
 #include <string>
 #include <thread>
 #include <list>
-#ifdef _WINDOWS
+#ifdef _MSC_BUILD
 #include <Windows.h>
 #include <tchar.h>
 #else
@@ -67,7 +67,7 @@ extern XHANDLE xhHTTPPacket;
 extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
 //连接库
-#ifdef _WINDOWS
+#ifdef _MSC_BUILD
 #ifdef _WIN64
 #ifdef _DEBUG
 #pragma comment(lib,"../../x64/Debug/XEngine_ModuleConfigure.lib")
