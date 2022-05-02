@@ -24,8 +24,6 @@ c c++ network backend server development framework
 支持WINDOWS 7SP1和LINUX(UBUNT20.04,CENTOS8)以上系统  
 XEngine版本需要V7.25或者以上版本    
 
-## 编译
-
 #### XEngine环境
 在编译之前必须安装XEngine,可以参考其Readme文档  
 GITEE:https://gitee.com/xyry/libxengine  

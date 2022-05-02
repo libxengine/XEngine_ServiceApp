@@ -24,8 +24,6 @@ support feature list:
 support system above windows 7sp1 and linux(ubuntu20.04,centos8)  
 XEngine need V7.25 or above  
 
-## complie
-
 #### XEngine environment
 you have to install xengine before complie,You can refer to its Readme document  
 GITEE:https://gitee.com/xyry/libxengine  
