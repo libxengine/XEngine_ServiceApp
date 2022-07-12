@@ -13,10 +13,10 @@
 BOOL bIsRun = FALSE;
 XLOG xhLog = NULL;
 //WEBSOCKET服务器
-XNETHANDLE xhWSSocket = 0;
-XNETHANDLE xhWSHeart = 0;
-XNETHANDLE xhWSPool = 0;
+XHANDLE xhWSSocket = NULL;
+XHANDLE xhWSHeart = NULL;
 XHANDLE xhWSPacket = NULL;
+XNETHANDLE xhWSPool = 0;
 //配置文件
 XENGINE_SERVICECONFIG st_ServiceConfig;
 
@@ -123,7 +123,8 @@ int main(int argc, char** argv)
 	//启动心跳
 	if (st_ServiceConfig.st_XTime.nWSTimeOut > 0)
 	{
-		if (!SocketOpt_HeartBeat_InitEx(&xhWSHeart, st_ServiceConfig.st_XTime.nWSTimeOut, st_ServiceConfig.st_XTime.nTimeCheck, Network_Callback_WSHeart))
+		xhWSHeart = SocketOpt_HeartBeat_InitEx(st_ServiceConfig.st_XTime.nWSTimeOut, st_ServiceConfig.st_XTime.nTimeCheck, Network_Callback_WSHeart);
+		if (NULL == xhWSHeart)
 		{
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,初始化WEBSOCKET心跳服务失败,错误：%lX"), NetCore_GetLastError());
 			goto XENGINE_SERVICEAPP_EXIT;
@@ -135,7 +136,8 @@ int main(int argc, char** argv)
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("启动服务中,WEBSOCKET心跳服务被设置为不启用"));
 	}
 	//网络
-	if (!NetCore_TCPXCore_StartEx(&xhWSSocket, st_ServiceConfig.nWSPort, st_ServiceConfig.st_XMax.nMaxClient, st_ServiceConfig.st_XMax.nIOThread))
+	xhWSSocket = NetCore_TCPXCore_StartEx(st_ServiceConfig.nWSPort, st_ServiceConfig.st_XMax.nMaxClient, st_ServiceConfig.st_XMax.nIOThread);
+	if (NULL == xhWSSocket)
 	{
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,启动WEBSOCKET网络服务器失败,错误：%lX"), NetCore_GetLastError());
 		goto XENGINE_SERVICEAPP_EXIT;

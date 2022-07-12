@@ -13,10 +13,10 @@
 BOOL bIsRun = FALSE;
 XLOG xhLog = NULL;
 //HTTP2服务器
-XNETHANDLE xhHTTP2Socket = 0;
-XNETHANDLE xhHTTP2Heart = 0;
-XNETHANDLE xhHTTP2Pool = 0;
+XHANDLE xhHTTP2Socket = NULL;
+XHANDLE xhHTTP2Heart = NULL;
 XHANDLE xhHTTP2Packet = NULL;
+XNETHANDLE xhHTTP2Pool = 0;
 //配置文件
 XENGINE_SERVICECONFIG st_ServiceConfig;
 
@@ -131,7 +131,8 @@ int main(int argc, char** argv)
 	//启动心跳
 	if (st_ServiceConfig.st_XTime.nHTTP2TimeOut > 0)
 	{
-		if (!SocketOpt_HeartBeat_InitEx(&xhHTTP2Heart, st_ServiceConfig.st_XTime.nHTTP2TimeOut, st_ServiceConfig.st_XTime.nTimeCheck, Network_Callback_HTTPHeart))
+		xhHTTP2Heart = SocketOpt_HeartBeat_InitEx(st_ServiceConfig.st_XTime.nHTTP2TimeOut, st_ServiceConfig.st_XTime.nTimeCheck, Network_Callback_HTTPHeart);
+		if (NULL == xhHTTP2Heart)
 		{
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,初始化HTTP2心跳服务失败,错误：%lX"), NetCore_GetLastError());
 			goto XENGINE_SERVICEAPP_EXIT;
@@ -143,7 +144,8 @@ int main(int argc, char** argv)
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("启动服务中,HTTP2心跳服务被设置为不启用"));
 	}
 	//网络
-	if (!NetCore_TCPXCore_StartEx(&xhHTTP2Socket, st_ServiceConfig.nHttp2Port, st_ServiceConfig.st_XMax.nMaxClient, st_ServiceConfig.st_XMax.nIOThread))
+	xhHTTP2Socket = NetCore_TCPXCore_StartEx(st_ServiceConfig.nHttp2Port, st_ServiceConfig.st_XMax.nMaxClient, st_ServiceConfig.st_XMax.nIOThread);
+	if (NULL == xhHTTP2Socket)
 	{
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,启动HTTP2网络服务器失败,错误：%lX"), NetCore_GetLastError());
 		goto XENGINE_SERVICEAPP_EXIT;

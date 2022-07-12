@@ -59,10 +59,10 @@ using namespace std;
 extern BOOL bIsRun;
 extern XLOG xhLog;
 //HTTP服务器
-extern XNETHANDLE xhHTTP2Socket;
-extern XNETHANDLE xhHTTP2Heart;
-extern XNETHANDLE xhHTTP2Pool;
+extern XHANDLE xhHTTP2Socket;
+extern XHANDLE xhHTTP2Heart;
 extern XHANDLE xhHTTP2Packet;
+extern XNETHANDLE xhHTTP2Pool;
 //配置文件
 extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
