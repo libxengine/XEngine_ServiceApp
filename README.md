@@ -22,12 +22,6 @@ c c++ network backend server development framework
 
 ## 安装教程
 
-#### 版本需求
-支持WINDOWS 7SP1和LINUX(UBUNT20.04,CENTOS8)以上系统  
-XEngine版本需要V7.25或者以上版本    
-
-## 编译
-
 #### XEngine环境
 必须安装XEngine,版本需要V7.38或者以上版本,安装XEngine可以参考其Readme文档  
 GITEE:https://gitee.com/xyry/libxengine  
@@ -41,7 +35,7 @@ macos执行:./XEngine_LINEnv.sh -i 3
 
 #### Windows
 使用VS打开并且编译,支持WINDOWS 7SP1以上系统  
-直接运行即可,使用XEngine_AuthorizeApp
+直接运行即可
 
 #### Linux
 Linux使用Makefile编译,UBUNTU20.04 x64或者CENTOS8 x64  

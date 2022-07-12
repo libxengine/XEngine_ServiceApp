@@ -35,7 +35,7 @@ Macos Exection:./XEngine_LINEnv.sh -i 3
 
 #### Windows
 use vs open and compile,suport windows 7sp1 and above  
-Just Run it,use XEngine_AuthorizeApp
+Just Run it
 
 #### Linux
 use makefile compile,UBUNTU20.04 x64 or CENTOS8 x64  
