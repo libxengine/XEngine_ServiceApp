@@ -1,5 +1,7 @@
 [中文](README.md) ||  [English](README.en.md)  
 # XEngine_ServiceFramework
+本仓库有开发和主分支,如果要使用,请使用master分支下的代码  
+只要仓库不是在暂停状态,那么就会有人一直维护和开发,请放心使用  
 
 ## 介绍
 c c++网络后台服务器开发框架 
@@ -27,16 +29,27 @@ XEngine版本需要V7.25或者以上版本
 ## 编译
 
 #### XEngine环境
-在编译之前必须安装XEngine,可以参考其Readme文档  
+必须安装XEngine,版本需要V7.38或者以上版本,安装XEngine可以参考其Readme文档  
 GITEE:https://gitee.com/xyry/libxengine  
-GITHUB:https://github.com/libxengine/xengine  
+GITHUB:https://github.com/libxengine/xengine
+
+###### 快速部署
+git clone https://gitee.com/xyry/libxengine.git 或者 git clone https://github.com/libxengine/xengine.git  
+window执行XEngine_WINEnv.bat 脚本.  
+Linux执行:sudo ./XEngine_LINEnv.sh -i 3  
+macos执行:./XEngine_LINEnv.sh -i 3  
 
 #### Windows
-使用VS打开并且编译
+使用VS打开并且编译,支持WINDOWS 7SP1以上系统  
+直接运行即可,使用XEngine_AuthorizeApp
 
 #### Linux
-Linux使用Makefile编译  
-UBUNTU20.04 x64或者CENTOS8 x64均可  
+Linux使用Makefile编译,UBUNTU20.04 x64或者CENTOS8 x64  
+在控制台运行
+
+#### Macos
+使用makefile编译,控制台运行,需要mac 12以及以上版本  
+在控制台运行
 
 ##### 编译命令
 在XEngine_Source目录下执行命令  

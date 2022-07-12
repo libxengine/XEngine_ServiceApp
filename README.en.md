@@ -1,5 +1,7 @@
 [中文](README.md) ||  [English](README.en.md)  
 # XEngine_ServiceFramework
+we have a development and a master branch. If you want to use it, please use the code under the master branch  
+As long as the repository is not in suspended state, we will maintain and develop it all the time, please use it with confidence  
 
 ## Introduction
 c c++网络后台服务器开发框架 
@@ -20,23 +22,28 @@ support feature list:
 
 ## install
 
-#### Requirements
-support system above windows 7sp1 and linux(ubuntu20.04,centos8)  
-XEngine need V7.25 or above  
-
-## complie
-
-#### XEngine environment
-you have to install xengine before complie,You can refer to its Readme document  
+#### XEngine Evn
+you must install XEngine,need V7.38 or above,install XEngine can be refer to xengine Readme docment  
 GITEE:https://gitee.com/xyry/libxengine  
-GITHUB:https://github.com/libxengine/xengine  
+GITHUB:https://github.com/libxengine/xengine
+
+##### fast to deployment 
+git clone https://gitee.com/xyry/libxengine.git or git clone https://github.com/libxengine/xengine.git  
+window Exection XEngine_WINEnv.bat   
+Linux Exection:sudo ./XEngine_LINEnv.sh -i 3  
+Macos Exection:./XEngine_LINEnv.sh -i 3
 
 #### Windows
-use vs open and complie  
+use vs open and compile,suport windows 7sp1 and above  
+Just Run it,use XEngine_AuthorizeApp
 
 #### Linux
-Linux use Makefile complie  
-UBUNTU20.04 x64 or CENTOS8 x64  
+use makefile compile,UBUNTU20.04 x64 or CENTOS8 x64  
+Run it on the terminal
+
+#### Macos
+use makefile compile,mac 12 and above  
+Run it on the terminal
 
 ##### Screenshot of the program
 execute command in XEngine_Source path   
