@@ -129,7 +129,7 @@ int main(int argc, char** argv)
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,初始化WEBSOCKET心跳服务失败,错误：%lX"), NetCore_GetLastError());
 			goto XENGINE_SERVICEAPP_EXIT;
 		}
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,初始化WEBSOCKET心跳服务成功,句柄:%llu,时间:%d,次数:%d"), xhWSHeart, st_ServiceConfig.st_XTime.nWSTimeOut, st_ServiceConfig.st_XTime.nTimeCheck);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,初始化WEBSOCKET心跳服务成功,时间:%d,次数:%d"), st_ServiceConfig.st_XTime.nWSTimeOut, st_ServiceConfig.st_XTime.nTimeCheck);
 	}
 	else
 	{
