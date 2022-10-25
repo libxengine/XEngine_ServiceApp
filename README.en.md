@@ -1,6 +1,5 @@
 [中文](README.md) ||  [English](README.en.md)  
 # XEngine_ServiceFramework
-we have a development and a master branch. If you want to use it, please use the code under the master branch  
 As long as the repository is not in suspended state, we will maintain and develop it all the time, please use it with confidence  
 
 ## Introduction
