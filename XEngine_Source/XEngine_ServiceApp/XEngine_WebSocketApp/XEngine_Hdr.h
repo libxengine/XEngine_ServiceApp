@@ -62,7 +62,7 @@ extern XLOG xhLog;
 extern XHANDLE xhWSSocket;
 extern XHANDLE xhWSHeart;
 extern XHANDLE xhWSPacket;
-extern XNETHANDLE xhWSPool;
+extern XHANDLE xhWSPool;
 //配置文件
 extern XENGINE_SERVICECONFIG st_ServiceConfig;
 

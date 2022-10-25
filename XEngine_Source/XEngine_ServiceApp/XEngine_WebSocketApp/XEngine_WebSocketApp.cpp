@@ -16,7 +16,7 @@ XLOG xhLog = NULL;
 XHANDLE xhWSSocket = NULL;
 XHANDLE xhWSHeart = NULL;
 XHANDLE xhWSPacket = NULL;
-XNETHANDLE xhWSPool = 0;
+XHANDLE xhWSPool = NULL;
 //配置文件
 XENGINE_SERVICECONFIG st_ServiceConfig;
 
@@ -155,7 +155,8 @@ int main(int argc, char** argv)
 		ppSt_ListHTTPParam[i]->lParam = pInt_Pos;
 		ppSt_ListHTTPParam[i]->fpCall_ThreadsTask = XEngine_WSTask_Thread;
 	}
-	if (!ManagePool_Thread_NQCreate(&xhWSPool, &ppSt_ListHTTPParam, st_ServiceConfig.st_XMax.nWSThread))
+	xhWSPool = ManagePool_Thread_NQCreate(&ppSt_ListHTTPParam, st_ServiceConfig.st_XMax.nWSThread);
+	if (NULL == xhWSPool)
 	{
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,启动WEBSOCKET线程池服务失败,错误：%lX"), ManagePool_GetLastError());
 		goto XENGINE_SERVICEAPP_EXIT;
