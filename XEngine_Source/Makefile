@@ -13,10 +13,11 @@ APP_CENTER_PATH = ./XEngine_ServiceApp/XEngine_CenterApp
 APP_HTTP_PATH = ./XEngine_ServiceApp/XEngine_HttpApp
 APP_HTTP2_PATH = ./XEngine_ServiceApp/XEngine_HTTP2App
 APP_WEBSOCKET_PATH = ./XEngine_ServiceApp/XEngine_WebSocketApp
+APP_SIMPLE_PATH = ./XEngine_ServiceApp/XEngine_SimpleApp
 
 XENGINE_MODULES = libjsoncpp.so                                   \
                   libXEngine_ModuleConfigure.so libXEngine_ModuleDatabase.so libXEngine_ModuleProtocol.so                 \
-				  XEngine_CenterApp.exe XEngine_HttpApp.exe XEngine_Http2App.exe XEngine_WebSocketApp.exe
+				  XEngine_CenterApp.exe XEngine_HttpApp.exe XEngine_Http2App.exe XEngine_WebSocketApp.exe XEngine_SimpleApp.exe
 
 .PHONY:MakeAll 
 MakeAll:$(XENGINE_MODULES)
@@ -39,6 +40,8 @@ XEngine_Http2App.exe:
 	make -C $(APP_HTTP2_PATH) $(FLAGS)
 XEngine_WebSocketApp.exe:
 	make -C $(APP_WEBSOCKET_PATH) $(FLAGS)
+XEngine_SimpleApp.exe:
+	make -C $(APP_SIMPLE_PATH) $(FLAGS)
 
 SetFlags_Install:
 	export FLAGS=InstallAll
