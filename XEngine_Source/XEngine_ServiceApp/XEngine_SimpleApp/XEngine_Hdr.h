@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <arpa/inet.h>
 #endif
 using namespace std;
 //加载XEngine头文件
@@ -43,8 +44,8 @@ using namespace std;
 *********************************************************************/
 extern BOOL bIsRun;
 //套接字句柄
-extern XHANDLE xhCenterSocket;
-
+extern XHANDLE xhTCPSocket;
+extern XHANDLE xhUDPSocket;
 //连接库
 #ifdef _MSC_BUILD
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib.lib")

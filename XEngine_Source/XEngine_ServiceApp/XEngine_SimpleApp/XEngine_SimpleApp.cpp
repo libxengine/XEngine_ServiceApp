@@ -12,7 +12,8 @@
 *********************************************************************/
 BOOL bIsRun = FALSE;
 //套接字句柄
-XHANDLE xhCenterSocket = NULL;
+XHANDLE xhTCPSocket = NULL;
+XHANDLE xhUDPSocket = NULL;
 
 void ServiceApp_Stop(int signo)
 {
@@ -20,7 +21,8 @@ void ServiceApp_Stop(int signo)
 	{
 		bIsRun = FALSE;
 		//销毁业务资源
-		NetCore_TCPXCore_DestroyEx(xhCenterSocket);
+		NetCore_TCPXCore_DestroyEx(xhTCPSocket);
+		NetCore_UDPXCore_DestroyEx(xhUDPSocket);
 	}
 #ifdef _MSC_BUILD
 	WSACleanup();
@@ -39,15 +41,23 @@ int main(int argc, char** argv)
 	signal(SIGINT, ServiceApp_Stop);
 	signal(SIGTERM, ServiceApp_Stop);
 	signal(SIGABRT, ServiceApp_Stop);
-	//启动网络
-	xhCenterSocket = NetCore_TCPXCore_StartEx(8880, 1000, 4);
-	if (NULL == xhCenterSocket)
+	//启动TCP网络
+	xhTCPSocket = NetCore_TCPXCore_StartEx(8880, 1000, 4);
+	if (NULL == xhTCPSocket)
 	{
 		goto XENGINE_SERVICEAPP_EXIT;
 	}
 	//绑定网络事件
-	NetCore_TCPXCore_RegisterCallBackEx(xhCenterSocket, Network_Callback_SimpleLogin, Network_Callback_SimpleRecv, Network_Callback_SimpleLeave);
-	
+	NetCore_TCPXCore_RegisterCallBackEx(xhTCPSocket, Network_Callback_SimpleLogin, Network_Callback_SimpleRecv, Network_Callback_SimpleLeave);
+	//启动UDP网络
+	xhUDPSocket = NetCore_UDPXCore_StartEx(8880, 4);
+	if (NULL == xhUDPSocket)
+	{
+		goto XENGINE_SERVICEAPP_EXIT;
+	}
+	//绑定网络事件
+	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleRecv);
+
 	while (TRUE)
 	{
 		std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -57,7 +67,8 @@ XENGINE_SERVICEAPP_EXIT:
 	{
 		bIsRun = FALSE;
 		//销毁业务资源
-		NetCore_TCPXCore_DestroyEx(xhCenterSocket);
+		NetCore_TCPXCore_DestroyEx(xhTCPSocket);
+		NetCore_UDPXCore_DestroyEx(xhUDPSocket);
 	}
 #ifdef _MSC_BUILD
 	WSACleanup();

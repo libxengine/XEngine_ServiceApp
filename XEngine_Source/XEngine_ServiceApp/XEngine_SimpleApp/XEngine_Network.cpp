@@ -25,12 +25,23 @@ void __stdcall Network_Callback_SimpleLeave(LPCTSTR lpszClientAddr, SOCKET hSock
 	_tprintf(_T("业务客户端:%s,离开服务器"), lpszClientAddr);
 }
 //////////////////////////////////////////////////////////////////////////
-BOOL XEngine_Network_Send(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen)
+BOOL XEngine_Network_Send(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen, int nType)
 {
-	//发送数据给指定客户端
-	if (!NetCore_TCPXCore_SendEx(xhCenterSocket, lpszClientAddr, lpszMsgBuffer, nMsgLen))
+	if (IPPROTO_TCP == nType)
 	{
-		return FALSE;
+		//发送数据给指定客户端
+		if (!NetCore_TCPXCore_SendEx(xhTCPSocket, lpszClientAddr, lpszMsgBuffer, nMsgLen))
+		{
+			return FALSE;
+		}
+	}
+	else
+	{
+		//发送数据给指定客户端
+		if (!NetCore_UDPXCore_SendEx(xhUDPSocket, lpszClientAddr, lpszMsgBuffer, &nMsgLen))
+		{
+			return FALSE;
+		}
 	}
 	return TRUE;
 }
