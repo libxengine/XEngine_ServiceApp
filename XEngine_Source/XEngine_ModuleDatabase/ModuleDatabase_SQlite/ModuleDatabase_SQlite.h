@@ -21,5 +21,5 @@ public:
 	BOOL ModuleDatabase_SQlite_Init(LPCTSTR lpszSQLFile);
 	BOOL ModuleDatabase_SQlite_Destory();
 private:
-	XHDATA xhSQL;
+	XNETHANDLE xhSQL;
 };

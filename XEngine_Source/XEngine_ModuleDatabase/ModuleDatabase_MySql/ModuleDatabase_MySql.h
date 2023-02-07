@@ -21,5 +21,5 @@ public:
 	BOOL ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO* pSt_MySQLConnector);
 	BOOL ModuleDatabase_MySql_Destory();
 private:
-	XHDATA xhSQL;
+	XNETHANDLE xhSQL;
 };
