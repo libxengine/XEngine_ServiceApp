@@ -21,8 +21,8 @@
 
 //需要优先配置XEngine
 //WINDOWS支持VS2019 x86 debug 编译调试
-//linux使用下面的命令编译
-//g++ -std=c++17 -Wall -g APPClient_WSExample.cpp -o APPClient_WSExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_Client -L /usr/local/lib/XEngine_Release/XEngine_RfcComponents -lXEngine_BaseLib -lXClient_Socket -lRfcComponents_WSProtocol
+//linux:g++ -std=c++17 -Wall -g APPClient_WSExample.cpp -o APPClient_WSExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_Client -L /usr/local/lib/XEngine_Release/XEngine_RfcComponents -lXEngine_BaseLib -lXClient_Socket -lRfcComponents_WSProtocol
+//Macos:g++ -std=c++17 -Wall -g APPClient_WSExample.cpp -o APPClient_WSExample.exe -lXEngine_BaseLib -lXClient_Socket -lRfcComponents_WSProtocol
 
 int main()
 {
@@ -60,7 +60,7 @@ int main()
 	int nPos = 0;
 	nLen = 1024;
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
-	if (!XClient_TCPSelect_RecvMsg(hSocket, tszMsgBuffer, &nLen, FALSE))
+	if (!XClient_TCPSelect_RecvMsg(hSocket, tszMsgBuffer, &nLen))
 	{
 		printf("NetClient_TCPSelect_RecvMsg:%lX", XClient_GetLastError());
 		return -1;
@@ -93,7 +93,7 @@ int main()
 	memset(tszRecvBuffer, '\0', sizeof(tszRecvBuffer));
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
 
-	if (XClient_TCPSelect_RecvMsg(hSocket, tszRecvBuffer, &nRVLen, FALSE))
+	if (XClient_TCPSelect_RecvMsg(hSocket, tszRecvBuffer, &nRVLen))
 	{
 		if (!RfcComponents_WSCodec_DecodeMsg(tszRecvBuffer, &nRVLen, tszMsgBuffer))
 		{

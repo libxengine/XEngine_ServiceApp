@@ -17,9 +17,10 @@
 #include "../../XEngine_Source/XEngine_UserProtocol.h"
 
 //需要优先配置XEngine
-//WINDOWS支持VS2019 x86 debug 编译调试
-//linux使用下面的命令编译
-//g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_Client -lXEngine_BaseLib -lXClient_Socket
+//WINDOWS支持VS2022 x86 debug 编译调试
+//linux:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_Client -lXEngine_BaseLib -lXClient_Socket
+//macos:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -lXEngine_BaseLib -lXClient_Socket
+
 int main(int argc, char** argv)
 {
 #ifdef _MSC_BUILD
