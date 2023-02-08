@@ -15,14 +15,15 @@ c c++ network backend server development framework
 2. 支持HTTP协议通信
 3. 支持HTTP2协议
 4. 支持WEBSOCKET协议
-5. 支持任务池
-6. 支持线程池处理任务
-7. 支持日志管理
+5. 简单服务器
+6. 支持任务池
+7. 支持线程池处理任务
+8. 支持日志管理
 
 ## 安装教程
 
 #### XEngine环境
-必须安装XEngine,版本需要V7.38或者以上版本,安装XEngine可以参考其Readme文档  
+必须安装XEngine,版本需要V7.48或者以上版本,安装XEngine可以参考其Readme文档  
 GITEE:https://gitee.com/xyry/libxengine  
 GITHUB:https://github.com/libxengine/xengine
 
@@ -55,6 +56,7 @@ XEngine_CenterApp 服务主要是用于TCP协议,可在这里面编写你的业�
 XEngine_HttpApp 服务主要用于HTTP协议,可在这里编写你的HTTP操作相关处理代码  
 XEngine_Http2App 服务主要用于HTTP2协议,可在这里编写你的HTTP2操作相关处理代码  
 XEngine_WebSocketApp 服务主要用于WEBSOCKET协议,可在这里编写你的WEBSOCKET操作相关处理代码  
+XEngine_SimpleApp 最少代码演示一个TCP和UDP服务器  
 
 ## 参与贡献
 

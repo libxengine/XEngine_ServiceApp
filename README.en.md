@@ -15,14 +15,15 @@ support feature list:
 2. Support http protocol
 3. support http2 protocol
 4. support websocket protocol
-5. Support task pool
-6. Support thread pool processing tasks
-7. Support Log Management
+5. simple service
+6. Support task pool
+7. Support thread pool processing tasks
+8. Support Log Management
 
 ## install
 
 #### XEngine Evn
-you must install XEngine,need V7.38 or above,install XEngine can be refer to xengine Readme docment  
+you must install XEngine,need V7.48 or above,install XEngine can be refer to xengine Readme docment  
 GITEE:https://gitee.com/xyry/libxengine  
 GITHUB:https://github.com/libxengine/xengine
 
@@ -55,6 +56,7 @@ XEngine_CenterApp service is mainly used for TCP protocol, you can write your TC
 XEngine_HttpApp service is mainly used for HTTP protocol, you can write your HTTP operation related processing code here  
 XEngine_Http2App service is mainly used for HTTP2 protocol, you can write your HTTP2 operation related processing code here  
 XEngine_WebSocketApp service is mainly used for Websocket protocol, you can write your Websocket operation related processing code here  
+XEngine_SimpleApp minimal code demonstrates a TCP and UDP server  
 
 ## Participate in contribution
 
