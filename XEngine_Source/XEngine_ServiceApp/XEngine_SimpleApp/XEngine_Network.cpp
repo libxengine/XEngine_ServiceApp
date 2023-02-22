@@ -18,7 +18,7 @@ BOOL __stdcall Network_Callback_SimpleLogin(LPCTSTR lpszClientAddr, SOCKET hSock
 }
 void __stdcall Network_Callback_SimpleRecv(LPCTSTR lpszClientAddr, SOCKET hSocket, LPCTSTR lpszRecvMsg, int nMsgLen, LPVOID lParam)
 {
-	_tprintf(_T("业务客户端:%s,投递数据包到组包队列成功,大小:%d"), lpszClientAddr, nMsgLen);
+	_tprintf(_T("业务客户端:%s,接受到数据,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszRecvMsg);
 }
 void __stdcall Network_Callback_SimpleLeave(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
 {
