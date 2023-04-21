@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 		goto XENGINE_SERVICEAPP_EXIT;
 	}
 	//绑定网络事件
-	NetCore_TCPXCore_RegisterCallBackEx(xhTCPSocket, Network_Callback_SimpleLogin, Network_Callback_SimpleRecv, Network_Callback_SimpleLeave);
+	NetCore_TCPXCore_RegisterCallBackEx(xhTCPSocket, Network_Callback_SimpleLogin, Network_Callback_SimpleTCPRecv, Network_Callback_SimpleLeave);
 	//启动UDP网络
 	xhUDPSocket = NetCore_UDPXCore_StartEx(8880, 4);
 	if (NULL == xhUDPSocket)
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 		goto XENGINE_SERVICEAPP_EXIT;
 	}
 	//绑定网络事件
-	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleRecv);
+	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleUDPRecv);
 
 	while (true)
 	{
