@@ -34,17 +34,17 @@ CModuleDatabase_MySql::~CModuleDatabase_MySql()
   意思：是否成功
 备注：
 *********************************************************************/
-BOOL CModuleDatabase_MySql::ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO* pSt_MySQLConnector)
+bool CModuleDatabase_MySql::ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO* pSt_MySQLConnector)
 {
-	DBModule_IsErrorOccur = FALSE;
+	DBModule_IsErrorOccur = false;
 	//打开数据库
 	if (!DataBase_MySQL_Connect(&xhSQL, pSt_MySQLConnector))
 	{
-		DBModule_IsErrorOccur = TRUE;
+		DBModule_IsErrorOccur = true;
 		DBModule_dwErrorCode = DataBase_GetLastError();
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 /********************************************************************
 函数名称：ModuleDatabase_MySql_Destory
@@ -54,10 +54,10 @@ BOOL CModuleDatabase_MySql::ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO
   意思：是否成功
 备注：
 *********************************************************************/
-BOOL CModuleDatabase_MySql::ModuleDatabase_MySql_Destory()
+bool CModuleDatabase_MySql::ModuleDatabase_MySql_Destory()
 {
-	DBModule_IsErrorOccur = FALSE;
+	DBModule_IsErrorOccur = false;
 
 	DataBase_MySQL_Close(xhSQL);
-	return TRUE;
+	return true;
 }

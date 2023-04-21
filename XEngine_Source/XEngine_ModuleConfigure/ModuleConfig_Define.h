@@ -15,8 +15,8 @@
 //////////////////////////////////////////////////////////////////////////
 typedef struct tag_XEngine_ServiceConfig
 {
-	TCHAR tszIPAddr[128];                     //本机IP地址,根据需要配置
-	BOOL bDeamon;                             //是否以守护进程启动,LINUX有效
+	XCHAR tszIPAddr[128];                     //本机IP地址,根据需要配置
+	bool bDeamon;                             //是否以守护进程启动,LINUX有效
 	int nPort;                                //服务
 	struct
 	{
@@ -44,7 +44,7 @@ typedef struct tag_XEngine_ServiceConfig
 //////////////////////////////////////////////////////////////////////////
 //                        导出函数定义
 //////////////////////////////////////////////////////////////////////////
-extern "C" DWORD ModuleConfigure_GetLastError(int* pInt_ErrorCode = NULL);
+extern "C" XLONG ModuleConfigure_GetLastError(int* pInt_ErrorCode = NULL);
 /************************************************************************/
 /*                        文件配置读取                                  */
 /************************************************************************/
@@ -66,4 +66,4 @@ extern "C" DWORD ModuleConfigure_GetLastError(int* pInt_ErrorCode = NULL);
   意思：是否成功
 备注：
 *********************************************************************/
-extern "C" BOOL ModuleConfigure_Json_File(LPCTSTR lpszConfigFile, XENGINE_SERVICECONFIG* pSt_ServerConfig);
+extern "C" bool ModuleConfigure_Json_File(LPCXSTR lpszConfigFile, XENGINE_SERVICECONFIG* pSt_ServerConfig);

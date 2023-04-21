@@ -10,7 +10,7 @@
 //    Purpose:     WS任务处理代码
 //    History:
 *********************************************************************/
-XHTHREAD CALLBACK XEngine_WSTask_Thread(LPVOID lParam)
+XHTHREAD CALLBACK XEngine_WSTask_Thread(XPVOID lParam)
 {
 	//任务池是编号1开始的.
 	int nThreadPos = *(int*)lParam;
@@ -30,7 +30,7 @@ XHTHREAD CALLBACK XEngine_WSTask_Thread(LPVOID lParam)
 		{
 			//先循环客户端
 			int nMsgLen = 0;
-			TCHAR* ptszMsgBuffer = NULL;                          //客户端负载内容
+			XCHAR* ptszMsgBuffer = NULL;                          //客户端负载内容
 			ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE enOPCode;  //包协议
 			if (RfcComponents_WSPacket_GetMemoryEx(xhWSPacket, ppSt_ListClient[i]->tszClientAddr, &ptszMsgBuffer, &nMsgLen, &enOPCode))
 			{
@@ -47,7 +47,7 @@ XHTHREAD CALLBACK XEngine_WSTask_Thread(LPVOID lParam)
 	}
 	return 0;
 }
-BOOL XEngine_WSTask_Handle(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE enOPCode)
+bool XEngine_WSTask_Handle(LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE enOPCode)
 {
 	//开始处理协议
 	if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_CONTINUE == enOPCode)
@@ -58,7 +58,7 @@ BOOL XEngine_WSTask_Handle(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nM
 	{
 		//发送数据给客户端,发什么我们返回什么
 		XEngine_Network_Send(lpszClientAddr, lpszMsgBuffer, nMsgLen, enOPCode);
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("WEBSOCKET客户端:%s,发送数据给服务器处理成功,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("WEBSOCKET客户端:%s,发送数据给服务器处理成功,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
 	}
 	else if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_BINARY == enOPCode)
 	{
@@ -79,7 +79,7 @@ BOOL XEngine_WSTask_Handle(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nM
 	else
 	{
 		//其他帧不用处理
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("WEBSOCKET客户端:%s,协议错误"), lpszClientAddr);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("WEBSOCKET客户端:%s,协议错误"), lpszClientAddr);
 	}
-	return TRUE;
+	return true;
 }

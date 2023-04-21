@@ -10,7 +10,7 @@
 //    Purpose:     入口函数头文件
 //    History:
 *********************************************************************/
-BOOL bIsRun = FALSE;
+bool bIsRun = false;
 //套接字句柄
 XHANDLE xhTCPSocket = NULL;
 XHANDLE xhUDPSocket = NULL;
@@ -19,7 +19,7 @@ void ServiceApp_Stop(int signo)
 {
 	if (bIsRun)
 	{
-		bIsRun = FALSE;
+		bIsRun = false;
 		//销毁业务资源
 		NetCore_TCPXCore_DestroyEx(xhTCPSocket);
 		NetCore_UDPXCore_DestroyEx(xhUDPSocket);
@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 	WSADATA st_WSAData;
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
-	bIsRun = TRUE;
+	bIsRun = true;
 
 	signal(SIGINT, ServiceApp_Stop);
 	signal(SIGTERM, ServiceApp_Stop);
@@ -58,14 +58,14 @@ int main(int argc, char** argv)
 	//绑定网络事件
 	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleRecv);
 
-	while (TRUE)
+	while (true)
 	{
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 XENGINE_SERVICEAPP_EXIT:
 	if (bIsRun)
 	{
-		bIsRun = FALSE;
+		bIsRun = false;
 		//销毁业务资源
 		NetCore_TCPXCore_DestroyEx(xhTCPSocket);
 		NetCore_UDPXCore_DestroyEx(xhUDPSocket);

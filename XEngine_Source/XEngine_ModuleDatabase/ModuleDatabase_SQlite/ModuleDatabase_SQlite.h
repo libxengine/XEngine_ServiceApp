@@ -18,8 +18,8 @@ public:
 	CModuleDatabase_SQlite();
 	~CModuleDatabase_SQlite();
 public:
-	BOOL ModuleDatabase_SQlite_Init(LPCTSTR lpszSQLFile);
-	BOOL ModuleDatabase_SQlite_Destory();
+	bool ModuleDatabase_SQlite_Init(LPCXSTR lpszSQLFile);
+	bool ModuleDatabase_SQlite_Destory();
 private:
 	XNETHANDLE xhSQL;
 };

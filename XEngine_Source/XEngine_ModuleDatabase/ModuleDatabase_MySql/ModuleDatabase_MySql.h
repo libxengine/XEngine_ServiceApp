@@ -18,8 +18,8 @@ public:
 	CModuleDatabase_MySql();
 	~CModuleDatabase_MySql();
 public:
-	BOOL ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO* pSt_MySQLConnector);
-	BOOL ModuleDatabase_MySql_Destory();
+	bool ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO* pSt_MySQLConnector);
+	bool ModuleDatabase_MySql_Destory();
 private:
 	XNETHANDLE xhSQL;
 };

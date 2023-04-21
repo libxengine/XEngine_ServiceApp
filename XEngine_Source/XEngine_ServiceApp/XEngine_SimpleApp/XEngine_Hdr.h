@@ -42,7 +42,7 @@ using namespace std;
 //    Purpose:     公用头文件
 //    History:
 *********************************************************************/
-extern BOOL bIsRun;
+extern bool bIsRun;
 //套接字句柄
 extern XHANDLE xhTCPSocket;
 extern XHANDLE xhUDPSocket;

@@ -56,8 +56,8 @@ using namespace std;
 //    Purpose:     公用头文件
 //    History:
 *********************************************************************/
-extern BOOL bIsRun;
-extern XLOG xhLog;
+extern bool bIsRun;
+extern XHANDLE xhLog;
 //HTTP服务器
 extern XHANDLE xhWSSocket;
 extern XHANDLE xhWSHeart;

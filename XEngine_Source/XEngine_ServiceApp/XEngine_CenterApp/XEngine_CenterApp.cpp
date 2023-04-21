@@ -10,8 +10,8 @@
 //    Purpose:     入口函数头文件
 //    History:
 *********************************************************************/
-BOOL bIsRun = FALSE;
-XLOG xhLog = NULL;
+bool bIsRun = false;
+XHANDLE xhLog = NULL;
 //业务服务器
 XHANDLE xhCenterSocket = NULL;
 XHANDLE xhCenterHeart = NULL;
@@ -24,8 +24,8 @@ void ServiceApp_Stop(int signo)
 {
 	if (bIsRun)
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("服务器退出..."));
-		bIsRun = FALSE;
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("服务器退出..."));
+		bIsRun = false;
 		//销毁业务资源
 		NetCore_TCPXCore_DestroyEx(xhCenterSocket);
 		SocketOpt_HeartBeat_DestoryEx(xhCenterHeart);
@@ -76,8 +76,8 @@ int main(int argc, char** argv)
 	WSADATA st_WSAData;
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
-	bIsRun = TRUE;
-	LPCTSTR lpszLogFile = _T("./XEngine_Log/XEngine_CenterApp.Log");
+	bIsRun = true;
+	LPCXSTR lpszLogFile = _X("./XEngine_Log/XEngine_CenterApp.Log");
 	HELPCOMPONENTS_XLOG_CONFIGURE st_XLogConfig;
 	THREADPOOL_PARAMENT** ppSt_ListCenterParam;
 
@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 
 	st_XLogConfig.XLog_MaxBackupFile = 10;
 	st_XLogConfig.XLog_MaxSize = 1024000;
-	_tcscpy(st_XLogConfig.tszFileName, lpszLogFile);
+	_tcsxcpy(st_XLogConfig.tszFileName, lpszLogFile);
 	//初始化参数
 	if (!XEngine_Configure_Parament(argc, argv, &st_ServiceConfig))
 	{
@@ -106,12 +106,12 @@ int main(int argc, char** argv)
 	}
 	//设置日志打印级别
 	HelpComponents_XLog_SetLogPriority(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO);
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,初始化日志系统成功"));
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,初始化日志系统成功"));
 
 	signal(SIGINT, ServiceApp_Stop);
 	signal(SIGTERM, ServiceApp_Stop);
 	signal(SIGABRT, ServiceApp_Stop);
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,初始化信号量成功"));
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,初始化信号量成功"));
 
 	//启动业务服务相关代码
 	if (st_ServiceConfig.nPort > 0)
@@ -120,36 +120,36 @@ int main(int argc, char** argv)
 		xhCenterPacket = HelpComponents_Datas_Init(st_ServiceConfig.st_XMax.nMaxQueue, st_ServiceConfig.st_XMax.nThread);
 		if (NULL == xhCenterPacket)
 		{
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,初始化业务组包器失败,错误：%lX"), Packets_GetLastError());
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("启动服务中,初始化业务组包器失败,错误：%lX"), Packets_GetLastError());
 			goto XENGINE_SERVICEAPP_EXIT;
 		}
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,启动业务组包器成功"));
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,启动业务组包器成功"));
 		//启动心跳
 		if (st_ServiceConfig.st_XTime.nTimeOut > 0)
 		{
 			xhCenterHeart = SocketOpt_HeartBeat_InitEx(st_ServiceConfig.st_XTime.nTimeOut, st_ServiceConfig.st_XTime.nTimeCheck, Network_Callback_CenterHeart);
 			if (NULL == xhCenterHeart)
 			{
-				XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,初始化业务心跳服务失败,错误：%lX"), NetCore_GetLastError());
+				XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("启动服务中,初始化业务心跳服务失败,错误：%lX"), NetCore_GetLastError());
 				goto XENGINE_SERVICEAPP_EXIT;
 			}
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,初始化业务心跳服务成功,时间:%d,次数:%d"), st_ServiceConfig.st_XTime.nTimeOut, st_ServiceConfig.st_XTime.nTimeCheck);
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,初始化业务心跳服务成功,时间:%d,次数:%d"), st_ServiceConfig.st_XTime.nTimeOut, st_ServiceConfig.st_XTime.nTimeCheck);
 		}
 		else
 		{
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("启动服务中,业务心跳服务被设置为不启用"));
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("启动服务中,业务心跳服务被设置为不启用"));
 		}
 		//启动网络
 		xhCenterSocket = NetCore_TCPXCore_StartEx(st_ServiceConfig.nPort, st_ServiceConfig.st_XMax.nMaxClient, st_ServiceConfig.st_XMax.nIOThread);
 		if (NULL == xhCenterSocket)
 		{
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,启动业务网络服务器失败,错误：%lX"), NetCore_GetLastError());
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("启动服务中,启动业务网络服务器失败,错误：%lX"), NetCore_GetLastError());
 			goto XENGINE_SERVICEAPP_EXIT;
 		}
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,启动业务网络服务器成功,业务端口:%d,网络IO线程个数:%d"), st_ServiceConfig.nPort, st_ServiceConfig.st_XMax.nIOThread);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,启动业务网络服务器成功,业务端口:%d,网络IO线程个数:%d"), st_ServiceConfig.nPort, st_ServiceConfig.st_XMax.nIOThread);
 		//绑定网络事件
 		NetCore_TCPXCore_RegisterCallBackEx(xhCenterSocket, Network_Callback_CenterLogin, Network_Callback_CenterRecv, Network_Callback_CenterLeave);
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,注册业务网络事件成功"));
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,注册业务网络事件成功"));
 		//启动任务池
 		BaseLib_OperatorMemory_Malloc((XPPPMEM)&ppSt_ListCenterParam, st_ServiceConfig.st_XMax.nThread, sizeof(THREADPOOL_PARAMENT));
 		for (int i = 0; i < st_ServiceConfig.st_XMax.nThread; i++)
@@ -163,26 +163,26 @@ int main(int argc, char** argv)
 		xhCenterPool = ManagePool_Thread_NQCreate(&ppSt_ListCenterParam, st_ServiceConfig.st_XMax.nThread);
 		if (NULL == xhCenterPool)
 		{
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("启动服务中,启动业务线程池服务失败,错误：%lX"), ManagePool_GetLastError());
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("启动服务中,启动业务线程池服务失败,错误：%lX"), ManagePool_GetLastError());
 			goto XENGINE_SERVICEAPP_EXIT;
 		}
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("启动服务中,启动业务线程池服务成功,启动个数:%d"), st_ServiceConfig.st_XMax.nThread);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,启动业务线程池服务成功,启动个数:%d"), st_ServiceConfig.st_XMax.nThread);
 	}
 	else
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("启动服务中,业务消息服务没有被启用"));
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("启动服务中,业务消息服务没有被启用"));
 	}
 	
-	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("所有服务成功启动,服务运行中,XEngine版本:%s,服务版本:%s,发行次数;%d。。。"), XENGINE_VERSION_STR, st_ServiceConfig.st_XVer.pStl_ListVer->front().c_str(), st_ServiceConfig.st_XVer.pStl_ListVer->size());
-	while (TRUE)
+	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("所有服务成功启动,服务运行中,XEngine版本:%s%s,服务版本:%s,发行次数;%d。。。"), BaseLib_OperatorVer_XNumberStr(), BaseLib_OperatorVer_XTypeStr(), st_ServiceConfig.st_XVer.pStl_ListVer->front().c_str(), st_ServiceConfig.st_XVer.pStl_ListVer->size());
+	while (true)
 	{
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 XENGINE_SERVICEAPP_EXIT:
 	if (bIsRun)
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _T("有服务启动失败,服务器退出..."));
-		bIsRun = FALSE;
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("有服务启动失败,服务器退出..."));
+		bIsRun = false;
 		//销毁业务资源
 		NetCore_TCPXCore_DestroyEx(xhCenterSocket);
 		SocketOpt_HeartBeat_DestoryEx(xhCenterHeart);

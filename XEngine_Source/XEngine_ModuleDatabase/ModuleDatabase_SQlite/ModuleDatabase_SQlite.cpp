@@ -34,17 +34,17 @@ CModuleDatabase_SQlite::~CModuleDatabase_SQlite()
   意思：是否成功
 备注：
 *********************************************************************/
-BOOL CModuleDatabase_SQlite::ModuleDatabase_SQlite_Init(LPCTSTR lpszSQLFile)
+bool CModuleDatabase_SQlite::ModuleDatabase_SQlite_Init(LPCXSTR lpszSQLFile)
 {
-	DBModule_IsErrorOccur = FALSE;
+	DBModule_IsErrorOccur = false;
 	//打开数据库
 	if (!DataBase_SQLite_Open(&xhSQL, lpszSQLFile))
 	{
-		DBModule_IsErrorOccur = TRUE;
+		DBModule_IsErrorOccur = true;
 		DBModule_dwErrorCode = DataBase_GetLastError();
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 /********************************************************************
 函数名称：ModuleDatabase_SQlite_Destory
@@ -54,10 +54,10 @@ BOOL CModuleDatabase_SQlite::ModuleDatabase_SQlite_Init(LPCTSTR lpszSQLFile)
   意思：是否成功
 备注：
 *********************************************************************/
-BOOL CModuleDatabase_SQlite::ModuleDatabase_SQlite_Destory()
+bool CModuleDatabase_SQlite::ModuleDatabase_SQlite_Destory()
 {
-	DBModule_IsErrorOccur = FALSE;
+	DBModule_IsErrorOccur = false;
 
 	DataBase_SQLite_Close(xhSQL);
-	return TRUE;
+	return true;
 }

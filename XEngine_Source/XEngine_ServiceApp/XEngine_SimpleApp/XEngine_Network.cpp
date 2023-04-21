@@ -11,37 +11,37 @@
 //    History:
 *********************************************************************/
 //////////////////////////////////////////////////////////////////////////下面是业务网络IO相关代码处理函数
-BOOL __stdcall Network_Callback_SimpleLogin(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
+bool CALLBACK Network_Callback_SimpleLogin(LPCXSTR lpszClientAddr, XSOCKET hSocket, XPVOID lParam)
 {
-	_tprintf(_T("业务客户端:%s,连接到服务器"), lpszClientAddr);
-	return TRUE;
+	_xtprintf(_X("业务客户端:%s,连接到服务器"), lpszClientAddr);
+	return true;
 }
-void __stdcall Network_Callback_SimpleRecv(LPCTSTR lpszClientAddr, SOCKET hSocket, LPCTSTR lpszRecvMsg, int nMsgLen, LPVOID lParam)
+void CALLBACK Network_Callback_SimpleRecv(LPCXSTR lpszClientAddr, XSOCKET hSocket, LPCXSTR lpszRecvMsg, int nMsgLen, XPVOID lParam)
 {
-	_tprintf(_T("业务客户端:%s,接受到数据,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszRecvMsg);
+	_xtprintf(_X("业务客户端:%s,接受到数据,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszRecvMsg);
 }
-void __stdcall Network_Callback_SimpleLeave(LPCTSTR lpszClientAddr, SOCKET hSocket, LPVOID lParam)
+void CALLBACK Network_Callback_SimpleLeave(LPCXSTR lpszClientAddr, XSOCKET hSocket, XPVOID lParam)
 {
-	_tprintf(_T("业务客户端:%s,离开服务器"), lpszClientAddr);
+	_xtprintf(_X("业务客户端:%s,离开服务器"), lpszClientAddr);
 }
 //////////////////////////////////////////////////////////////////////////
-BOOL XEngine_Network_Send(LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen, int nType)
+bool XEngine_Network_Send(LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen, int nType)
 {
 	if (IPPROTO_TCP == nType)
 	{
 		//发送数据给指定客户端
 		if (!NetCore_TCPXCore_SendEx(xhTCPSocket, lpszClientAddr, lpszMsgBuffer, nMsgLen))
 		{
-			return FALSE;
+			return false;
 		}
 	}
 	else
 	{
 		//发送数据给指定客户端
-		if (!NetCore_UDPXCore_SendEx(xhUDPSocket, lpszClientAddr, lpszMsgBuffer, &nMsgLen))
+		if (!NetCore_UDPXCore_SendEx(xhUDPSocket, lpszClientAddr, lpszMsgBuffer, nMsgLen))
 		{
-			return FALSE;
+			return false;
 		}
 	}
-	return TRUE;
+	return true;
 }

@@ -10,7 +10,7 @@
 //    Purpose:     业务任务处理代码
 //    History:
 *********************************************************************/
-XHTHREAD CALLBACK XEngine_CenterTask_Thread(LPVOID lParam)
+XHTHREAD CALLBACK XEngine_CenterTask_Thread(XPVOID lParam)
 {
 	//任务池是编号1开始的.
 	int nThreadPos = *(int*)lParam;
@@ -33,7 +33,7 @@ XHTHREAD CALLBACK XEngine_CenterTask_Thread(LPVOID lParam)
 			for (int j = 0; j < ppSst_ListAddr[i]->nPktCount; j++)
 			{
 				int nMsgLen = 0;                             //客户端发送的数据大小,不包括头
-				TCHAR* ptszMsgBuffer = NULL;                 //客户端发送的数据
+				XCHAR* ptszMsgBuffer = NULL;                 //客户端发送的数据
 				XENGINE_PROTOCOLHDR st_ProtocolHdr;          //客户端发送的数据的协议头
 
 				memset(&st_ProtocolHdr, '\0', sizeof(XENGINE_PROTOCOLHDR));
@@ -51,7 +51,7 @@ XHTHREAD CALLBACK XEngine_CenterTask_Thread(LPVOID lParam)
 	}
 	return 0;
 }
-BOOL XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCTSTR lpszClientAddr, LPCTSTR lpszMsgBuffer, int nMsgLen)
+bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen)
 {
 	//这里开始编写你的代码
 	if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG == pSt_ProtocolHdr->unOperatorType)
@@ -59,10 +59,10 @@ BOOL XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCTSTR lps
 		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ == pSt_ProtocolHdr->unOperatorCode)
 		{
 			//我们收到一个包可以对他进行回复
-			TCHAR tszMsgBuffer[2048];
+			XCHAR tszMsgBuffer[2048];
 			memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
 			//我们推荐你新建一个模块项目来处理协议组包和解包相关代码
-			pSt_ProtocolHdr->byIsReply = FALSE;
+			pSt_ProtocolHdr->byIsReply = false;
 			pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREP;
 
 			memcpy(tszMsgBuffer, pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
@@ -70,7 +70,7 @@ BOOL XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCTSTR lps
 			//发送业务包,对方发送的内容我们返回相同的内容给对方,所以不需要改负载大小
 			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, sizeof(XENGINE_PROTOCOLHDR) + nMsgLen);
 			//回复完毕打印客户端发送的数据
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _T("业务客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
 		}
 	}
 	else if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_AUTH == pSt_ProtocolHdr->unOperatorType)
@@ -86,8 +86,8 @@ BOOL XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCTSTR lps
 		//我们可以给客户端发送一条错误信息
 		pSt_ProtocolHdr->wReserve = 0xFF;        //表示不支持的协议
 		pSt_ProtocolHdr->unPacketSize = 0;       //设置没有后续数据包
-		XEngine_Network_Send(lpszClientAddr, (LPCTSTR)pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _T("业务客户端:%s,主协议错误,协议：%x 不支持"), lpszClientAddr, pSt_ProtocolHdr->unOperatorType);
+		XEngine_Network_Send(lpszClientAddr, (LPCXSTR)pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("业务客户端:%s,主协议错误,协议：%x 不支持"), lpszClientAddr, pSt_ProtocolHdr->unOperatorType);
 	}
-	return TRUE;
+	return true;
 }

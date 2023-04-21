@@ -12,15 +12,15 @@
 //    Purpose:     导出函数实现
 //    History:
 *********************************************************************/
-DWORD DBModule_IsErrorOccur = FALSE;
-BOOL DBModule_dwErrorCode = 0;
+XLONG DBModule_IsErrorOccur = false;
+bool DBModule_dwErrorCode = 0;
 //////////////////////////////////////////////////////////////////////////
 CModuleDatabase_SQlite m_DBSQlite;
 CModuleDatabase_MySql m_DBMysql;
 //////////////////////////////////////////////////////////////////////////
 ///                        导出的函数
 //////////////////////////////////////////////////////////////////////////
-extern "C" DWORD ModuleDB_GetLastError(int* pInt_SysError)
+extern "C" XLONG ModuleDB_GetLastError(int* pInt_SysError)
 {
 	if (NULL != pInt_SysError)
 	{
@@ -31,22 +31,22 @@ extern "C" DWORD ModuleDB_GetLastError(int* pInt_SysError)
 /************************************************************************/
 /*                         导出的SQLITE操作函数                         */
 /************************************************************************/
-extern "C" BOOL ModuleDatabase_SQlite_Init(LPCTSTR lpszSQLFile)
+extern "C" bool ModuleDatabase_SQlite_Init(LPCXSTR lpszSQLFile)
 {
 	return m_DBSQlite.ModuleDatabase_SQlite_Init(lpszSQLFile);
 }
-extern "C" BOOL ModuleDatabase_SQlite_Destory()
+extern "C" bool ModuleDatabase_SQlite_Destory()
 {
 	return m_DBSQlite.ModuleDatabase_SQlite_Destory();
 }
 /************************************************************************/
 /*                         导出的MYSQL操作函数                          */
 /************************************************************************/
-extern "C" BOOL ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO * pSt_MySQLConnector)
+extern "C" bool ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO * pSt_MySQLConnector)
 {
 	return m_DBMysql.ModuleDatabase_MySql_Init(pSt_MySQLConnector);
 }
-extern "C" BOOL ModuleDatabase_MySql_Destory()
+extern "C" bool ModuleDatabase_MySql_Destory()
 {
 	return m_DBMysql.ModuleDatabase_MySql_Destory();
 }

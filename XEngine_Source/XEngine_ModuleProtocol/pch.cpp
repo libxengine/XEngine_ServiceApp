@@ -12,15 +12,15 @@
 //    Purpose:     导出协议模块实现
 //    History:
 *********************************************************************/
-BOOL ModuleProtocol_IsErrorOccur = FALSE;
-DWORD ModuleProtocol_dwErrorCode = 0;
+bool ModuleProtocol_IsErrorOccur = false;
+XLONG ModuleProtocol_dwErrorCode = 0;
 //////////////////////////////////////////////////////////////////////////
 CModuleProtocol_Packet m_ProtocolPacket;
 CModuleProtocol_Parse m_ProtocolParse;
 //////////////////////////////////////////////////////////////////////////
 ///                        导出的函数
 //////////////////////////////////////////////////////////////////////////
-extern "C" DWORD ModuleProtocol_GetLastError(int* pInt_SysError)
+extern "C" XLONG ModuleProtocol_GetLastError(int* pInt_SysError)
 {
 	if (NULL != pInt_SysError)
 	{
