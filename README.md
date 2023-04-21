@@ -23,7 +23,7 @@ c c++ network backend server development framework
 ## 安装教程
 
 #### XEngine环境
-必须安装XEngine,版本需要V7.48或者以上版本,安装XEngine可以参考其Readme文档  
+必须安装XEngine,版本需要V8.10或者以上版本,安装XEngine可以参考其Readme文档  
 GITEE:https://gitee.com/xyry/libxengine  
 GITHUB:https://github.com/libxengine/xengine
 
@@ -38,11 +38,11 @@ macos执行:./XEngine_LINEnv.sh -i 3
 直接运行即可
 
 #### Linux
-Linux使用Makefile编译,UBUNTU20.04 x64或者CENTOS8 x64  
+Linux使用Makefile编译,UBUNTU22.04 x64或者RockyLinux9 x64  
 在控制台运行
 
 #### Macos
-使用makefile编译,控制台运行,需要mac 12以及以上版本  
+使用makefile编译,控制台运行,需要mac 13以及以上版本  
 在控制台运行
 
 ##### 编译命令
