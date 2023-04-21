@@ -32,8 +32,8 @@ int main()
 #endif
 	
 	int nLen = 0;
-	TCHAR tszKeyBuffer[1024];
-	TCHAR tszMsgBuffer[1024];
+	XCHAR tszKeyBuffer[1024];
+	XCHAR tszMsgBuffer[1024];
 
 	memset(tszKeyBuffer, '\0', sizeof(tszKeyBuffer));
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
@@ -44,8 +44,8 @@ int main()
 		return -1;
 	}
 
-	SOCKET hSocket = 0;
-	if (!XClient_TCPSelect_Create(&hSocket, _T("127.0.0.1"), 5003))
+	XSOCKET hSocket = 0;
+	if (!XClient_TCPSelect_Create(&hSocket, _X("127.0.0.1"), 5003))
 	{
 		printf("NetClient_TCPSelect_Create:%lX", XClient_GetLastError());
 		return -1;
@@ -76,7 +76,7 @@ int main()
 		printf("%s\n", tszMsgBuffer + nPos);
 	}
 	int nRVLen = 6;
-	TCHAR tszRecvBuffer[2048];
+	XCHAR tszRecvBuffer[2048];
 
 	memset(tszRecvBuffer, '\0', sizeof(tszRecvBuffer));
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));

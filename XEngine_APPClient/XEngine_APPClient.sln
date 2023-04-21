@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "APPClient_HTTP2Example", "A
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "APPClient_WSExample", "APPClient_WSExample\APPClient_WSExample.vcxproj", "{3CED8F31-8A52-42C8-9670-931DDAFC3D4E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "APPClient_UDPExample", "APPClient_UDPExample\APPClient_UDPExample.vcxproj", "{68C7E049-9EE4-4074-8451-044C0E2B8686}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{3CED8F31-8A52-42C8-9670-931DDAFC3D4E}.Release|x64.Build.0 = Release|x64
 		{3CED8F31-8A52-42C8-9670-931DDAFC3D4E}.Release|x86.ActiveCfg = Release|Win32
 		{3CED8F31-8A52-42C8-9670-931DDAFC3D4E}.Release|x86.Build.0 = Release|Win32
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Debug|x64.ActiveCfg = Debug|x64
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Debug|x64.Build.0 = Debug|x64
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Debug|x86.ActiveCfg = Debug|Win32
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Debug|x86.Build.0 = Debug|Win32
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Release|x64.ActiveCfg = Release|x64
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Release|x64.Build.0 = Release|x64
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Release|x86.ActiveCfg = Release|Win32
+		{68C7E049-9EE4-4074-8451-044C0E2B8686}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

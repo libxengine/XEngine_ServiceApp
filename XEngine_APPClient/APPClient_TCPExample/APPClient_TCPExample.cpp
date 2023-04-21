@@ -27,9 +27,9 @@ int main(int argc, char** argv)
 	WSADATA st_WSAData;
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
-	SOCKET m_Socket;
-	LPCTSTR lpszServiceAddr = _T("127.0.0.1");
-	LPCTSTR lpszMsgBuffer = _T("123456789aaa");
+	XSOCKET m_Socket;
+	LPCXSTR lpszServiceAddr = _X("127.0.0.1");
+	LPCXSTR lpszMsgBuffer = _X("123456789aaa");
 	if (!XClient_TCPSelect_Create(&m_Socket, lpszServiceAddr, 5000))
 	{
 		printf("连接失败！错误:%lX\n", XClient_GetLastError());
@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 	}
 	printf("连接成功！\n");
 
-	TCHAR tszMsgBuffer[2048];
+	XCHAR tszMsgBuffer[2048];
 	XENGINE_PROTOCOLHDR st_ProtocolHdr;
 	
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 		return 0;
 	}
 	nLen = 0;
-	TCHAR* ptszMsgBuffer = NULL;
+	XCHAR* ptszMsgBuffer = NULL;
 	memset(&st_ProtocolHdr, '\0', sizeof(XENGINE_PROTOCOLHDR));
 	if (!XClient_TCPSelect_RecvPkt(m_Socket, &ptszMsgBuffer, &nLen, &st_ProtocolHdr))
 	{

@@ -28,8 +28,8 @@ int main()
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
 	int nLen = 0;
-	TCHAR *ptszMsgBuffer = NULL;
-	LPCTSTR lpszUrl = _T("http://127.0.0.1:5001");
+	XCHAR *ptszMsgBuffer = NULL;
+	LPCXSTR lpszUrl = _X("http://127.0.0.1:5001");
 	
 	if (!APIClient_Http_Request("GET", lpszUrl, NULL, NULL, &ptszMsgBuffer, &nLen))
 	{

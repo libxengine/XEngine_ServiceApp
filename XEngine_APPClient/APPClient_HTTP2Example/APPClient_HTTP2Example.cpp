@@ -28,8 +28,8 @@ int main()
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
 	int nLen = 0;
-	TCHAR* ptszMsgBuffer = NULL;
-	LPCTSTR lpszUrl = _T("http://127.0.0.1:5002");
+	XCHAR* ptszMsgBuffer = NULL;
+	LPCXSTR lpszUrl = _X("http://127.0.0.1:5002");
 
 	NETHELP_HTTPCLIENT st_HTTPParam;
 	memset(&st_HTTPParam, '\0', sizeof(NETHELP_HTTPCLIENT));
