@@ -23,7 +23,7 @@ XHTHREAD CALLBACK XEngine_WSTask_Thread(XPVOID lParam)
 			continue;
 		}
 		int nListCount = 0;
-		RFCCOMPONENTS_WSPKT_CLIENT** ppSt_ListClient;
+		XENGINE_MANAGEPOOL_TASKEVENT** ppSt_ListClient;
 		//获得编号1的所有待处理任务的客户端列表(也就是客户端发送过来的数据已经组好了一个包,需要我们处理)
 		RfcComponents_WSPacket_GetPoolEx(xhWSPacket, nThreadPos, &ppSt_ListClient, &nListCount);
 		for (int i = 0; i < nListCount; i++)
