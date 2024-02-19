@@ -47,9 +47,9 @@ int main(int argc, char** argv)
 	st_ProtocolHdr.unOperatorType = ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG;
 	st_ProtocolHdr.unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ;
 	st_ProtocolHdr.byVersion = 1;
-	st_ProtocolHdr.byIsReply = TRUE;           //获得处理返回结果
+	st_ProtocolHdr.byIsReply = true;           //获得处理返回结果
 	st_ProtocolHdr.wTail = XENGIEN_COMMUNICATION_PACKET_PROTOCOL_TAIL;
-	st_ProtocolHdr.unPacketSize = _tcslen(lpszMsgBuffer);
+	st_ProtocolHdr.unPacketSize = strlen(lpszMsgBuffer);
 	int nLen = sizeof(XENGINE_PROTOCOLHDR) + st_ProtocolHdr.unPacketSize;
 	//打包数据
 	memcpy(tszMsgBuffer, &st_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
@@ -63,6 +63,7 @@ int main(int argc, char** argv)
 	nLen = 0;
 	XCHAR* ptszMsgBuffer = NULL;
 	memset(&st_ProtocolHdr, '\0', sizeof(XENGINE_PROTOCOLHDR));
+	//建议使用HelpComponents_Datas_Init 能够更好应对异常网络环境
 	if (!XClient_TCPSelect_RecvPkt(m_Socket, &ptszMsgBuffer, &nLen, &st_ProtocolHdr))
 	{
 		printf("接受数据失败！\n");

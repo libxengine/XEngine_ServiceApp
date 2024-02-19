@@ -34,7 +34,7 @@ int main()
 	NETHELP_HTTPCLIENT st_HTTPParam;
 	memset(&st_HTTPParam, '\0', sizeof(NETHELP_HTTPCLIENT));
 
-	st_HTTPParam.bHTTP2Enable = TRUE;
+	st_HTTPParam.bHTTP2Enable = true;
 	if (!APIClient_Http_Request("GET", lpszUrl, NULL,NULL,&ptszMsgBuffer, &nLen, NULL, NULL, &st_HTTPParam))
 	{
 		printf("发送投递失败！\n");

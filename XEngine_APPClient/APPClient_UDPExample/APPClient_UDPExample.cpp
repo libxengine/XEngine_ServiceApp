@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 		printf("连接失败！错误:%lX\n", XClient_GetLastError());
 		return 0;
 	}
-	XClient_UDPSelect_Connect(m_Socket, "127.0.0.1", 8880);
+	XClient_UDPSelect_Connect(m_Socket, lpszServiceAddr, 8880);
 
 	if (!XClient_UDPSelect_SendMsg(m_Socket, lpszMsgBuffer, strlen(lpszMsgBuffer)))
 	{

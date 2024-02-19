@@ -16,11 +16,13 @@
 #include <XEngine_Include/XEngine_BaseLib/BaseLib_Error.h>
 #include <XEngine_Include/XEngine_Client/XClient_Define.h>
 #include <XEngine_Include/XEngine_Client/XClient_Error.h>
+#include <XEngine_Include/XEngine_Core/ManagePool_Define.h>
+#include <XEngine_Include/XEngine_Core/ManagePool_Error.h>
 #include <XEngine_Include/XEngine_RfcComponents/WSProtocol_Define.h>
 #include <XEngine_Include/XEngine_RfcComponents/WSProtocol_Error.h>
 
 //需要优先配置XEngine
-//WINDOWS支持VS2019 x86 debug 编译调试
+//WINDOWS支持VS2022 x86 debug 编译调试
 //linux:g++ -std=c++17 -Wall -g APPClient_WSExample.cpp -o APPClient_WSExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_Client -L /usr/local/lib/XEngine_Release/XEngine_RfcComponents -lXEngine_BaseLib -lXClient_Socket -lRfcComponents_WSProtocol
 //Macos:g++ -std=c++17 -Wall -g APPClient_WSExample.cpp -o APPClient_WSExample.exe -lXEngine_BaseLib -lXClient_Socket -lRfcComponents_WSProtocol
 
@@ -81,7 +83,7 @@ int main()
 	memset(tszRecvBuffer, '\0', sizeof(tszRecvBuffer));
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
 
-	if (RfcComponents_WSCodec_EncodeMsg("123456", tszMsgBuffer, &nRVLen, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_TEXT, TRUE))
+	if (RfcComponents_WSCodec_EncodeMsg("123456", tszMsgBuffer, &nRVLen, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_TEXT, true))
 	{
 		if (XClient_TCPSelect_SendMsg(hSocket, tszMsgBuffer, nRVLen))
 		{

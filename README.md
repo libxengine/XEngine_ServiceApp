@@ -58,6 +58,9 @@ XEngine_Http2App 服务主要用于HTTP2协议,可在这里编写你的HTTP2操�
 XEngine_WebSocketApp 服务主要用于WEBSOCKET协议,可在这里编写你的WEBSOCKET操作相关处理代码  
 XEngine_SimpleApp 最少代码演示一个TCP和UDP服务器  
 
+#### 视频教程
+你也可以观看视频教程来了解我们的代码框架情况:https://www.bilibili.com/video/BV1Hv421y7g9
+
 ## 参与贡献
 
 1.  Fork 本仓库
