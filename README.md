@@ -23,7 +23,7 @@ c c++ network backend server development framework
 ## 安装教程
 
 #### XEngine环境
-必须安装XEngine,版本需要V8.10或者以上版本,安装XEngine可以参考其Readme文档  
+必须安装XEngine,版本需要V8.25或者以上版本,安装XEngine可以参考其Readme文档  
 GITEE:https://gitee.com/xyry/libxengine  
 GITHUB:https://github.com/libxengine/xengine
 

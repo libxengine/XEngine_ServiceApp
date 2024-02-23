@@ -17,9 +17,8 @@
 #include "../../XEngine_Source/XEngine_UserProtocol.h"
 
 //需要优先配置XEngine
-//WINDOWS支持VS2022 x86 debug 编译调试
-//linux:g++ -std=c++17 -Wall -g APPClient_UDPExample.cpp -o APPClient_UDPExample.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_Client -lXEngine_BaseLib -lXClient_Socket
-//macos:g++ -std=c++17 -Wall -g APPClient_UDPExample.cpp -o APPClient_UDPExample.exe -lXEngine_BaseLib -lXClient_Socket
+//WINDOWS支持VS2022 x86 and x64,release or debug 编译调试
+//linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_UDPExample.cpp -o APPClient_UDPExample.exe -lXEngine_BaseLib -lXClient_Socket
 
 int main(int argc, char** argv)
 {

@@ -3,7 +3,7 @@
 #include <tchar.h>
 #pragma comment(lib,"Ws2_32")
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib")
-#pragma comment(lib,"XEngine_NetHelp/NetHelp_APIClient")
+#pragma comment(lib,"XEngine_Client/XClient_APIHelp")
 #endif
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,13 +13,12 @@
 #include <XEngine_Include/XEngine_ProtocolHdr.h>
 #include <XEngine_Include/XEngine_BaseLib/BaseLib_Define.h>
 #include <XEngine_Include/XEngine_BaseLib/BaseLib_Error.h>
-#include <XEngine_Include/XEngine_NetHelp/APIClient_Define.h>
-#include <XEngine_Include/XEngine_NetHelp/APIClient_Error.h>
+#include <XEngine_Include/XEngine_Client/APIClient_Define.h>
+#include <XEngine_Include/XEngine_Client/APIClient_Error.h>
 
 //需要优先配置XEngine
-//WINDOWS支持VS2022 x86 debug 编译调试
-//linux:g++ -std=c++17 -Wall -g APPClient_HTTP2Example.cpp -o APPClient_HTTP2Example.exe -L /usr/local/lib/XEngine_Release/XEngine_BaseLib -L /usr/local/lib/XEngine_Release/XEngine_NetHelp -lXEngine_BaseLib -lNetHelp_APIClient
-//Macos:g++ -std=c++17 -Wall -g APPClient_HTTP2Example.cpp -o APPClient_HTTP2Example.exe -lXEngine_BaseLib -lNetHelp_APIClient
+//WINDOWS支持VS2022 x86 and x64,release or debug 编译调试
+//linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_HTTP2Example.cpp -o APPClient_HTTP2Example.exe -lXEngine_BaseLib -lXClient_APIHelp
 
 int main()
 {
@@ -31,8 +30,8 @@ int main()
 	XCHAR* ptszMsgBuffer = NULL;
 	LPCXSTR lpszUrl = _X("http://127.0.0.1:5002");
 
-	NETHELP_HTTPCLIENT st_HTTPParam;
-	memset(&st_HTTPParam, '\0', sizeof(NETHELP_HTTPCLIENT));
+	XCLIENT_APIHTTP st_HTTPParam;
+	memset(&st_HTTPParam, '\0', sizeof(XCLIENT_APIHTTP));
 
 	st_HTTPParam.bHTTP2Enable = true;
 	if (!APIClient_Http_Request("GET", lpszUrl, NULL,NULL,&ptszMsgBuffer, &nLen, NULL, NULL, &st_HTTPParam))
