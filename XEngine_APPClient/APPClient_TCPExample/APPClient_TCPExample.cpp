@@ -5,6 +5,19 @@
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib.lib")
 #pragma comment(lib,"XEngine_Client/XClient_Socket.lib")
 #pragma comment(lib,"XEngine_HelpComponents/HelpComponents_Packets.lib")
+#ifdef WIN32
+#ifdef _DEBUG
+#pragma comment(lib,"../../XEngine_Source/Debug/jsoncpp")
+#else
+#pragma comment(lib,"../../XEngine_Source/Release/jsoncpp")
+#endif
+#else
+#ifdef _DEBUG
+#pragma comment(lib,"../../XEngine_Source/x64/Debug/jsoncpp")
+#else
+#pragma comment(lib,"../../XEngine_Source/x64/Release/jsoncpp")
+#endif
+#endif
 #endif
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,10 +31,11 @@
 #include <XEngine_Include/XEngine_Core/ManagePool_Define.h>
 #include <XEngine_Include/XEngine_HelpComponents/Packets_Define.h>
 #include <XEngine_Include/XEngine_HelpComponents/Packets_Error.h>
+#include <json/json.h>
 #include "../../XEngine_Source/XEngine_UserProtocol.h"
 
-//需要优先配置XEngine
-//WINDOWS支持VS2022 x86 and x64,release or debug 编译调试
+//需要优先配置XEngine.
+//WINDOWS支持VS2022 x86 and x64,release or debug 编译调试,jsoncpp需要拷贝到编译目录,否则会崩溃
 //linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -lXEngine_BaseLib -lXClient_Socket -lHelpComponents_Packets
 
 
@@ -49,11 +63,14 @@ int main(int argc, char** argv)
 	}
 	HelpComponents_Datas_CreateEx(xhPacket, lpszServiceAddr);
 
+	Json::Value st_JsonRoot;
 	XCHAR tszMsgBuffer[2048];
 	XENGINE_PROTOCOLHDR st_ProtocolHdr;
-	
+
 	memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
 	memset(&st_ProtocolHdr, '\0', sizeof(XENGINE_PROTOCOLHDR));
+
+	st_JsonRoot["lpszMSGBuffer"] = lpszMsgBuffer;
 	//设置协议头属性
 	st_ProtocolHdr.wHeader = XENGIEN_COMMUNICATION_PACKET_PROTOCOL_HEADER;
 	st_ProtocolHdr.unOperatorType = ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG;
@@ -61,11 +78,11 @@ int main(int argc, char** argv)
 	st_ProtocolHdr.byVersion = 1;
 	st_ProtocolHdr.byIsReply = true;           //获得处理返回结果
 	st_ProtocolHdr.wTail = XENGIEN_COMMUNICATION_PACKET_PROTOCOL_TAIL;
-	st_ProtocolHdr.unPacketSize = strlen(lpszMsgBuffer);
+	st_ProtocolHdr.unPacketSize = st_JsonRoot.toStyledString().length();
 	int nLen = sizeof(XENGINE_PROTOCOLHDR) + st_ProtocolHdr.unPacketSize;
 	//打包数据
 	memcpy(tszMsgBuffer, &st_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
-	memcpy(tszMsgBuffer + sizeof(XENGINE_PROTOCOLHDR), lpszMsgBuffer, st_ProtocolHdr.unPacketSize);
+	memcpy(tszMsgBuffer + sizeof(XENGINE_PROTOCOLHDR), st_JsonRoot.toStyledString().c_str(), st_ProtocolHdr.unPacketSize);
 
 	if (!XClient_TCPSelect_SendMsg(m_Socket, tszMsgBuffer, nLen))
 	{
