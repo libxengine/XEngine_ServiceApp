@@ -18,5 +18,6 @@ public:
 	CModuleProtocol_Parse();
 	~CModuleProtocol_Parse();
 public:
+	bool ModuleProtocol_Parse_Hello(XCHAR* ptszMSGBuffer, int* pInt_MSGLen, LPCXSTR lpszMSGBuffer, int nMSGLen);
 private:
 };

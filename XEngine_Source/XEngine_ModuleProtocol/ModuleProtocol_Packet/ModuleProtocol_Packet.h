@@ -18,5 +18,6 @@ public:
 	CModuleProtocol_Packet();
 	~CModuleProtocol_Packet();
 public:
+	bool ModuleProtocol_Packet_Comm(XCHAR* ptszMSGBuffer, int* pInt_MSGLen, XENGINE_PROTOCOLHDR* pSt_ProtocolHdr = NULL, int nCode = 0, LPCXSTR lpszMSGBuffer = _X("success"));
 private:
 };

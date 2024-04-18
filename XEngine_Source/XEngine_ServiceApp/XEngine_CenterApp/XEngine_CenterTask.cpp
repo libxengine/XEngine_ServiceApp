@@ -53,24 +53,32 @@ XHTHREAD CALLBACK XEngine_CenterTask_Thread(XPVOID lParam)
 }
 bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen)
 {
+	int nRVLen = 0;
+	int nSDLen = 0;
+	XCHAR tszRVBuffer[1024] = {};
+	XCHAR tszSDBuffer[1024] = {};
 	//这里开始编写你的代码
 	if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG == pSt_ProtocolHdr->unOperatorType)
 	{
 		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ == pSt_ProtocolHdr->unOperatorCode)
 		{
-			//我们收到一个包可以对他进行回复
-			XCHAR tszMsgBuffer[2048];
-			memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
-			//我们推荐你新建一个模块项目来处理协议组包和解包相关代码
+			//设置相应协议头
 			pSt_ProtocolHdr->byIsReply = false;
 			pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREP;
-
-			memcpy(tszMsgBuffer, pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
-			memcpy(tszMsgBuffer + sizeof(XENGINE_PROTOCOLHDR), lpszMsgBuffer, nMsgLen);
-			//发送业务包,对方发送的内容我们返回相同的内容给对方,所以不需要改负载大小
-			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, sizeof(XENGINE_PROTOCOLHDR) + nMsgLen);
+			//首先解析协议
+			if (!ModuleProtocol_Parse_Hello(tszRVBuffer, &nRVLen, lpszMsgBuffer, nMsgLen))
+			{
+				ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, -1, _X("protocol is error"));
+				XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
+				//回复完毕打印客户端发送的数据
+				XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+			}
+			//相应一个处理成功的包给客户端
+			ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr);
+			//发送业务包
+			XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
 			//回复完毕打印客户端发送的数据
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,发送普通包,大小:%d"), lpszClientAddr, nSDLen);
 		}
 	}
 	else if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_AUTH == pSt_ProtocolHdr->unOperatorType)

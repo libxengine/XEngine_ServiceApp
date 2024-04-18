@@ -31,7 +31,14 @@ extern "C" XLONG ModuleProtocol_GetLastError(int* pInt_SysError)
 /************************************************************************/
 /*                         导出的协议打包函数                           */
 /************************************************************************/
-
+extern "C" bool ModuleProtocol_Packet_Comm(XCHAR * ptszMSGBuffer, int* pInt_MSGLen, XENGINE_PROTOCOLHDR * pSt_ProtocolHdr, int nCode, LPCXSTR lpszMSGBuffer)
+{
+	return m_ProtocolPacket.ModuleProtocol_Packet_Comm(ptszMSGBuffer, pInt_MSGLen, pSt_ProtocolHdr, nCode, lpszMSGBuffer);
+}
 /************************************************************************/
 /*                         导出的协议解析函数                           */
 /************************************************************************/
+extern "C" bool ModuleProtocol_Parse_Hello(XCHAR * ptszMSGBuffer, int* pInt_MSGLen, LPCXSTR lpszMSGBuffer, int nMSGLen)
+{
+	return m_ProtocolParse.ModuleProtocol_Parse_Hello(ptszMSGBuffer, pInt_MSGLen, lpszMSGBuffer, nMSGLen);
+}
