@@ -4,6 +4,7 @@
 #pragma comment(lib,"Ws2_32.lib")
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib.lib")
 #pragma comment(lib,"XEngine_Client/XClient_Socket.lib")
+#pragma comment(lib,"XEngine_HelpComponents/HelpComponents_Packets.lib")
 #endif
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,11 +15,15 @@
 #include <XEngine_Include/XEngine_BaseLib/BaseLib_Error.h>
 #include <XEngine_Include/XEngine_Client/XClient_Define.h>
 #include <XEngine_Include/XEngine_Client/XClient_Error.h>
+#include <XEngine_Include/XEngine_Core/ManagePool_Define.h>
+#include <XEngine_Include/XEngine_HelpComponents/Packets_Define.h>
+#include <XEngine_Include/XEngine_HelpComponents/Packets_Error.h>
 #include "../../XEngine_Source/XEngine_UserProtocol.h"
 
 //需要优先配置XEngine
 //WINDOWS支持VS2022 x86 and x64,release or debug 编译调试
-//linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -lXEngine_BaseLib -lXClient_Socket
+//linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -lXEngine_BaseLib -lXClient_Socket -lHelpComponents_Packets
+
 
 int main(int argc, char** argv)
 {
@@ -35,6 +40,14 @@ int main(int argc, char** argv)
 		return 0;
 	}
 	printf("连接成功！\n");
+	//使用PACKET获取更好的组包体验
+	XHANDLE xhPacket = HelpComponents_Datas_Init();
+	if (NULL == xhPacket)
+	{
+		printf("HelpComponents_Datas_Init:%lX\n", Packets_GetLastError());
+		return 0;
+	}
+	HelpComponents_Datas_CreateEx(xhPacket, lpszServiceAddr);
 
 	XCHAR tszMsgBuffer[2048];
 	XENGINE_PROTOCOLHDR st_ProtocolHdr;
@@ -59,18 +72,31 @@ int main(int argc, char** argv)
 		printf("发送投递失败！\n");
 		return 0;
 	}
-	nLen = 0;
-	XCHAR* ptszMsgBuffer = NULL;
-	memset(&st_ProtocolHdr, '\0', sizeof(XENGINE_PROTOCOLHDR));
-	//建议使用HelpComponents_Datas_Init 能够更好应对异常网络环境
-	if (!XClient_TCPSelect_RecvPkt(m_Socket, &ptszMsgBuffer, &nLen, &st_ProtocolHdr))
+	nLen = 2048;
+	//也可以使用XClient_TCPSelect_RecvPkg 简单使用,不适合复杂网络环境
+	if (!XClient_TCPSelect_RecvMsg(m_Socket, tszMsgBuffer, &nLen))
 	{
 		printf("接受数据失败！\n");
 		return 0;
 	}
-	printf("接受服务器返回数据,结果:%d,大小:%d,内容:%s\n", st_ProtocolHdr.wReserve, nLen, ptszMsgBuffer);
-	//释放内存并且关闭客户端
-	BaseLib_OperatorMemory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
+	HelpComponents_Datas_PostEx(xhPacket, lpszServiceAddr, tszMsgBuffer, nLen);
+
+	if (HelpComponents_Datas_WaitEventEx(xhPacket))
+	{
+		nLen = 0;
+		memset(tszMsgBuffer, '\0', sizeof(tszMsgBuffer));
+		memset(&st_ProtocolHdr, '\0', sizeof(XENGINE_PROTOCOLHDR));
+		XCHAR* ptszMSGBuffer = NULL;
+		if (HelpComponents_Datas_GetMemoryEx(xhPacket, lpszServiceAddr, &ptszMSGBuffer, &nLen, &st_ProtocolHdr))
+		{
+			printf("接受服务器返回数据,结果:%d,大小:%d,内容:%s\n", st_ProtocolHdr.wReserve, nLen, ptszMSGBuffer);
+			//释放内存并且关闭客户端
+			BaseLib_OperatorMemory_FreeCStyle((XPPMEM)&ptszMSGBuffer);
+		}
+	}
+
+	HelpComponents_Datas_DeleteEx(xhPacket, lpszServiceAddr);
+	HelpComponents_Datas_Destory(xhPacket);
 	XClient_TCPSelect_Close(m_Socket);
 #ifdef _MSC_BUILD
 	WSACleanup();
