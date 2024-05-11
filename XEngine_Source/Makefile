@@ -4,7 +4,8 @@ UNICODE = 0
 FLAGS = RELEASE=$(RELEASE)
 
 #要编译的模块
-THIRDPART_MODULE_JSONCPP = ./XEngine_ThirdPart/jsoncpp
+THIRDPART_MODULE_JSONCPP = ./XEngine_Depend/XEngine_Module/jsoncpp
+THIRDPART_MODULE_REPORT = ./XEngine_Depend/XEngine_Module/XEngine_InfoReport
 
 MODULE_CONFIGURE_PATH = ./XEngine_ModuleConfigure
 MODULE_DATABASE_PATH = ./XEngine_ModuleDatabase
@@ -15,7 +16,7 @@ APP_HTTP2_PATH = ./XEngine_ServiceApp/XEngine_HTTP2App
 APP_WEBSOCKET_PATH = ./XEngine_ServiceApp/XEngine_WebSocketApp
 APP_SIMPLE_PATH = ./XEngine_ServiceApp/XEngine_SimpleApp
 
-XENGINE_MODULES = libjsoncpp.so                                   \
+XENGINE_MODULES = libjsoncpp.so libXEngine_InfoReport.so                    \
                   libXEngine_ModuleConfigure.so libXEngine_ModuleDatabase.so libXEngine_ModuleProtocol.so                 \
 				  XEngine_CenterApp.exe XEngine_HttpApp.exe XEngine_Http2App.exe XEngine_WebSocketApp.exe XEngine_SimpleApp.exe
 
@@ -24,6 +25,8 @@ MakeAll:$(XENGINE_MODULES)
 
 libjsoncpp.so:
 	make -C $(THIRDPART_MODULE_JSONCPP) $(FLAGS)
+libXEngine_InfoReport.so:
+	make -C $(THIRDPART_MODULE_REPORT) $(FLAGS)
 
 libXEngine_ModuleConfigure.so:
 	make -C $(MODULE_CONFIGURE_PATH) $(FLAGS)
