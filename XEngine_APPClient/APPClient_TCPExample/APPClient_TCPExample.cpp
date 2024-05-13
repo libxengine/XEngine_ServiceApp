@@ -36,7 +36,7 @@
 
 //需要优先配置XEngine.
 //WINDOWS支持VS2022 x86 and x64,release or debug 编译调试,jsoncpp需要拷贝到编译目录,否则会崩溃
-//linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -lXEngine_BaseLib -lXClient_Socket -lHelpComponents_Packets
+//linux and macos 编译命令:g++ -std=c++17 -Wall -g APPClient_TCPExample.cpp -o APPClient_TCPExample.exe -I ../../XEngine_Source/XEngine_Depend/XEngine_Module/jsoncpp -L ../../XEngine_Release -lXEngine_BaseLib -lXClient_Socket -lHelpComponents_Packets -ljsoncpp -Wl,-rpath=../../XEngine_Release
 
 
 int main(int argc, char** argv)
