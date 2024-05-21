@@ -58,7 +58,25 @@ bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lps
 	XCHAR tszRVBuffer[1024] = {};
 	XCHAR tszSDBuffer[1024] = {};
 	//这里开始编写你的代码
-	if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG == pSt_ProtocolHdr->unOperatorType)
+	if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_HEARTBEAT == pSt_ProtocolHdr->unOperatorType)
+	{
+		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_HB_SYN == pSt_ProtocolHdr->unOperatorCode)
+		{
+			//如果设置了标志位或者是HTTP请求,那么返回消息
+			if (pSt_ProtocolHdr->byIsReply)
+			{
+				pSt_ProtocolHdr->unPacketSize = 0;
+				pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_HB_ACK;
+				XEngine_Network_Send(lpszClientAddr, (LPCXSTR)pSt_ProtocolHdr, sizeof(XENGINE_PROTOCOLHDR));
+			}
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG, _X("业务客户端：%s，处理心跳协议成功，回复标志位：%d"), lpszClientAddr, pSt_ProtocolHdr->byIsReply);
+		}
+		else
+		{
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("业务客户端：%s，处理心跳子协议失败，协议类型没有找到：%d"), lpszClientAddr, pSt_ProtocolHdr->unOperatorCode);
+		}
+	}
+	else if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_MSG == pSt_ProtocolHdr->unOperatorType)
 	{
 		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREQ == pSt_ProtocolHdr->unOperatorCode)
 		{
