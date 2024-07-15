@@ -7,7 +7,7 @@ copy /y "%XEngine_Lib64%\XEngine_Core\XEngine_ManagePool.dll" "./"
 copy /y "%XEngine_Lib64%\XEngine_Core\XEngine_OPenSsl.dll" "./"
 ::Websocket,http need this module
 copy /y "%XEngine_Lib64%\XEngine_SystemSdk\XEngine_SystemApi.dll" "./"
-
+::center need this module
 copy /y "%XEngine_Lib64%\XEngine_HelpComponents\HelpComponents_Packets.dll" "./"
 copy /y "%XEngine_Lib64%\XEngine_HelpComponents\HelpComponents_XLog.dll" "./"
 copy /y "%XEngine_Lib64%\XEngine_HelpComponents\HelpComponents_DataBase.dll" "./"
