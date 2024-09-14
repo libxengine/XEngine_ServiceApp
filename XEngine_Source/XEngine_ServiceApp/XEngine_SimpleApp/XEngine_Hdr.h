@@ -43,6 +43,7 @@ using namespace std;
 //    History:
 *********************************************************************/
 extern bool bIsRun;
+extern bool bIsTest;
 //套接字句柄
 extern XHANDLE xhTCPSocket;
 extern XHANDLE xhUDPSocket;

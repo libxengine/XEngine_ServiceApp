@@ -19,6 +19,10 @@ bool XEngine_Configure_Parament(int argc, char** argv)
 			XEngine_Configure_Help();
 			return false;
 		}
+		else if (0 == _tcsxcmp("-t", argv[i]))
+		{
+			bIsTest = true;
+		}
 	}
 
 	return true;

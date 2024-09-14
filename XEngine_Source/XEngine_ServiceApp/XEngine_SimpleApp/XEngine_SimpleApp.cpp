@@ -11,6 +11,8 @@
 //    History:
 *********************************************************************/
 bool bIsRun = false;
+bool bIsTest = false;
+
 //套接字句柄
 XHANDLE xhTCPSocket = NULL;
 XHANDLE xhUDPSocket = NULL;
@@ -37,7 +39,7 @@ int main(int argc, char** argv)
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
 	bIsRun = true;
-
+	int nRet = -1;
 	signal(SIGINT, ServiceApp_Stop);
 	signal(SIGTERM, ServiceApp_Stop);
 	signal(SIGABRT, ServiceApp_Stop);
@@ -60,6 +62,11 @@ int main(int argc, char** argv)
 
 	while (true)
 	{
+		if (bIsTest)
+		{
+			nRet = 0;
+			goto XENGINE_SERVICEAPP_EXIT;
+		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 XENGINE_SERVICEAPP_EXIT:
@@ -73,5 +80,5 @@ XENGINE_SERVICEAPP_EXIT:
 #ifdef _MSC_BUILD
 	WSACleanup();
 #endif
-	return 0;
+	return nRet;
 }

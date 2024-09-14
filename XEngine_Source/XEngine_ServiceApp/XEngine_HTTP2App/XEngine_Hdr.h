@@ -57,6 +57,8 @@ using namespace std;
 //    History:
 *********************************************************************/
 extern bool bIsRun;
+extern bool bIsTest;
+
 extern XHANDLE xhLog;
 //HTTP服务器
 extern XHANDLE xhHTTP2Socket;

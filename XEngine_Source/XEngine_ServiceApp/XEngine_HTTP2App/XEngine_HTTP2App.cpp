@@ -11,6 +11,8 @@
 //    History:
 *********************************************************************/
 bool bIsRun = false;
+bool bIsTest = false;
+
 XHANDLE xhLog = NULL;
 //HTTP2服务器
 XHANDLE xhHTTP2Socket = NULL;
@@ -77,6 +79,7 @@ int main(int argc, char** argv)
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
 #endif
 	bIsRun = true;
+	int nRet = -1;
 	LPCXSTR lpszHTTPMime = _X("./XEngine_Config/HttpMime.types");
 	LPCXSTR lpszLogFile = _X("./XEngine_Log/XEngine_Http2App.Log");
 	HELPCOMPONENTS_XLOG_CONFIGURE st_XLogConfig;
@@ -173,14 +176,26 @@ int main(int argc, char** argv)
 
 	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("所有服务成功启动,服务运行中,XEngine版本:%s%s,服务版本:%s,发行次数;%d。。。"), BaseLib_OperatorVer_XNumberStr(), BaseLib_OperatorVer_XTypeStr(), st_ServiceConfig.st_XVer.pStl_ListVer->front().c_str(), st_ServiceConfig.st_XVer.pStl_ListVer->size());
 
-	while (true)
+	while (bIsRun)
 	{
+		if (bIsTest)
+		{
+			nRet = 0;
+			goto XENGINE_SERVICEAPP_EXIT;
+		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 XENGINE_SERVICEAPP_EXIT:
 	if (bIsRun)
 	{
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("有服务启动失败,服务器退出..."));
+		if (bIsTest && 0 == nRet)
+		{
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("服务启动完毕，测试程序退出..."));
+		}
+		else
+		{
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("服务启动失败，服务器退出..."));
+		}
 		bIsRun = false;
 		//销毁HTTP资源
 		NetCore_TCPXCore_DestroyEx(xhHTTP2Socket);
@@ -193,5 +208,5 @@ XENGINE_SERVICEAPP_EXIT:
 #ifdef _MSC_BUILD
 	WSACleanup();
 #endif
-	return 0;
+	return nRet;
 }
