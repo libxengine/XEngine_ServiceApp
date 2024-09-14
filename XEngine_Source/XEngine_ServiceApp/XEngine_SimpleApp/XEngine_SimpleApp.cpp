@@ -43,6 +43,11 @@ int main(int argc, char** argv)
 	signal(SIGINT, ServiceApp_Stop);
 	signal(SIGTERM, ServiceApp_Stop);
 	signal(SIGABRT, ServiceApp_Stop);
+	//初始化参数
+	if (!XEngine_Configure_Parament(argc, argv))
+	{
+		return -1;
+	}
 	//启动TCP网络
 	xhTCPSocket = NetCore_TCPXCore_StartEx(8880, 1000, 4);
 	if (NULL == xhTCPSocket)
@@ -60,7 +65,7 @@ int main(int argc, char** argv)
 	//绑定网络事件
 	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleUDPRecv);
 
-	while (true)
+	while (bIsRun)
 	{
 		if (bIsTest)
 		{
