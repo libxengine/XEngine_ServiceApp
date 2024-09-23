@@ -3,11 +3,6 @@ UNICODE = 0
 #编译的选项参数
 FLAGS = RELEASE=$(RELEASE)
 
-ifeq ($(PLATFORM),linux)
-	FILEEXT = so
-else ifeq ($(PLATFORM),mac)
-	FILEEXT = dylib
-endif
 #要编译的模块
 THIRDPART_MODULE_JSONCPP = ./XEngine_Depend/XEngine_Module/jsoncpp
 THIRDPART_MODULE_REPORT = ./XEngine_Depend/XEngine_Module/XEngine_InfoReport
@@ -20,6 +15,12 @@ APP_HTTP_PATH = ./XEngine_ServiceApp/XEngine_HttpApp
 APP_HTTP2_PATH = ./XEngine_ServiceApp/XEngine_HTTP2App
 APP_WEBSOCKET_PATH = ./XEngine_ServiceApp/XEngine_WebSocketApp
 APP_SIMPLE_PATH = ./XEngine_ServiceApp/XEngine_SimpleApp
+
+ifeq ($(PLATFORM),linux)
+	FILEEXT = so
+else ifeq ($(PLATFORM),mac)
+	FILEEXT = dylib
+endif
 
 XENGINE_MODULES = libjsoncpp.so libXEngine_InfoReport.so                    \
                   libXEngine_ModuleConfigure.so libXEngine_ModuleDatabase.so libXEngine_ModuleProtocol.so                 \
