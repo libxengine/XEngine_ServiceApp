@@ -3,6 +3,11 @@ UNICODE = 0
 #编译的选项参数
 FLAGS = RELEASE=$(RELEASE)
 
+ifeq ($(PLATFORM),linux)
+	FILEEXT = so
+else ifeq ($(PLATFORM),mac)
+	FILEEXT = dylib
+endif
 #要编译的模块
 THIRDPART_MODULE_JSONCPP = ./XEngine_Depend/XEngine_Module/jsoncpp
 THIRDPART_MODULE_REPORT = ./XEngine_Depend/XEngine_Module/XEngine_InfoReport
@@ -24,9 +29,17 @@ XENGINE_MODULES = libjsoncpp.so libXEngine_InfoReport.so                    \
 MakeAll:$(XENGINE_MODULES)
 
 libjsoncpp.so:
-	make -C $(THIRDPART_MODULE_JSONCPP) $(FLAGS)
+ifeq ($(FLAGS), InstallAll)
+	cp $(THIRDPART_MODULE_JSONCPP)/libjsoncpp.$(FILEEXT) ../XEngine_Release/
+else
+	make -C $(THIRDPART_MODULE_JSONCPP) PLATFORM=$(PLATFORM) $(FLAGS)
+endif
 libXEngine_InfoReport.so:
-	make -C $(THIRDPART_MODULE_REPORT) $(FLAGS)
+ifeq ($(FLAGS), InstallAll)
+	cp $(THIRDPART_MODULE_REPORT)/libXEngine_InfoReport.$(FILEEXT) ../XEngine_Release/
+else
+	make -C $(THIRDPART_MODULE_REPORT) PLATFORM=$(PLATFORM) $(FLAGS)
+endif
 
 libXEngine_ModuleConfigure.so:
 	make -C $(MODULE_CONFIGURE_PATH) $(FLAGS)
