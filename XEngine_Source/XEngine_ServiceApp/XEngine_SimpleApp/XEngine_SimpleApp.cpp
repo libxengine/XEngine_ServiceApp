@@ -65,12 +65,12 @@ int main(int argc, char** argv)
 	//绑定网络事件
 	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleUDPRecv);
 
-	while (bIsRun)
+	while (true)
 	{
 		if (bIsTest)
 		{
 			nRet = 0;
-			goto XENGINE_SERVICEAPP_EXIT;
+			break;
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
