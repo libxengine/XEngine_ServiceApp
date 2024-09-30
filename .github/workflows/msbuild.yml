@@ -54,3 +54,32 @@ jobs:
       #编译
       - name: Build Solution
         run: msbuild XEngine_Source/XEngine.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
+
+      - name: Conditional Step for x86 Release
+        if: matrix.configuration == 'Release' && matrix.platform == 'x86'
+        run: |
+          cp -r XEngine_Source/Release/*.dll XEngine_Release/
+          cp -r XEngine_Source/Release/*.exe XEngine_Release/
+          cp -r XEngine_Source/VSCopy_x86.bat XEngine_Release/
+          cd XEngine_Release
+          ./VSCopy_x86.bat
+          ./XEngine_CenterApp -t
+          ./XEngine_Http2App -t
+          ./XEngine_HttpApp -t
+          ./XEngine_SimpleApp -t
+          ./XEngine_WebSocketApp -t
+        shell: pwsh
+      - name: Conditional Step for x86 Debug
+        if: matrix.configuration == 'Debug' && matrix.platform == 'x86'
+        run: |
+          cp -r XEngine_Source/Debug/*.dll XEngine_Release/
+          cp -r XEngine_Source/Debug/*.exe XEngine_Release/
+          cp -r XEngine_Source/VSCopy_x86.bat XEngine_Release/
+          cd XEngine_Release
+          ./VSCopy_x86.bat
+          ./XEngine_CenterApp -t
+          ./XEngine_Http2App -t
+          ./XEngine_HttpApp -t
+          ./XEngine_SimpleApp -t
+          ./XEngine_WebSocketApp -t
+        shell: pwsh
