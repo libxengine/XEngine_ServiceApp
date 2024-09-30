@@ -83,3 +83,31 @@ jobs:
           ./XEngine_SimpleApp -t
           ./XEngine_WebSocketApp -t
         shell: pwsh
+      - name: Conditional Step for x64 Release
+        if: matrix.configuration == 'Release' && matrix.platform == 'x64'
+        run: |
+          cp -r XEngine_Source/x64/Release/*.dll XEngine_Release/
+          cp -r XEngine_Source/x64/Release/*.exe XEngine_Release/
+          cp -r XEngine_Source/VSCopy_x64.bat XEngine_Release/
+          cd XEngine_Release
+          ./VSCopy_x64.bat
+          ./XEngine_CenterApp -t
+          ./XEngine_Http2App -t
+          ./XEngine_HttpApp -t
+          ./XEngine_SimpleApp -t
+          ./XEngine_WebSocketApp -t
+        shell: pwsh
+      - name: Conditional Step for x64 Debug
+        if: matrix.configuration == 'Debug' && matrix.platform == 'x64'
+        run: |
+          cp -r XEngine_Source/x64/Debug/*.dll XEngine_Release/
+          cp -r XEngine_Source/x64/Debug/*.exe XEngine_Release/
+          cp -r XEngine_Source/VSCopy_x64.bat XEngine_Release/
+          cd XEngine_Release
+          ./VSCopy_x64.bat
+          ./XEngine_CenterApp -t
+          ./XEngine_Http2App -t
+          ./XEngine_HttpApp -t
+          ./XEngine_SimpleApp -t
+          ./XEngine_WebSocketApp -t
+        shell: pwsh
