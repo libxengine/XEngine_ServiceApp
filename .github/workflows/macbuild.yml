@@ -47,7 +47,7 @@ jobs:
 
             sudo mkdir -p /usr/local/include
             sudo mkdir -p /usr/local/lib
-            ./XEngine_LINEnv.sh -i 3
+            sudo ./XEngine_LINEnv.sh -i 3
             sudo cp -rf ./XEngine_Include /usr/local/include
             ls -al /usr/local/include
       #编译
