@@ -45,9 +45,7 @@ jobs:
             cd libxengine
             chmod 777 *
             ./XEngine_LINEnv.sh -i 3
-            sudo ls -al /usr/local
-            sudo ls -al /usr/local/include
-            sudo cp -rf ./XEngine_Include /usr/local/include
+            sudo cp -rf ./XEngine_Include /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
             cd ..
       #编译
       - name: make debug
