@@ -44,9 +44,12 @@ jobs:
         run: |
             cd libxengine
             chmod 777 *
+
+            mkdir -p /usr/local/include
+            mkdir -p /usr/local/lib
             ./XEngine_LINEnv.sh -i 3
-            mkdir /usr/local/include
             cp -rf ./XEngine_Include /usr/local/include
+            ls -al /usr/local/include
       #编译
       - name: make debug
         run: | 
