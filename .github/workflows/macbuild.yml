@@ -44,7 +44,7 @@ jobs:
         run: |
             cd libxengine
             chmod 777 *
-            ./XEngine_LINEnv.sh -i 3
+            sudo ./XEngine_LINEnv.sh -i 3
             cd ..
       #编译
       - name: make debug
