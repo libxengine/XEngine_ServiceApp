@@ -47,9 +47,9 @@ jobs:
 
             sudo mkdir -p /usr/local/include
             sudo mkdir -p /usr/local/lib
-            sudo ./XEngine_LINEnv.sh -i 3
+            ./XEngine_LINEnv.sh -i 3
             sudo cp -rf ./XEngine_Include /usr/local/include
-            ls -al /usr/local/include
+            find ./XEngine_Mac -name "*.dylib" -exec cp {} /usr/local/lib \;
       #编译
       - name: make debug
         run: | 
