@@ -70,8 +70,8 @@ jobs:
           }
           ls
           Expand-Archive -Path ./XEngine_Windows_x86-32.zip -DestinationPath ./XEngine_Windows_x86-32 -Force
-          ls
-          
+          ls XEngine_Windows_x86-32
+
           echo "XENGINE_INCLUDE=${{ github.workspace }}/XEngine_Windows_x86-32" | Out-File -FilePath $env:GITHUB_ENV -Append
           echo "XENGINE_LIB32=${{ github.workspace }}/XEngine_Windows_x86-32/XEngine_Windows" | Out-File -FilePath $env:GITHUB_ENV -Append
         shell: pwsh
