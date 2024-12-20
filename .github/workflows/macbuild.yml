@@ -14,7 +14,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-12
           - os: macos-13
           - os: macos-14
     runs-on: ${{ matrix.os }}
@@ -41,7 +40,8 @@ jobs:
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             
       # 设置依赖库的环境变量
-      - name: Set up Dependency Environment Variables
+      - name: Set up Dependency x86_64 Environment 
+        if: matrix.os == 'macos-13'
         run: |
             cd libxengine
             chmod 777 *
@@ -51,6 +51,23 @@ jobs:
             ./XEngine_LINEnv.sh -i 3
             sudo cp -rf ./XEngine_Include /usr/local/include
             sudo find ./XEngine_Mac -name "*.dylib" -exec cp {} /usr/local/lib \;
+      - name: Set up Dependency Arm64 Environment 
+        if: matrix.os == 'macos-14'
+        run: |
+            cd libxengine
+            chmod 777 *
+
+            sudo mkdir -p /usr/local/include
+            sudo mkdir -p /usr/local/lib
+            ./XEngine_LINEnv.sh -i 3
+
+            $response = Invoke-RestMethod -Uri "https://api.github.com/repos/libxengine/libxengine/releases/latest" -Headers @{"Accept"="application/vnd.github.v3+json"}
+            $latest_tag = $response.tag_name
+            Write-Output "Latest tag is $latest_tag"
+            echo "::set-output name=tag::$latest_tag"
+            
+            sudo cp -rf ./XEngine_Include /usr/local/include
+            sudo find ./XEngine_Mac -name "*.dylib" -exec cp {} /usr/local/lib \;            
       #编译
       - name: make debug
         run: | 
