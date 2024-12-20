@@ -7,7 +7,7 @@ UNICODE = 0
 LOADHDR = -I ./
 LOADSO = -L ../../XEngine_ModuleConfigure -L ../../XEngine_ModuleDatabase -L ../../XEngine_ModuleProtocol  \
 		 -L ../../XEngine_Depend/XEngine_Module/jsoncpp
-LIB = -lXEngine_BaseLib -lXEngine_Algorithm -lXEngine_Core -lXEngine_ManagePool -lHelpComponents_XLog -lHelpComponents_Packets  \
+LIB = -lXEngine_BaseLib -lXEngine_Algorithm -lXEngine_Core -lNetHelp_APIHelp -lXEngine_ManagePool -lHelpComponents_XLog -lHelpComponents_Packets  \
       -lXEngine_ModuleConfigure -lXEngine_ModuleDatabase -lXEngine_ModuleProtocol  \
 	  -ljsoncpp
 LIBEX = 
