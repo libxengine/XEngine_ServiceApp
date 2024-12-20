@@ -57,7 +57,7 @@ jobs:
 
             sudo mkdir -p /usr/local/include
             sudo mkdir -p /usr/local/lib
-            ./XEngine_LINEnv.sh -i 3
+            ./XEngine_LINEnv.sh -i 0
 
             latest_tag=$(curl -s https://api.github.com/repos/libxengine/libxengine/releases/latest | jq -r .tag_name)
             wget https://github.com/libxengine/libxengine/releases/download/$latest_tag/XEngine_Mac_Arm64.zip
