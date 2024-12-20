@@ -3,8 +3,6 @@ name: ubuntu build workflows
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   
 permissions:
   contents: read
@@ -61,6 +59,7 @@ jobs:
             
             sudo cp -rf ./XEngine_Include /usr/local/include
             sudo find ./XEngine_Linux -name "*.so" -exec cp {} /usr/local/lib \;         
+            sudo ldconfig
       #编译
       - name: make
         run: | 
