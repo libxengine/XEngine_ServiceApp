@@ -26,7 +26,6 @@ jobs:
         
        # 检出依赖的xengine仓库到指定的xengine目录
       - name: Checkout dependency repository (xengine)
-        if: matrix.os == 'macos-13'
         uses: actions/checkout@v4
         with:
           repository: libxengine/libxengine
