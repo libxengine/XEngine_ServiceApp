@@ -108,7 +108,7 @@ int main(int argc, char** argv)
 		{
 			printf("接受服务器返回数据,结果:%d,大小:%d,内容:%s\n", st_ProtocolHdr.wReserve, nLen, ptszMSGBuffer);
 			//释放内存并且关闭客户端
-			BaseLib_OperatorMemory_FreeCStyle((XPPMEM)&ptszMSGBuffer);
+			BaseLib_Memory_FreeCStyle((XPPMEM)&ptszMSGBuffer);
 		}
 	}
 

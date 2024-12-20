@@ -50,15 +50,15 @@ XHTHREAD CALLBACK XEngine_HTTP2Task_Thread(XPVOID lParam)
 						//释放内存
 						if (nMsgLen > 0)
 						{
-							BaseLib_OperatorMemory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
+							BaseLib_Memory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
 						}
-						BaseLib_OperatorMemory_Free((XPPPMEM)&ppSt_ListHdr, nHdrCount);
+						BaseLib_Memory_Free((XPPPMEM)&ppSt_ListHdr, nHdrCount);
 					}
 				}
 			}
-			BaseLib_OperatorMemory_Free((XPPPMEM)&ppSt_PKTStream, nStreamCount);
+			BaseLib_Memory_Free((XPPPMEM)&ppSt_PKTStream, nStreamCount);
 		}
-		BaseLib_OperatorMemory_Free((XPPPMEM)&ppSst_ListAddr, nListCount);
+		BaseLib_Memory_Free((XPPPMEM)&ppSst_ListAddr, nListCount);
 	}
 	return 0;
 }

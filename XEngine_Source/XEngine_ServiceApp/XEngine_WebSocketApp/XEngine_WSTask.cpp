@@ -39,10 +39,10 @@ XHTHREAD CALLBACK XEngine_WSTask_Thread(XPVOID lParam)
 				//释放内存
 				if (nMsgLen > 0)
 				{
-					BaseLib_OperatorMemory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
+					BaseLib_Memory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
 				}
 			}
-			BaseLib_OperatorMemory_Free((XPPPMEM)&ppSt_ListClient, nListCount);
+			BaseLib_Memory_Free((XPPPMEM)&ppSt_ListClient, nListCount);
 		}
 	}
 	return 0;
