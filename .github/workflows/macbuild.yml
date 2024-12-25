@@ -50,8 +50,8 @@ jobs:
             cd libxengine
             chmod 777 *
 
-            # sudo mkdir -p /usr/local/include
-            # sudo mkdir -p /usr/local/lib
+            sudo mkdir -p /usr/local/include
+            sudo mkdir -p /usr/local/lib
             ./XEngine_LINEnv.sh -i 0
 
             latest_tag=$(curl -s https://api.github.com/repos/libxengine/libxengine/releases/latest | jq -r .tag_name)
