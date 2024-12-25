@@ -38,11 +38,6 @@ jobs:
             git submodule update
         shell: pwsh
 
-      - name: Get latest release tag
-        id: get_latest_release
-        run: |
-
-        shell: pwsh
       # 设置依赖库的环境变量
       - name: Set up Dependency x86_64 Environment
         if: matrix.platform == 'x64'
