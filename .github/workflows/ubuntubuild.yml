@@ -44,7 +44,6 @@ jobs:
             cd libxengine
             chmod 777 *
             sudo ./XEngine_LINEnv.sh -i 3
-            cd ..
       - name: Set up Dependency ubuntu22.04 Environment
         if: matrix.os == 'ubuntu-22.04'
         run: |
