@@ -2,10 +2,12 @@ name: macos build workflows
 
 on:
   push:
-    branches: [ "master" ]
-  
-permissions:
-  contents: read
+    branches: 
+      - 'master'
+    paths:
+      - 'XEngine_Source/**'
+      - 'XEngine_Release/**'
+      - '.github/**'
   
 jobs:
   build:

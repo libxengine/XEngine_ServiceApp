@@ -2,7 +2,12 @@ name: ubuntu build workflows
 
 on:
   push:
-    branches: [ "master" ]
+    branches: 
+      - 'master'
+    paths:
+      - 'XEngine_Source/**'
+      - 'XEngine_Release/**'
+      - '.github/**'
   
 permissions:
   contents: read
