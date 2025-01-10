@@ -3,7 +3,7 @@ name: macos build workflows
 on:
   push:
     branches: 
-      - 'master'
+      - 'master1'
     paths:
       - 'XEngine_Source/**'
       - 'XEngine_Release/**'

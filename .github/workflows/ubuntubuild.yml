@@ -39,6 +39,7 @@ jobs:
 
       - name: sub module checkout (opensource)
         run: |
+            ls -al
             git submodule init
             git submodule update
 
