@@ -37,6 +37,12 @@ int main(int argc, char** argv)
 #ifdef _MSC_BUILD
 	WSADATA st_WSAData;
 	WSAStartup(MAKEWORD(2, 2), &st_WSAData);
+#ifndef _DEBUG
+	if (setlocale(LC_ALL, ".UTF8") == NULL)
+	{
+		return -1;
+	}
+#endif
 #endif
 	bIsRun = true;
 	int nRet = -1;
