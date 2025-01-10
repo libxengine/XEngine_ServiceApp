@@ -32,7 +32,7 @@ jobs:
 
       - name: sub module checkout (opensource)
         run: |
-            dnf install jq unzip -y
+            dnf install git jq unzip -y
             git submodule init
             git submodule update
       # 设置依赖库的环境变量
