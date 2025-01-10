@@ -11,6 +11,7 @@
 #ifdef _MSC_BUILD
 #include <Windows.h>
 #include <tchar.h>
+#include <locale.h>
 #else
 #include <unistd.h>
 #include <sys/wait.h>
