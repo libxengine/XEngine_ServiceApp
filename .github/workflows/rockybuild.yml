@@ -29,7 +29,11 @@ jobs:
         with:
           repository: libxengine/libxengine
           path: libxengine
-
+          
+      - name: sub module checkout (opensource)
+        run: |
+            dnf install jq unzip -y
+            git clone https://gitee.com/xengine/XEngine_OPenSource.git XEngine_Source/XEngine_Depend
       # 设置依赖库的环境变量
       - name: Set up Dependency rocky linux Environment
         run: |
@@ -46,10 +50,6 @@ jobs:
             find ./XEngine_Linux -name "*.so" -exec cp {} /usr/local/lib \;         
             ldconfig
 
-      - name: sub module checkout (opensource)
-        run: |
-            dnf install jq unzip -y
-            git clone https://gitee.com/xengine/XEngine_OPenSource.git XEngine_Source/XEngine_Depend
       #编译
       - name: make
         run: | 
