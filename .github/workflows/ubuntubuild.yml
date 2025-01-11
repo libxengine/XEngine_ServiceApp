@@ -3,7 +3,7 @@ name: ubuntu build workflows
 on:
   push:
     branches: 
-      - 'master'
+      - 'master1'
     paths:
       - 'XEngine_Source/**'
       - 'XEngine_Release/**'
@@ -39,7 +39,6 @@ jobs:
 
       - name: sub module checkout (opensource)
         run: |
-            ls -al
             git submodule init
             git submodule update
 
