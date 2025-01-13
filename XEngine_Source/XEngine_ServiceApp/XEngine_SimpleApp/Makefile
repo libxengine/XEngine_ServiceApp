@@ -35,7 +35,7 @@ ifeq ($(PLATFORM),linux)
 		PLATVER = -D __UBUNTU__
 	endif
 	LIBEX = -lpthread -lrt -ldl
-	LOADBIN = -Wl,-rpath=./,--disable-new-dtags
+	LOADBIN = -Wl,-rpath=./:/usr/local/lib,--disable-new-dtags
 else ifeq ($(PLATFORM),mac)
 	CC += -Wno-deprecated-declarations
 	PLATVER = -D __MACOS__
