@@ -1,9 +1,9 @@
-name: "CodeQL Advanced"
+name: CodeQL Advanced
 
 on:
   push:
     branches: 
-      - 'develop'
+      - 'master'
 
 jobs:
   analyze:
