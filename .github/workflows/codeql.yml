@@ -9,11 +9,8 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     permissions:
-      # required for all workflows
       security-events: write
-      # required to fetch internal or private CodeQL packs
       packages: read
-      # only required for workflows in private repositories
       actions: read
       contents: read
 
@@ -40,7 +37,7 @@ jobs:
     - name: Set up Dependency Environment
       run: |
           cd libxengine
-          chmod 777 *
+          chmod +x ./XEngine_LINEnv.sh
           sudo ./XEngine_LINEnv.sh -i 3
 
     - name: Initialize CodeQL
@@ -59,6 +56,4 @@ jobs:
         category: "/language:${{matrix.language}}"
 
     - name: Upload CodeQL results
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: results/cpp.sarif 
+      uses: github/codeql-action/upload-sarif@v3
