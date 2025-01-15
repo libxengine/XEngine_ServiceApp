@@ -58,4 +58,4 @@ jobs:
     - name: Upload CodeQL results
       uses: github/codeql-action/upload-sarif@v3
       with:
-        category: "/language:${{matrix.language}}"
+        category: "cpp-analysis"
