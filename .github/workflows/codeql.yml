@@ -53,9 +53,4 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
-        category: "/language:${{ matrix.language }}-${{ github.run_id }}-analysis"
-
-    - name: Upload CodeQL results
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        category: "/language:${{ matrix.language }}-${{ github.run_id }}-upload"
+        category: "/language:${{ matrix.language }}"
