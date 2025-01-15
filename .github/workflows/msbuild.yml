@@ -90,25 +90,4 @@ jobs:
           cp -r XEngine_Source/VSCopy_x64.bat XEngine_Release/
           cd XEngine_Release
           ./VSCopy_x64.bat
-          ./XEngine_CenterApp -t *> output.log
-          ls
-          type output.log
-        #  ./XEngine_Http2App -t
-        #  ./XEngine_HttpApp -t
-        #  ./XEngine_SimpleApp -t
-        #  ./XEngine_WebSocketApp -t
         shell: pwsh
-        
-      - name: Upload folder as artifact with x86
-        if: matrix.configuration == 'Release' && matrix.platform == 'x32'
-        uses: actions/upload-artifact@v4
-        with:
-          name: XEngine_ServiceApp-x86_32-Windows
-          path: XEngine_Release/
- 
-      - name: Upload folder as artifact with x64
-        if: matrix.configuration == 'Release' && matrix.platform == 'x64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: XEngine_ServiceApp-x86_64-Windows
-          path: XEngine_Release/
