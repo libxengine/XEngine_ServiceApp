@@ -36,14 +36,14 @@ jobs:
           repository: libxengine/XEngine_OPenSource
           path: XEngine_Source/XEngine_Depend
           
-      - name: sub module checkout (opensource)
+      - name: install system package
         run: |
+            dnf update -y
+            dnf install gcc g++ make git jq unzip -y
             ls -al
       # 设置依赖库的环境变量
       - name: Set up Dependency rocky linux Environment
         run: |
-            dnf update -y
-            dnf install gcc g++ make git jq unzip -y
             cd libxengine
             chmod 777 *
             ./XEngine_LINEnv.sh -i 3
