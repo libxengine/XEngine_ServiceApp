@@ -3,7 +3,7 @@ name: CodeQL Advanced
 on:
   push:
     branches: 
-      - 'master1'
+      - 'master'
 
 jobs:
   analyze:

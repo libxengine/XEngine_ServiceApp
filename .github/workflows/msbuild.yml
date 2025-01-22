@@ -3,7 +3,7 @@ name: windows build workflows
 on:
   push:
     branches: 
-      - 'master1'
+      - 'master'
     paths:
       - 'XEngine_Source/**'
       - 'XEngine_Release/**'
