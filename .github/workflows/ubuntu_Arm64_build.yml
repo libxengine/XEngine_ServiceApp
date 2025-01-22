@@ -40,7 +40,7 @@ jobs:
             -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
             set -e
             apt update -y
-            apt install git make g++ wget -y
+            apt install git make g++ wget curl jq -y
 
             git config --global --add safe.directory /workspace
 
