@@ -42,6 +42,8 @@ jobs:
             apt update -y
             apt install git make g++ wget -y
 
+            git config --global --add safe.directory /workspace
+            
             git submodule init
             git submodule update
 
