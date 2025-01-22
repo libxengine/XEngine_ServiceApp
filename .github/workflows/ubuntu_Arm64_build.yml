@@ -39,6 +39,7 @@ jobs:
             -v ${{ github.workspace }}:/workspace \
             -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
             set -e
+            apt update -y
             apt install git make g++ wget -y
 
             git submodule init
