@@ -70,7 +70,8 @@ bool XEngine_WSTask_Handle(LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nM
 	}
 	else if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_PING == enOPCode)
 	{
-
+		XEngine_Network_Send(lpszClientAddr, NULL, 0, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_PONG);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("WEBSOCKET客户端:%s,处理PING协议成功"), lpszClientAddr);
 	}
 	else if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_PONG == enOPCode)
 	{
