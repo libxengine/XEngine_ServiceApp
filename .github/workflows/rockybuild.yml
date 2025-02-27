@@ -54,7 +54,7 @@ jobs:
             cd XEngine_RockyLinux_9_x86-64
             
             cp -rf ./XEngine_Include /usr/local/include
-            find ./XEngine_Linux -name "*.so" -exec cp {} /usr/local/lib \;         
+            find ./XEngine_Linux -name "*.so" -exec cp {} /usr/lib64 \;         
             ldconfig
       #编译
       - name: make
