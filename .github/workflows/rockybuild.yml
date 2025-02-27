@@ -71,7 +71,6 @@ jobs:
       - name: test
         run: |
             cd XEngine_Release
-            ldd ./XEngine_CenterApp
             ./XEngine_CenterApp -t
             ./XEngine_Http2App -t
             ./XEngine_HttpApp -t
