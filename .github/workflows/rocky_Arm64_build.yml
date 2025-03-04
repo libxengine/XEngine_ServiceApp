@@ -1,0 +1,68 @@
+name: rocky build workflows
+
+on:
+  push:
+    branches: 
+      - 'master'
+    paths:
+      - 'XEngine_Source/**'
+      - 'XEngine_Release/**'
+      - '.github/**'
+  
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      image: rockylinux/rockylinux:9.5
+
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [linux/arm64]
+
+    steps:
+       # 检出您的主仓库代码
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Build ${{ matrix.arch }}
+        run: |
+          docker run --platform ${{ matrix.arch }} --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
+            set -e
+            dnf update -y
+            dnf install -y git make g++ wget curl unzip
+
+            git config --global --add safe.directory /workspace
+
+            git submodule init
+            git submodule update
+
+            latest_tag=$(curl -s https://api.github.com/repos/libxengine/libxengine/releases/latest | jq -r .tag_name)
+            wget https://github.com/libxengine/libxengine/releases/download/$latest_tag/XEngine_RockyLinux_9_Arm64.zip
+            unzip ./XEngine_RockyLinux_9_Arm64.zip -d ./XEngine_RockyLinux_9_Arm64
+            cd XEngine_RockyLinux_9_Arm64
+            cp -rf ./XEngine_Include /usr/local/include
+            find ./XEngine_Linux -name "*.so" -exec cp {} /usr/lib64 \;         
+            ldconfig
+            cd ..
+
+            cd XEngine_Source
+            make ARCH=Arm64 RELEASE=1
+            make FLAGS=InstallAll
+            make FLAGS=CleanAll  
+            cd ..
+
+            cd XEngine_Release
+            ./XEngine_CenterApp -t
+            ./XEngine_Http2App -t
+            ./XEngine_HttpApp -t
+            ./XEngine_SimpleApp -t
+            ./XEngine_WebSocketApp -t '
