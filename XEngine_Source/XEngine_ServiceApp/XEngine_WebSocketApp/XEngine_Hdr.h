@@ -69,33 +69,40 @@ extern XHANDLE xhWSPool;
 //配置文件
 extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
-//连接库
 #ifdef _MSC_BUILD
-#ifdef _WIN64
-#ifdef _DEBUG
-#pragma comment(lib,"../../x64/Debug/XEngine_ModuleConfigure.lib")
-#pragma comment(lib,"../../x64/Debug/XEngine_ModuleDatabase.lib")
-#pragma comment(lib,"../../x64/Debug/XEngine_ModuleProtocol.lib")
-#else
-#pragma comment(lib,"../../x64/Release/XEngine_ModuleConfigure.lib")
-#pragma comment(lib,"../../x64/Release/XEngine_ModuleDatabase.lib")
-#pragma comment(lib,"../../x64/Release/XEngine_ModuleProtocol.lib")
-#endif
-#else
-#ifdef _DEBUG
-#pragma comment(lib,"../../Debug/XEngine_ModuleConfigure.lib")
-#pragma comment(lib,"../../Debug/XEngine_ModuleDatabase.lib")
-#pragma comment(lib,"../../Debug/XEngine_ModuleProtocol.lib")
-#else
-#pragma comment(lib,"../../Release/XEngine_ModuleConfigure.lib")
-#pragma comment(lib,"../../Release/XEngine_ModuleDatabase.lib")
-#pragma comment(lib,"../../Release/XEngine_ModuleProtocol.lib")
-#endif
-#endif
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib.lib")
 #pragma comment(lib,"XEngine_Core/XEngine_Core.lib")
 #pragma comment(lib,"XEngine_Core/XEngine_ManagePool.lib")
 #pragma comment(lib,"XEngine_HelpComponents/HelpComponents_XLog.lib")
 #pragma comment(lib,"XEngine_RfcComponents/RfcComponents_WSProtocol.lib")
 #pragma comment(lib,"Ws2_32.lib")
+#ifdef _DEBUG
+#ifdef _M_X64
+#pragma comment(lib,"../../x64/Debug/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../x64/Debug/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../x64/Debug/XEngine_ModuleProtocol.lib")
+#elif _M_ARM64
+#pragma comment(lib,"../../ARM64/Debug/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../ARM64/Debug/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../ARM64/Debug/XEngine_ModuleProtocol.lib")
+#elif _M_IX86
+#pragma comment(lib,"../../Debug/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../Debug/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../Debug/XEngine_ModuleProtocol.lib")
+#endif
+#else
+#ifdef _M_X64
+#pragma comment(lib,"../../x64/Release/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../x64/Release/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../x64/Release/XEngine_ModuleProtocol.lib")
+#elif _M_ARM64
+#pragma comment(lib,"../../ARM64/Release/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../ARM64/Release/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../ARM64/Release/XEngine_ModuleProtocol.lib")
+#elif _M_IX86
+#pragma comment(lib,"../../Release/XEngine_ModuleConfigure.lib")
+#pragma comment(lib,"../../Release/XEngine_ModuleDatabase.lib")
+#pragma comment(lib,"../../Release/XEngine_ModuleProtocol.lib")
+#endif
+#endif
 #endif
