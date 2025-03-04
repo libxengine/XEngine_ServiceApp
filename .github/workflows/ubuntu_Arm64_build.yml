@@ -51,6 +51,7 @@ jobs:
             unzip ./XEngine_UBuntu_24.04_Arm64.zip -d ./XEngine_UBuntu_24.04_Arm64
             cd XEngine_UBuntu_24.04_Arm64
 
+            chmod 777 ./XEngine_LINEnv.sh
             ./XEngine_LINEnv.sh -i 0
 
             cp -rf ./XEngine_Include /usr/local/include

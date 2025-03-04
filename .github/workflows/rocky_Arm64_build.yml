@@ -1,4 +1,4 @@
-name: rocky build workflows
+name: rocky arm64 build workflows
 
 on:
   push:
@@ -15,8 +15,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    container:
-      image: rockylinux/rockylinux:9.5
+    env:
+      IMAGE_NAME: rockylinux/rockylinux:9.5
 
     strategy:
       fail-fast: false
@@ -49,8 +49,9 @@ jobs:
             unzip ./XEngine_RockyLinux_9_Arm64.zip -d ./XEngine_RockyLinux_9_Arm64
             cd XEngine_RockyLinux_9_Arm64
 
+            chmod 777 ./XEngine_LINEnv.sh
             ./XEngine_LINEnv.sh -i 0
-            
+
             cp -rf ./XEngine_Include /usr/local/include
             find ./XEngine_Linux -name "*.so" -exec cp {} /usr/lib64 \;         
             ldconfig

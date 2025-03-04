@@ -1,4 +1,4 @@
-name: rocky build workflows
+name: rocky x86_64 build workflows
 
 on:
   push:
