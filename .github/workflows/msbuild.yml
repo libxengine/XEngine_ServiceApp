@@ -105,3 +105,12 @@ jobs:
           cd XEngine_Release
           ./VSCopy_x64.bat
         shell: pwsh
+      - name: Conditional Step for Arm64 Release
+        if: matrix.configuration == 'Release' && matrix.platform == 'Arm64'
+        run: |
+          cp -r XEngine_Source/ARM64/Release/*.dll XEngine_Release/
+          cp -r XEngine_Source/ARM64/Release/*.exe XEngine_Release/
+          cp -r XEngine_Source/VSCopy_Arm64.bat XEngine_Release/
+          cd XEngine_Release
+          ./VSCopy_Arm64.bat
+        shell: pwsh
