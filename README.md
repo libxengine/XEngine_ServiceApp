@@ -44,18 +44,19 @@ git submodule update
 直接运行即可
 
 #### Linux
-Linux使用Makefile编译,UBUNTU22.04 x64或者RockyLinux9 x64  
+Linux使用Makefile编译,UBUNTU22.04或者RockyLinux9以及以上系统  
 在控制台运行
+
+###### 编译命令
+在XEngine_Source目录下执行命令  
+make RELEASE=0 调试编译  
+make RELEASE=1 发布编译  
+make FLAGS=InstallAll 安装库程序  
+make FLAGS=CleanAll 清理编译  
 
 #### Macos
 使用makefile编译,控制台运行,需要mac 13以及以上版本  
-在控制台运行
-
-##### 编译命令
-在XEngine_Source目录下执行命令  
-make 编译  
-make FLAGS=InstallAll 安装库程序  
-make FLAGS=CleanAll 清理编译  
+在控制台运行,编译命令参考linux
 
 ## 如何开发
 XEngine_CenterApp 服务主要是用于TCP协议,可在这里面编写你的业务服务相关处理代码  

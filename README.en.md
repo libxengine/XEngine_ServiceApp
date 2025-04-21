@@ -43,18 +43,19 @@ use vs open and compile,suport windows 7sp1 and above
 Just Run it
 
 #### Linux
-use makefile compile,UBUNTU22.04 x64 or RockyLinux9 x64  
+use makefile compile,UBUNTU22.04 or RockyLinux9 and above  
 Run it on the terminal
+
+##### Build Command
+execute command in XEngine_Source path   
+make RELEASE=0 debug build  
+make RELEASE=1 release build  
+make FLAGS=InstallAll Install File  
+make FLAGS=CleanAll Clear Complie  
 
 #### Macos
 use makefile compile,mac 13 and above  
-Run it on the terminal
-
-##### Screenshot of the program
-execute command in XEngine_Source path   
-make complie  
-make FLAGS=InstallAll Install File  
-make FLAGS=CleanAll Clear Complie  
+Run it on the terminal,build command refer linux
 
 ## How to develop
 XEngine_CenterApp service is mainly used for TCP protocol, you can write your TCP(Business) operation related processing code here  
