@@ -7,6 +7,7 @@ copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_ManagePool.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_OPenSsl.dll" "./"
 ::Websocket,http need this module
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_SystemApi.dll" "./"
+copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_SystemConfig.dll" "./"
 ::center need this module
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\HelpComponents_Packets.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\HelpComponents_XLog.dll" "./"

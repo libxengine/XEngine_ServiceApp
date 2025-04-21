@@ -16,6 +16,7 @@ jobs:
         include:
           - os: macos-13
           - os: macos-14
+          - os: macos-15
     runs-on: ${{ matrix.os }}
     
     steps:
@@ -43,7 +44,7 @@ jobs:
             chmod 777 *
             ./XEngine_LINEnv.sh -i 3
       - name: Set up Dependency Arm64 Environment 
-        if: matrix.os == 'macos-14'
+        if: matrix.os == 'macos-14' || matrix.os == 'macos-15'
         run: |
             cd libxengine
             chmod 777 *
