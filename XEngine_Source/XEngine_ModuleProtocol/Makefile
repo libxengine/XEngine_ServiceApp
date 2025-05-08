@@ -10,7 +10,7 @@ LIBEX =
 OBJECTS = ModuleProtocol_Packet.o ModuleProtocol_Parse.o pch.o
 
 ifeq ($(RELEASE),1)
-FLAGS = -c _RELEASE
+FLAGS = -c -D _RELEASE
 DEBUG = 
 else
 	ifeq ($(PLATFORM),mac)

@@ -10,7 +10,7 @@ LIBEX =
 OBJECTS = ModuleDatabase_MySql.o ModuleDatabase_SQlite.o pch.o
 
 ifeq ($(RELEASE),1)
-FLAGS = -c _RELEASE
+FLAGS = -c -D _RELEASE
 DEBUG = 
 else
 	ifeq ($(PLATFORM),mac)

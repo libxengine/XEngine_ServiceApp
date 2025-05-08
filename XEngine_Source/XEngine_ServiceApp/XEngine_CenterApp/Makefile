@@ -11,7 +11,7 @@ LIBEX =
 OBJECTS = XEngine_Configure.o XEngine_Network.o XEngine_CenterTask.o XEngine_CenterApp.o
 
 ifeq ($(RELEASE),1)
-FLAGS = -c _RELEASE
+FLAGS = -c -D _RELEASE
 DEBUG = 
 else
 	ifeq ($(PLATFORM),mac)
