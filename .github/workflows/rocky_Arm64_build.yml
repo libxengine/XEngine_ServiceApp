@@ -39,7 +39,6 @@ jobs:
           
       - name: install system package
         run: |
-            uname --machine
             dnf update -y
             dnf install gcc g++ make git jq unzip -y
       # 设置依赖库的环境变量

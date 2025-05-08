@@ -1,4 +1,4 @@
-name: rocky x86_64 build workflows
+name: rocky build workflows
 
 on:
   push:
@@ -17,14 +17,28 @@ jobs:
     runs-on: ubuntu-24.04
     container:
       image: rockylinux/rockylinux:9.5
-      options: --platform linux/amd64
+      options: ${{ matrix.container_options }}
+
+    strategy:
+      matrix:
+        architecture: [x86_64, arm64]
+        container_options:
+          - '--platform linux/amd64'
+          - '--platform linux/arm64'
+        include:
+          - architecture: x86_64
+            library_zip: XEngine_RockyLinux_9_x86-64.zip
+            library_folder: XEngine_RockyLinux_9_x86-64
+          - architecture: arm64
+            library_zip: XEngine_RockyLinux_9_Arm64.zip
+            library_folder: XEngine_RockyLinux_9_Arm64
 
     steps:
-       # 检出您的主仓库代码
+      # 检出您的主仓库代码
       - name: Checkout main repository code
         uses: actions/checkout@v4
         
-       # 检出依赖的xengine仓库到指定的xengine目录
+      # 检出依赖的xengine仓库到指定的xengine目录
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
@@ -39,7 +53,6 @@ jobs:
           
       - name: install system package
         run: |
-            uname --machine
             dnf update -y
             dnf install gcc g++ make git jq unzip -y
       # 设置依赖库的环境变量
@@ -51,14 +64,14 @@ jobs:
       - name: install xengine library
         run: |
             latest_tag=$(curl -s https://api.github.com/repos/libxengine/libxengine/releases/latest | jq -r .tag_name)
-            wget https://github.com/libxengine/libxengine/releases/download/$latest_tag/XEngine_RockyLinux_9_x86-64.zip
-            unzip ./XEngine_RockyLinux_9_x86-64.zip -d ./XEngine_RockyLinux_9_x86-64
-            cd XEngine_RockyLinux_9_x86-64
+            wget https://github.com/libxengine/libxengine/releases/download/$latest_tag/${{ matrix.library_zip }}
+            unzip ./${{ matrix.library_zip }} -d ./${{ matrix.library_folder }}
+            cd ${{ matrix.library_folder }}
             
             cp -rf ./XEngine_Include /usr/local/include
             find ./XEngine_Linux -name "*.so" -exec cp {} /usr/lib64 \;         
             ldconfig
-      #编译
+      # 编译
       - name: make
         run: | 
             cd XEngine_Source
