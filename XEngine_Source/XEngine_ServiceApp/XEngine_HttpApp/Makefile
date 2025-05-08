@@ -1,8 +1,6 @@
 CC = g++ -Wall -std=c++17
 PLATFORM = linux
 PLATVER = 
-RELEASE = 0
-UNICODE = 0
 LOADHDR = -I ./
 LOADSO = -L ../../XEngine_ModuleConfigure -L ../../XEngine_ModuleDatabase -L ../../XEngine_ModuleProtocol           \
 		 -L ../../XEngine_Depend/XEngine_Module/jsoncpp
@@ -13,22 +11,22 @@ LIBEX =
 OBJECTS = XEngine_Configure.o XEngine_Network.o XEngine_HTTPTask.o XEngine_HttpApp.o
 
 ifeq ($(RELEASE),1)
-FLAGS = -c 
+FLAGS = -c -D _RELEASE
 DEBUG = 
 else
 	ifeq ($(PLATFORM),mac)
 		FLAGS = -c
-		DEBUG = -g 
+		DEBUG = -g -D _DEBUG
 	else
 		FLAGS = -c -lc_p
-		DEBUG = -g -pg 
+		DEBUG = -g -pg -D _DEBUG
 	endif
 endif
 
 ifeq ($(UNICODE),1)
-UNICODE = -D _UNICODE
+override UNICODE := -D __UNICODE__
 else
-UNICODE = 
+override UNICODE := -D __ANSI__
 endif
 
 ifeq ($(PLATFORM),linux)

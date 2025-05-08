@@ -3,8 +3,6 @@ PLATFORM = linux
 PLATVER = 
 FILEEXT = 
 LIBFLAG = 
-RELEASE = 0
-UNICODE = 0
 LOADHDR = -I ./
 LOADSO = 
 LIB = -lHelpComponents_DataBase
@@ -12,22 +10,22 @@ LIBEX =
 OBJECTS = ModuleDatabase_MySql.o ModuleDatabase_SQlite.o pch.o
 
 ifeq ($(RELEASE),1)
-FLAGS = -c 
+FLAGS = -c _RELEASE
 DEBUG = 
 else
 	ifeq ($(PLATFORM),mac)
 		FLAGS = -c
-		DEBUG = -g 
+		DEBUG = -g -D _DEBUG
 	else
 		FLAGS = -c -lc_p
-		DEBUG = -g -pg 
+		DEBUG = -g -pg -D _DEBUG
 	endif
 endif
 
 ifeq ($(UNICODE),1)
-UNICODE = -D _UNICODE
+override UNICODE := -D __UNICODE__
 else
-UNICODE = 
+override UNICODE := -D __ANSI__
 endif
 
 ifeq ($(PLATFORM),linux)
