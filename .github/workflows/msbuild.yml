@@ -12,22 +12,19 @@ on:
 jobs:
   build:
     strategy:
-      # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
       fail-fast: false
       matrix:
         configuration: [Debug ,Release]
         platform: [x86 ,x64 ,ARM64]
 
-    runs-on: windows-latest # 最新的 Windows 环境
+    runs-on: windows-latest
 
     steps:
-       # 检出您的主仓库代码
       - name: Checkout main repository code
         uses: actions/checkout@v4
         with:
           ref: 'master'
         
-       # 检出依赖的xengine仓库到指定的xengine目录
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
@@ -40,7 +37,6 @@ jobs:
             git submodule update
         shell: pwsh
 
-      # 设置依赖库的环境变量
       - name: Set up Dependency x86_64 Environment
         if: matrix.platform == 'x64'
         run: |
@@ -74,11 +70,9 @@ jobs:
           echo "XENGINE_INCLUDE=${{ github.workspace }}/XEngine_Windows" | Out-File -FilePath $env:GITHUB_ENV -Append
           echo "XENGINE_LibArm64=${{ github.workspace }}/XEngine_Windows/XEngine_Windows" | Out-File -FilePath $env:GITHUB_ENV -Append
         shell: pwsh
-        
-      # 配置 MSBuild 的路径，准备构建 VC++ 项目
+       
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
-      #编译
       - name: Build Solution
         run: msbuild XEngine_Source/XEngine.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
 

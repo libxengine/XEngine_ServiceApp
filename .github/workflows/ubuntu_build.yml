@@ -15,7 +15,6 @@ permissions:
 jobs:
   build:
     strategy:
-      # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
       fail-fast: false
       matrix:
         include:
@@ -26,13 +25,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-       # 检出您的主仓库代码
       - name: Checkout main repository code
         uses: actions/checkout@v4
         with:
           ref: 'master'
         
-       # 检出依赖的xengine仓库到指定的xengine目录
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
@@ -44,7 +41,6 @@ jobs:
             git submodule init
             git submodule update
 
-      # 设置依赖库的环境变量
       - name: Set up Dependency ubuntu24.04 Environment
         if: matrix.os == 'ubuntu-24.04'
         run: |
@@ -96,7 +92,7 @@ jobs:
             sudo cp -rf ./XEngine_Include /usr/local/include
             sudo find ./XEngine_Linux -name "*.so" -exec cp {} /usr/local/lib \;         
             sudo ldconfig
-      #编译
+
       - name: make x86
         if: matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-24.04' 
         run: | 

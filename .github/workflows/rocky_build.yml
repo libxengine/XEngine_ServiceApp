@@ -26,16 +26,14 @@ jobs:
             platform: linux/amd64
             artifact_suffix: x86-64
           - arch: arm64
-            runner: ubuntu-24.04-arm # 注意：GitHub Actions 可能没有直接的 ubuntu-24.04-arm 运行器，你可能需要使用支持 ARM 的自托管运行器或选择其他支持 ARM 的 GitHub 托管运行器，例如 ubuntu-latest 并指定 ARM 架构。这里暂时保留，但请注意检查可用性。如果使用 GitHub 托管的 ARM 运行器，可能不需要指定 container.options --platform。
+            runner: ubuntu-24.04-arm
             platform: linux/arm64
             artifact_suffix: Arm64
 
     steps:
-      # 检出您的主仓库代码
       - name: Checkout main repository code
         uses: actions/checkout@v4
 
-      # 检出依赖的xengine仓库到指定的xengine目录
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
@@ -52,7 +50,7 @@ jobs:
         run: |
             dnf update -y
             dnf install gcc g++ make git jq unzip -y
-      # 设置依赖库的环境变量
+
       - name: Set up Dependency rocky linux Environment
         run: |
             cd libxengine
@@ -68,7 +66,7 @@ jobs:
             cp -rf ./XEngine_Include /usr/local/include
             find ./XEngine_Linux -name "*.so" -exec cp {} /usr/lib64 \;         
             ldconfig
-      #编译
+
       - name: make
         run: |
             cd XEngine_Source

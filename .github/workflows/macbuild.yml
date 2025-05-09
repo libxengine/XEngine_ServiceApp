@@ -25,7 +25,6 @@ jobs:
         with:
           ref: 'master'
         
-       # 检出依赖的xengine仓库到指定的xengine目录
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
@@ -37,7 +36,6 @@ jobs:
             git submodule init
             git submodule update
             
-      # 设置依赖库的环境变量
       - name: Set up Dependency x86_64 Environment 
         run: |
             cd libxengine
@@ -61,7 +59,7 @@ jobs:
             sudo mkdir -p /usr/local/lib
             sudo cp -rf ./XEngine_Include /usr/local/include
             sudo find ./XEngine_Mac -name "*.dylib" -exec cp {} /usr/local/lib \;            
-      #编译
+
       - name: make debug
         run: | 
             cd XEngine_Source
