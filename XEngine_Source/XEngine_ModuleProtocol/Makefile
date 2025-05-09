@@ -1,5 +1,4 @@
 CC = g++ -Wall -std=c++17 -fPIC
-PLATFORM = linux
 PLATVER = 
 FILEEXT = 
 LIBFLAG = 
@@ -11,7 +10,7 @@ OBJECTS = ModuleProtocol_Packet.o ModuleProtocol_Parse.o pch.o
 
 ifeq ($(RELEASE),1)
 FLAGS = -c -D _RELEASE
-DEBUG = 
+DEBUG = -O2
 else
 	ifeq ($(PLATFORM),mac)
 		FLAGS = -c

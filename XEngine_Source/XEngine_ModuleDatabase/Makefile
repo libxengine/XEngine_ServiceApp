@@ -1,5 +1,4 @@
 CC = g++ -Wall -std=c++17 -fPIC
-PLATFORM = linux
 PLATVER = 
 FILEEXT = 
 LIBFLAG = 
@@ -11,7 +10,7 @@ OBJECTS = ModuleDatabase_MySql.o ModuleDatabase_SQlite.o pch.o
 
 ifeq ($(RELEASE),1)
 FLAGS = -c -D _RELEASE
-DEBUG = 
+DEBUG = -O2
 else
 	ifeq ($(PLATFORM),mac)
 		FLAGS = -c

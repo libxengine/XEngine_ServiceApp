@@ -1,5 +1,4 @@
 CC = g++ -Wall -std=c++17
-PLATFORM = linux
 PLATVER = 
 LOADHDR = -I ./
 LOADSO = -L ../../XEngine_ModuleConfigure -L ../../XEngine_ModuleDatabase -L ../../XEngine_ModuleProtocol           \
@@ -12,7 +11,7 @@ OBJECTS = XEngine_Configure.o XEngine_Network.o XEngine_WSTask.o XEngine_WebSock
 
 ifeq ($(RELEASE),1)
 FLAGS = -c -D _RELEASE
-DEBUG = 
+DEBUG = -O2
 else
 	ifeq ($(PLATFORM),mac)
 		FLAGS = -c 
