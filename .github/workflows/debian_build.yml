@@ -60,7 +60,7 @@ jobs:
             cd XEngine_Debian_12_${{ matrix.artifact }}
             
             cp -rf ./XEngine_Include /usr/local/include
-            find ./XEngine_Linux -name "*.so" -exec cp {} /usr/lib \;         
+            find ./XEngine_Linux -name "*.so" -exec cp {} /usr/local/lib \;         
             ldconfig
 
       - name: make
