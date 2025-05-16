@@ -51,7 +51,7 @@ jobs:
       - name: install system package
         run: |
             dnf update -y
-            dnf install gcc g++ make git jq unzip -y
+            dnf install gcc g++ make git jq unzip wget -y
 
       - name: install xengine library
         run: |
