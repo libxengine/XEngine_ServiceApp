@@ -11,6 +11,6 @@
 //    History:
 *********************************************************************/
 //任务处理池,用来获取一个完整包
-XHTHREAD CALLBACK XEngine_HTTP2Task_Thread(XPVOID lParam);
+XHTHREAD XCALLBACK XEngine_HTTP2Task_Thread(XPVOID lParam);
 //任务处理相关函数,处理包的内容
 bool XEngine_HTTP2Task_Handle(XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE enFrameType, int nStreamID, LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen, RFCCOMPONENTS_HTTP2_HPACK** ppSt_ListHdr, int nHdrCount);

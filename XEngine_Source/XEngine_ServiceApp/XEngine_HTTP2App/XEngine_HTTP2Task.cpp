@@ -10,7 +10,7 @@
 //    Purpose:     HTTP2任务处理代码
 //    History:
 *********************************************************************/
-XHTHREAD CALLBACK XEngine_HTTP2Task_Thread(XPVOID lParam)
+XHTHREAD XCALLBACK XEngine_HTTP2Task_Thread(XPVOID lParam)
 {
 	//任务池是编号1开始的.
 	int nThreadPos = *(int*)lParam;

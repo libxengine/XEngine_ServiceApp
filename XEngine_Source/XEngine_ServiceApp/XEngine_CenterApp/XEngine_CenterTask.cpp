@@ -10,7 +10,7 @@
 //    Purpose:     业务任务处理代码
 //    History:
 *********************************************************************/
-XHTHREAD CALLBACK XEngine_CenterTask_Thread(XPVOID lParam)
+XHTHREAD XCALLBACK XEngine_CenterTask_Thread(XPVOID lParam)
 {
 	//任务池是编号1开始的.
 	int nThreadPos = *(int*)lParam;

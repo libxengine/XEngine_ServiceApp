@@ -11,14 +11,14 @@
 //    History:
 *********************************************************************/
 //////////////////////////////////////////////////////////////////////////下面是HTTP网络IO相关代码处理函数
-bool CALLBACK Network_Callback_WSLogin(LPCXSTR lpszClientAddr, XSOCKET hSocket, XPVOID lParam)
+bool XCALLBACK Network_Callback_WSLogin(LPCXSTR lpszClientAddr, XSOCKET hSocket, XPVOID lParam)
 {
 	SocketOpt_HeartBeat_InsertAddrEx(xhWSHeart, lpszClientAddr);
 	RfcComponents_WSPacket_CreateEx(xhWSPacket, lpszClientAddr, 0);
 	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("WEBSOCKET客户端:%s,连接到服务器"), lpszClientAddr);
 	return true;
 }
-void CALLBACK Network_Callback_WSRecv(LPCXSTR lpszClientAddr, XSOCKET hSocket, LPCXSTR lpszRecvMsg, int nMsgLen, XPVOID lParam)
+void XCALLBACK Network_Callback_WSRecv(LPCXSTR lpszClientAddr, XSOCKET hSocket, LPCXSTR lpszRecvMsg, int nMsgLen, XPVOID lParam)
 {
 	bool bLogin = false;
 	RfcComponents_WSPacket_GetLoginEx(xhWSPacket, lpszClientAddr, &bLogin);
@@ -44,11 +44,11 @@ void CALLBACK Network_Callback_WSRecv(LPCXSTR lpszClientAddr, XSOCKET hSocket, L
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("WEBSOCKET客户端:%s 与服务器握手成功"), lpszClientAddr);
 	}
 }
-void CALLBACK Network_Callback_WSLeave(LPCXSTR lpszClientAddr, XSOCKET hSocket, XPVOID lParam)
+void XCALLBACK Network_Callback_WSLeave(LPCXSTR lpszClientAddr, XSOCKET hSocket, XPVOID lParam)
 {
 	XEngine_Network_Close(lpszClientAddr, false);
 }
-void CALLBACK Network_Callback_WSHeart(LPCXSTR lpszClientAddr, XSOCKET hSocket, int nStatus, XPVOID lParam)
+void XCALLBACK Network_Callback_WSHeart(LPCXSTR lpszClientAddr, XSOCKET hSocket, int nStatus, XPVOID lParam)
 {
 	XEngine_Network_Close(lpszClientAddr, true);
 }

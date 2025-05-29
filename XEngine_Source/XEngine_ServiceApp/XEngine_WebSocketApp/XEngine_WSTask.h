@@ -11,6 +11,6 @@
 //    History:
 *********************************************************************/
 //任务处理池,用来获取一个完整包
-XHTHREAD CALLBACK XEngine_WSTask_Thread(XPVOID lParam);
+XHTHREAD XCALLBACK XEngine_WSTask_Thread(XPVOID lParam);
 //任务处理相关函数,处理包的内容
 bool XEngine_WSTask_Handle(LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen, ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE enOPCode);
