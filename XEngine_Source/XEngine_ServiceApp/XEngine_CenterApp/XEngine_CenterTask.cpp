@@ -43,7 +43,7 @@ XHTHREAD XCALLBACK XEngine_CenterTask_Thread(XPVOID lParam)
 					//在另外一个函数里面处理数据
 					XEngine_CenterTask_Handle(&st_ProtocolHdr, ppSst_ListAddr[i]->tszClientAddr, ptszMsgBuffer, nMsgLen);
 					//释放内存
-					BaseLib_Memory_FreeCStyle((VOID**)&ptszMsgBuffer);
+					BaseLib_Memory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
 				}
 			}
 		}

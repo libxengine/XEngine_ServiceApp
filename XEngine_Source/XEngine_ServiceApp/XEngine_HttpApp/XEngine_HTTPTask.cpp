@@ -46,7 +46,7 @@ XHTHREAD XCALLBACK XEngine_HTTPTask_Thread(XPVOID lParam)
 					//在另外一个函数里面处理数据
 					XEngine_HTTPTask_Handle(&st_HTTPReqparam, ppSst_ListAddr[i]->tszClientAddr, ptszMsgBuffer, nMsgLen, ppszHdrList, nHdrCount);
 					//释放内存
-					BaseLib_Memory_FreeCStyle((VOID**)&ptszMsgBuffer);
+					BaseLib_Memory_FreeCStyle((XPPMEM)&ptszMsgBuffer);
 					BaseLib_Memory_Free((XPPPMEM)&ppszHdrList, nHdrCount);
 				}
 			}
