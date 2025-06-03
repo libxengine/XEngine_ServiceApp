@@ -72,6 +72,10 @@ bool XEngine_HTTPTask_Handle(RFCCOMPONENTS_HTTP_REQPARAM* pSt_HTTPParam, LPCXSTR
 	if (0 == _tcsxnicmp(lpszMethodPost, pSt_HTTPParam->tszHttpMethod, _tcsxlen(lpszMethodPost)))
 	{
 		//编写自己的代码
+		HttpProtocol_Server_SendMsgEx(xhHTTPPacket, tszMsgBuffer, &nLen, &st_HDRParam);
+		//打包完毕后才能发送给客户端
+		XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP客户端:%s,发送POST请求给服务器"), lpszClientAddr);
 	}
 	else if (0 == _tcsxnicmp(lpszMethodGet, pSt_HTTPParam->tszHttpMethod, _tcsxlen(lpszMethodGet)))
 	{
