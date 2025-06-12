@@ -107,7 +107,7 @@ bool CModuleConfigure_Json::ModuleConfigure_Json_File(LPCXSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XTime.nTimeCheck = st_JsonXTime["nTimeCheck"].asInt();
 	pSt_ServerConfig->st_XTime.nTimeOut = st_JsonXTime["nTimeOut"].asInt();
 	//日志配置
-	if (st_JsonRoot["XLog"].empty() || (3 != st_JsonRoot["XLog"].size()))
+	if (st_JsonRoot["XLog"].empty() || (5 != st_JsonRoot["XLog"].size()))
 	{
 		Config_IsErrorOccur = true;
 		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_XLOG;
@@ -117,6 +117,8 @@ bool CModuleConfigure_Json::ModuleConfigure_Json_File(LPCXSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XLog.nMaxSize = st_JsonXLog["MaxSize"].asInt();
 	pSt_ServerConfig->st_XLog.nMaxCount = st_JsonXLog["MaxCount"].asInt();
 	pSt_ServerConfig->st_XLog.nLogLeave = st_JsonXLog["LogLeave"].asInt();
+	pSt_ServerConfig->st_XLog.nLogType = st_JsonXLog["LogType"].asInt();
+	_tcsxcpy(pSt_ServerConfig->st_XLog.tszLogFile, st_JsonXLog["LogFile"].asCString());
 	//版本列表
 	if (st_JsonRoot["XVer"].empty())
 	{

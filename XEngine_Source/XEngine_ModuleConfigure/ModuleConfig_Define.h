@@ -32,9 +32,11 @@ typedef struct tag_XEngine_ServiceConfig
 	}st_XTime;                                //次数*时间=超时
 	struct
 	{
+		XCHAR tszLogFile[XPATH_MAX];          //日志路径
 		int nMaxSize;                         //最大日志大小
 		int nMaxCount;                        //最大日志个数
 		int nLogLeave;                        //日志等级
+		int nLogType;                         //输出日志类型
 	}st_XLog;
 	struct  
 	{
