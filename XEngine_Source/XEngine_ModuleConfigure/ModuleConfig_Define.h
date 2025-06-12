@@ -16,7 +16,7 @@
 typedef struct tag_XEngine_ServiceConfig
 {
 	XCHAR tszIPAddr[128];                     //本机IP地址,根据需要配置
-	bool bDeamon;                             //是否以守护进程启动,LINUX有效
+	bool bDaemon;                             //是否以守护进程启动,LINUX有效
 	int nPort;                                //服务
 	struct
 	{

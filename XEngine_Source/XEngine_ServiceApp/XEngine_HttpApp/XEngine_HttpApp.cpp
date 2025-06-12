@@ -98,11 +98,6 @@ int main(int argc, char** argv)
 	{
 		return -1;
 	}
-	//判断是否以守护进程启动
-	if (st_ServiceConfig.bDeamon)
-	{
-		ServiceApp_Deamon();
-	}
 	st_XLogConfig.XLog_MaxBackupFile = st_ServiceConfig.st_XLog.nMaxCount;
 	st_XLogConfig.XLog_MaxSize = st_ServiceConfig.st_XLog.nMaxSize;
 	_tcsxcpy(st_XLogConfig.tszFileName, st_ServiceConfig.st_XLog.tszLogFile);
@@ -121,6 +116,12 @@ int main(int argc, char** argv)
 	signal(SIGTERM, ServiceApp_Stop);
 	signal(SIGABRT, ServiceApp_Stop);
 	XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,初始化信号量成功"));
+	//判断是否以守护进程启动
+	if (st_ServiceConfig.bDaemon)
+	{
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中，使用守护进程启动服务..."));
+		ServiceApp_Deamon();
+	}
 	//启动HTTP服务相关代码
 	if (st_ServiceConfig.nPort > 0)
 	{

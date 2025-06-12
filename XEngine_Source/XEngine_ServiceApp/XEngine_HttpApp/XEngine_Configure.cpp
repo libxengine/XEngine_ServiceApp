@@ -29,7 +29,7 @@ bool XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 		}
 		else if (0 == _tcsxcmp("-d", argv[i]))
 		{
-			pSt_Configure->bDeamon = _ttxoi(argv[i + 1]);
+			pSt_Configure->bDaemon = _ttxoi(argv[i + 1]);
 		}
 		else if (0 == _tcsxcmp("-t", argv[i]))
 		{

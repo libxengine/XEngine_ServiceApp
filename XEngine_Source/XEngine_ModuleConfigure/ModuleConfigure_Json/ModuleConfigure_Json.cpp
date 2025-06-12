@@ -82,7 +82,7 @@ bool CModuleConfigure_Json::ModuleConfigure_Json_File(LPCXSTR lpszConfigFile, XE
 		return false;
 	}
 	_tcsxcpy(pSt_ServerConfig->tszIPAddr, st_JsonRoot["tszIPAddr"].asCString());
-	pSt_ServerConfig->bDeamon = st_JsonRoot["bDeamon"].asInt();
+	pSt_ServerConfig->bDaemon = st_JsonRoot["bDaemon"].asInt();
 	pSt_ServerConfig->nPort = st_JsonRoot["nPort"].asInt();
 	//最大配置
 	if (st_JsonRoot["XMax"].empty() || (4 != st_JsonRoot["XMax"].size()))

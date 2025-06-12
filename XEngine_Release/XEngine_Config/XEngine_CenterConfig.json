@@ -1,6 +1,6 @@
 {
     "tszIPAddr": "127.0.0.1",
-    "bDeamon": 0,
+    "bDaemon": 0,
     "nPort": 5000,
     "XMax": {
         "nMaxClient": 10000,
