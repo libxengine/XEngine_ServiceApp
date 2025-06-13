@@ -119,14 +119,66 @@ bool CModuleConfigure_Json::ModuleConfigure_Json_File(LPCXSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XLog.nLogLeave = st_JsonXLog["LogLeave"].asInt();
 	pSt_ServerConfig->st_XLog.nLogType = st_JsonXLog["LogType"].asInt();
 	_tcsxcpy(pSt_ServerConfig->st_XLog.tszLogFile, st_JsonXLog["LogFile"].asCString());
-	//版本列表
-	if (st_JsonRoot["XVer"].empty())
+	return true;
+}
+/********************************************************************
+函数名称：Config_Json_Version
+函数功能：读取版本配置文件
+ 参数.一：lpszConfigFile
+  In/Out：In
+  类型：常量字符指针
+  可空：N
+  意思：输入配置文件
+ 参数.二：pSt_ServerConfig
+  In/Out：Out
+  类型：数据结构指针
+  可空：N
+  意思：输出读取到的信息
+返回值
+  类型：逻辑型
+  意思：是否成功
+备注：
+*********************************************************************/
+bool CModuleConfigure_Json::ModuleConfigure_Json_Version(LPCXSTR lpszConfigFile, XENGINE_SERVICECONFIG* pSt_ServerConfig)
+{
+	Config_IsErrorOccur = false;
+
+	if ((NULL == lpszConfigFile) || (NULL == pSt_ServerConfig))
+	{
+		Config_IsErrorOccur = true;
+		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_PARAMENT;
+		return false;
+	}
+	JSONCPP_STRING st_JsonError;
+	Json::Value st_JsonRoot;
+	Json::CharReaderBuilder st_JsonBuilder;
+
+	FILE* pSt_File = _xtfopen(lpszConfigFile, _X("rb"));
+	if (NULL == pSt_File)
+	{
+		Config_IsErrorOccur = true;
+		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_OPENFILE;
+		return false;
+	}
+	XCHAR tszMsgBuffer[8192] = {};
+	size_t nRet = fread(tszMsgBuffer, 1, sizeof(tszMsgBuffer), pSt_File);
+	fclose(pSt_File);
+
+	std::unique_ptr<Json::CharReader> const pSt_JsonReader(st_JsonBuilder.newCharReader());
+	if (!pSt_JsonReader->parse(tszMsgBuffer, tszMsgBuffer + nRet, &st_JsonRoot, &st_JsonError))
+	{
+		Config_IsErrorOccur = true;
+		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_PARAMENT;
+		return false;
+	}
+	if (st_JsonRoot["XVersionList"].empty())
 	{
 		Config_IsErrorOccur = true;
 		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_XVER;
 		return false;
 	}
-	Json::Value st_JsonXVer = st_JsonRoot["XVer"];
+	Json::Value st_JsonXVer = st_JsonRoot["XVersionList"];
+
 	pSt_ServerConfig->st_XVer.pStl_ListVer = new list<string>;
 	if (NULL == pSt_ServerConfig->st_XVer.pStl_ListVer)
 	{
