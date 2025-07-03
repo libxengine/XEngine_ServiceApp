@@ -4,8 +4,8 @@ PLATFORM=linux
 FLAGS = 
 
 #要编译的模块
-THIRDPART_MODULE_JSONCPP = ./XEngine_Depend/XEngine_Module/jsoncpp
-THIRDPART_MODULE_REPORT = ./XEngine_Depend/XEngine_Module/XEngine_InfoReport
+THIRDPART_MODULE_JSONCPP = ./XEngine_DependLibrary/XEngine_Module/jsoncpp
+THIRDPART_MODULE_REPORT = ./XEngine_DependLibrary/XEngine_Module/XEngine_InfoReport
 
 MODULE_CONFIGURE_PATH = ./XEngine_ModuleConfigure
 MODULE_DATABASE_PATH = ./XEngine_ModuleDatabase
