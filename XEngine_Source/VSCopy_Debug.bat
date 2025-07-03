@@ -9,6 +9,8 @@ copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_OPenSsl.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_SystemApi.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\XEngine_SystemConfig.dll" "./"
 ::center need this module
+copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\NetHelp_APIHelp.dll" "./"
+copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\NetHelp_XSocket.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\HelpComponents_Packets.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\HelpComponents_XLog.dll" "./"
 copy /y "D:\\XEngine\\XEngine_SourceCode\\Debug\\HelpComponents_DataBase.dll" "./"
