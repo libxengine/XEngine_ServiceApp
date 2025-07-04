@@ -14,7 +14,7 @@ bool XEngine_Configure_Parament(int argc, char** argv)
 {
 	for (int i = 0; i < argc; i++)
 	{
-		if ((0 == _tcsxicmp("-h", argv[i])) || (0 == _tcsxicmp("-H", argv[i])))
+		if (0 == _tcsxicmp("-h", argv[i]))
 		{
 			XEngine_Configure_Help();
 			return false;

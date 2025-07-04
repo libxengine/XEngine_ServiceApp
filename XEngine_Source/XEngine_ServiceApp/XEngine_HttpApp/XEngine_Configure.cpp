@@ -47,6 +47,10 @@ bool XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 			{
 				pSt_Configure->st_XLog.nLogLeave = XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG;
 			}
+			else if (0 == _tcsxicmp("detail", lpszLogLevel))
+			{
+				pSt_Configure->st_XLog.nLogLeave = XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DETAIL;
+			}
 			else if (0 == _tcsxicmp("info", lpszLogLevel))
 			{
 				pSt_Configure->st_XLog.nLogLeave = XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO;
