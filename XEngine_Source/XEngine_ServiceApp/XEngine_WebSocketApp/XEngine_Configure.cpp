@@ -27,27 +27,27 @@ bool XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 
 	for (int i = 0; i < argc; i++)
 	{
-		if ((0 == _tcsxcmp("-h", argv[i])) || (0 == _tcsxcmp("-H", argv[i])))
+		if (0 == _tcsxicmp("-h", argv[i]))
 		{
 			XEngine_Configure_Help();
 			return false;
 		}
-		else if (0 == _tcsxcmp("-d", argv[i]))
+		else if (0 == _tcsxicmp("-d", argv[i]))
 		{
 			pSt_Configure->bDaemon = _ttxoi(argv[i + 1]);
 		}
-		else if (0 == _tcsxcmp("-t", argv[i]))
+		else if (0 == _tcsxicmp("-t", argv[i]))
 		{
 			bIsTest = true;
 		}
-		else if (0 == _tcsxcmp("-l", argv[i]))
+		else if (0 == _tcsxicmp("-l", argv[i]))
 		{
 			LPCXSTR lpszLogLevel = argv[++i];
-			if (0 == _tcsxcmp("debug", lpszLogLevel))
+			if (0 == _tcsxicmp("debug", lpszLogLevel))
 			{
 				pSt_Configure->st_XLog.nLogLeave = XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_DEBUG;
 			}
-			else if (0 == _tcsxcmp("info", lpszLogLevel))
+			else if (0 == _tcsxicmp("info", lpszLogLevel))
 			{
 				pSt_Configure->st_XLog.nLogLeave = XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO;
 			}

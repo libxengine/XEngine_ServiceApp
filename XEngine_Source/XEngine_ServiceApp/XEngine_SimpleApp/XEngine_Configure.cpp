@@ -14,12 +14,12 @@ bool XEngine_Configure_Parament(int argc, char** argv)
 {
 	for (int i = 0; i < argc; i++)
 	{
-		if ((0 == _tcsxcmp("-h", argv[i])) || (0 == _tcsxcmp("-H", argv[i])))
+		if ((0 == _tcsxicmp("-h", argv[i])) || (0 == _tcsxicmp("-H", argv[i])))
 		{
 			XEngine_Configure_Help();
 			return false;
 		}
-		else if (0 == _tcsxcmp("-t", argv[i]))
+		else if (0 == _tcsxicmp("-t", argv[i]))
 		{
 			bIsTest = true;
 		}
