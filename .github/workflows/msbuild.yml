@@ -98,6 +98,11 @@ jobs:
           cp -r XEngine_Source/VSCopy_x64.bat XEngine_Release/
           cd XEngine_Release
           ./VSCopy_x64.bat
+          ./XEngine_CenterApp -t
+          ./XEngine_Http2App -t
+          ./XEngine_HttpApp -t
+          ./XEngine_SimpleApp -t
+          ./XEngine_WebSocketApp -t
         shell: pwsh
       - name: Conditional Step for Arm64 Release
         if: matrix.configuration == 'Release' && matrix.platform == 'Arm64'
