@@ -67,6 +67,8 @@ bool CModuleProtocol_Packet::ModuleProtocol_Packet_Comm(XCHAR* ptszMSGBuffer, in
 	int nPos = 0;
 	Json::Value st_JsonRoot;
 	Json::StreamWriterBuilder st_JsonWBuilder;
+
+	st_JsonWBuilder["emitUTF8"] = true;
 	//JSON赋值
 	st_JsonRoot["code"] = nCode;
 	st_JsonRoot["msg"] = lpszMSGBuffer;
