@@ -1,0 +1,4 @@
+name: "CodeQL Security Scan"
+
+paths-ignore:
+  - "XEngine_Source/XEngine_DependLibrary/**"

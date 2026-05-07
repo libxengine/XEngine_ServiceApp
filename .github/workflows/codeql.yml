@@ -19,10 +19,11 @@ jobs:
       matrix:
         include:
         - language: c-cpp
+          build-mode: manual
     steps:
     - name: Checkout repository
       uses: actions/checkout@v6
-        
+          
     - name: Checkout dependency repository (xengine)
       uses: actions/checkout@v6
       with:
@@ -47,8 +48,11 @@ jobs:
       uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
+        build-mode: manual 
+        queries: security-and-quality
+        config-file: .github/workflows/codeql/codeql-config.yml
         
-    - name: make
+    - name: make build
       run: | 
           cd XEngine_Source
           make
