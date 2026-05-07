@@ -34,13 +34,14 @@ jobs:
           repository: libxengine/libxengine
           path: libxengine
 
+      - name: sub module checkout (opensource)
+        uses: actions/checkout@v6
+        with:
+          repository: libxengine/XEngine_OPenSource
+          path: XEngine_Source/XEngine_DependLibrary
+
       - name: Set TERM variable
         run: echo "TERM=xterm" >> $GITHUB_ENV
-                  
-      - name: sub module checkout (opensource)
-        run: |
-            git submodule init
-            git submodule update
 
       - name: Set up Dependency ubuntu24.04 Environment
         run: |
