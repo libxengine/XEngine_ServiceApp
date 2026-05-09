@@ -1,6 +1,7 @@
 RELEASE = 0
 UNICODE = 0
 PLATFORM=linux
+BUILDTYPE=0
 FLAGS = 
 
 #要编译的模块
@@ -22,9 +23,20 @@ else ifeq ($(PLATFORM),mac)
 	FILEEXT = dylib
 endif
 
-XENGINE_MODULES = libjsoncpp.so libXEngine_InfoReport.so                    \
-                  libXEngine_ModuleConfigure.so libXEngine_ModuleDatabase.so libXEngine_ModuleProtocol.so                 \
-				  XEngine_CenterApp.exe XEngine_HttpApp.exe XEngine_Http2App.exe XEngine_WebSocketApp.exe XEngine_SimpleApp.exe
+# 第三方库模块
+MODULES_THIRD = libjsoncpp.so libXEngine_InfoReport.so
+# 业务模块 + 应用
+MODULES_APP = libXEngine_ModuleConfigure.so libXEngine_ModuleDatabase.so libXEngine_ModuleProtocol.so                 \
+			  XEngine_CenterApp.exe XEngine_HttpApp.exe XEngine_Http2App.exe XEngine_WebSocketApp.exe XEngine_SimpleApp.exe
+
+# 根据 BUILDTYPE 决定编译目标
+ifeq ($(BUILDTYPE),0)
+	XENGINE_MODULES = $(MODULES_THIRD) $(MODULES_APP)
+else ifeq ($(BUILDTYPE),1)
+	XENGINE_MODULES = $(MODULES_THIRD)
+else ifeq ($(BUILDTYPE),2)
+	XENGINE_MODULES = $(MODULES_APP)
+endif
 
 .PHONY:MakeAll 
 MakeAll:$(XENGINE_MODULES)
