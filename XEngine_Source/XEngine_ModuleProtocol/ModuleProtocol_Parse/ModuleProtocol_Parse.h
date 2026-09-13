@@ -19,5 +19,6 @@ public:
 	~CModuleProtocol_Parse();
 public:
 	bool ModuleProtocol_Parse_Hello(XCHAR* ptszMSGBuffer, int* pInt_MSGLen, LPCXSTR lpszMSGBuffer, int nMSGLen);
+	bool ModuleProtocol_Parse_Register(LPCXSTR lpszMsgBuffer, int nMsgLen, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo);
 private:
 };

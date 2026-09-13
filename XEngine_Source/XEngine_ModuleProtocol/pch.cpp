@@ -42,3 +42,7 @@ extern "C" bool ModuleProtocol_Parse_Hello(XCHAR * ptszMSGBuffer, int* pInt_MSGL
 {
 	return m_ProtocolParse.ModuleProtocol_Parse_Hello(ptszMSGBuffer, pInt_MSGLen, lpszMSGBuffer, nMSGLen);
 }
+extern "C" bool ModuleProtocol_Parse_Register(LPCXSTR lpszMsgBuffer, int nMsgLen, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo)
+{
+	return m_ProtocolParse.ModuleProtocol_Parse_Register(lpszMsgBuffer, nMsgLen, pSt_UserInfo);
+}

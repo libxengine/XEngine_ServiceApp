@@ -6,3 +6,4 @@ EXPORTS
 	ModuleProtocol_Packet_Comm
 
 	ModuleProtocol_Parse_Hello
+	ModuleProtocol_Parse_Register

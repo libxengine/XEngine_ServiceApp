@@ -60,6 +60,7 @@ bool XEngine_HTTPTask_Handle(RFCCOMPONENTS_HTTP_REQPARAM* pSt_HTTPParam, LPCXSTR
 	int nMSGLen = XPATH_4MAX;
 	LPCXSTR lpszMethodPost = _X("POST");
 	LPCXSTR lpszMethodGet = _X("GET");
+	
 	XCHAR tszMSGBuffer[XPATH_4MAX] = {};
 	//得到客户端请求的方法
 	if (0 == _tcsxnicmp(lpszMethodPost, pSt_HTTPParam->tszHttpMethod, _tcsxlen(lpszMethodPost)))

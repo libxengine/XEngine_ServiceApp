@@ -22,7 +22,7 @@ CModuleProtocol_Packet::~CModuleProtocol_Packet()
 //                             公有函数
 //////////////////////////////////////////////////////////////////////////
 /********************************************************************
-函数名称：ModuleProtocol_Packet_Hello
+函数名称：ModuleProtocol_Packet_Comm
 函数功能：打包一个通用回复消息
  参数.一：ptszMSGBuffer
   In/Out：Out
