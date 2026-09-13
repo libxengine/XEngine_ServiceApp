@@ -111,6 +111,24 @@ bool CModuleConfigure_Json::ModuleConfigure_Json_File(LPCXSTR lpszConfigFile, XE
 	pSt_ServerConfig->st_XLog.nLogLeave = st_JsonXLog["LogLeave"].asInt();
 	pSt_ServerConfig->st_XLog.nLogType = st_JsonXLog["LogType"].asInt();
 	_tcsxcpy(pSt_ServerConfig->st_XLog.tszLogFile, st_JsonXLog["LogFile"].asCString());
+	//数据库配置
+	if (st_JsonRoot["XSql"].empty() || (6 != st_JsonRoot["XSql"].size()))
+	{
+		Config_IsErrorOccur = true;
+		Config_dwErrorCode = ERROR_MODULE_CONFIGURE_JSON_XSQL;
+		return false;
+	}
+	Json::Value st_JsonXSql = st_JsonRoot["XSql"];
+
+	pSt_ServerConfig->st_XSql.nDBType = st_JsonXSql["nSQLType"].asInt();
+
+	_tcsxcpy(pSt_ServerConfig->st_XSql.st_SQLite.tszSQLite, st_JsonXSql["SQLFile"].asCString());
+
+	pSt_ServerConfig->st_XSql.st_MYSQL.nSQLPort = st_JsonXSql["SQLPort"].asInt();
+	_tcsxcpy(pSt_ServerConfig->st_XSql.st_MYSQL.tszSQLAddr, st_JsonXSql["SQLAddr"].asCString());
+	_tcsxcpy(pSt_ServerConfig->st_XSql.st_MYSQL.tszSQLUser, st_JsonXSql["SQLUser"].asCString());
+	_tcsxcpy(pSt_ServerConfig->st_XSql.st_MYSQL.tszSQLPass, st_JsonXSql["SQLPass"].asCString());
+
 	return true;
 }
 /********************************************************************

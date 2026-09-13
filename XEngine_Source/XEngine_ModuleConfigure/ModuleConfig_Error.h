@@ -18,3 +18,4 @@
 #define ERROR_MODULE_CONFIGURE_JSON_XLOG 0xA0006                     //读取XHANDLE配置失败
 #define ERROR_MODULE_CONFIGURE_JSON_XVER 0xA0007                     //读取版本列表失败
 #define ERROR_MODULE_CONFIGURE_JSON_MALLOC 0xA0008                   //申请内存失败
+#define ERROR_MODULE_CONFIGURE_JSON_XSQL 0xA0009                     //读取数据库配置失败

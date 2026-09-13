@@ -20,6 +20,8 @@ public:
 public:
 	bool ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO* pSt_MySQLConnector);
 	bool ModuleDatabase_MySql_Destory();
+	bool ModuleDatabase_MySql_UserRegister(XENGINE_PROTOCOL_USERINFO* pSt_UserInfo);
+	bool ModuleDatabase_MySql_UserQuery(LPCXSTR lpszUserName, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo = NULL);
 private:
 	XNETHANDLE xhSQL;
 };

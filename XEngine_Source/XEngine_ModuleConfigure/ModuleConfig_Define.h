@@ -38,6 +38,22 @@ typedef struct tag_XEngine_ServiceConfig
 		int nLogLeave;                        //日志等级
 		int nLogType;                         //输出日志类型
 	}st_XLog;
+	struct
+	{
+		int nDBType;
+		struct
+		{
+			XCHAR tszSQLAddr[128];	//数据库地址
+			XCHAR tszSQLUser[128];	//数据库账号
+			XCHAR tszSQLPass[128];	//数据库密码
+			XCHAR tszDBName[128];   //数据库名
+			int nSQLPort;		    //数据库端口
+		}st_MYSQL;
+		struct
+		{
+			XCHAR tszSQLite[XPATH_MAX];                          //数据库文件位置
+		}st_SQLite;
+	}st_XSql;
 	struct  
 	{
 		list<string> *pStl_ListVer;           //版本列表

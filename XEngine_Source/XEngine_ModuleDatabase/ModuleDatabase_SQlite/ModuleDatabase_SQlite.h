@@ -20,6 +20,8 @@ public:
 public:
 	bool ModuleDatabase_SQlite_Init(LPCXSTR lpszSQLFile);
 	bool ModuleDatabase_SQlite_Destory();
+	bool ModuleDatabase_SQLite_UserRegister(XENGINE_PROTOCOL_USERINFO* pSt_UserInfo);               
+	bool ModuleDatabase_SQLite_UserQuery(LPCXSTR lpszUserName, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo = NULL);
 private:
 	XNETHANDLE xhSQL;
 };

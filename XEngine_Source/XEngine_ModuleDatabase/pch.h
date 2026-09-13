@@ -38,8 +38,8 @@
 //    Purpose:     公用头文件
 //    History:
 *********************************************************************/
-extern XLONG DBModule_IsErrorOccur;
-extern bool DBModule_dwErrorCode;
+extern bool DBModule_IsErrorOccur;
+extern XLONG DBModule_dwErrorCode;
 
 #ifdef _MSC_BUILD
 #pragma comment(lib,"Ws2_32")

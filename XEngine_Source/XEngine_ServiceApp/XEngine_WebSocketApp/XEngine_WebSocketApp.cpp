@@ -33,6 +33,9 @@ void ServiceApp_Stop(int signo)
 		SocketOpt_HeartBeat_DestoryEx(xhWSHeart);
 		RfcComponents_WSPacket_DestoryEx(xhWSPacket);
 		ManagePool_Thread_NQDestroy(xhWSPool);
+		//销毁数据库
+		ModuleDatabase_MySql_Destory();
+		ModuleDatabase_SQlite_Destory();
 		//销毁日志资源
 		HelpComponents_XLog_Destroy(xhLog);
 	}
@@ -120,6 +123,29 @@ int main(int argc, char** argv)
 		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中，使用守护进程启动服务..."));
 		ServiceApp_Deamon();
 	}
+	//启动数据库
+	if (0 == st_ServiceConfig.st_XSql.nDBType)
+	{
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("启动服务中，数据库被设置为禁用..."));
+	}
+	else if (1 == st_ServiceConfig.st_XSql.nDBType)
+	{
+		if (!ModuleDatabase_SQlite_Init(st_ServiceConfig.st_XSql.st_SQLite.tszSQLite))
+		{
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("启动服务中，初始化DB数据库服务失败，错误：%lX"), ModuleDB_GetLastError());
+			goto XENGINE_SERVICEAPP_EXIT;
+		}
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中，初始化DB数据库服务成功,数据库:%s"), st_ServiceConfig.st_XSql.st_SQLite.tszSQLite);
+	}
+	else
+	{
+		if (!ModuleDatabase_MySql_Init((DATABASE_MYSQL_CONNECTINFO*)&st_ServiceConfig.st_XSql.st_MYSQL))
+		{
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_ERROR, _X("启动服务中，初始化MySql数据库失败，错误：%lX"), ModuleDB_GetLastError());
+			goto XENGINE_SERVICEAPP_EXIT;
+		}
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中，初始化DB数据库服务成功,数据库:%s"), st_ServiceConfig.st_XSql.st_MYSQL.tszDBName);
+	}
 	//WEBSOCKET包处理器
 	xhWSPacket = RfcComponents_WSPacket_InitEx(st_ServiceConfig.st_XMax.nThread);
 	if (NULL == xhWSPacket)
@@ -199,6 +225,9 @@ XENGINE_SERVICEAPP_EXIT:
 		SocketOpt_HeartBeat_DestoryEx(xhWSHeart);
 		RfcComponents_WSPacket_DestoryEx(xhWSPacket);
 		ManagePool_Thread_NQDestroy(xhWSPool);
+		//销毁数据库
+		ModuleDatabase_MySql_Destory();
+		ModuleDatabase_SQlite_Destory();
 		//销毁日志资源
 		HelpComponents_XLog_Destroy(xhLog);
 	}

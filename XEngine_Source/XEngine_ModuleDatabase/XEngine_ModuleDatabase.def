@@ -5,6 +5,10 @@ EXPORTS
 
 	ModuleDatabase_SQlite_Init
 	ModuleDatabase_SQlite_Destory
+	ModuleDatabase_SQLite_UserRegister
+	ModuleDatabase_SQLite_UserQuery
 
 	ModuleDatabase_MySql_Init
 	ModuleDatabase_MySql_Destory
+	ModuleDatabase_MySql_UserRegister
+	ModuleDatabase_MySql_UserQuery

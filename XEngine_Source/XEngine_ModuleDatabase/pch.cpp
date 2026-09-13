@@ -12,8 +12,8 @@
 //    Purpose:     导出函数实现
 //    History:
 *********************************************************************/
-XLONG DBModule_IsErrorOccur = false;
-bool DBModule_dwErrorCode = 0;
+bool DBModule_IsErrorOccur = false;
+XLONG DBModule_dwErrorCode = 0;
 //////////////////////////////////////////////////////////////////////////
 CModuleDatabase_SQlite m_DBSQlite;
 CModuleDatabase_MySql m_DBMysql;
@@ -39,6 +39,14 @@ extern "C" bool ModuleDatabase_SQlite_Destory()
 {
 	return m_DBSQlite.ModuleDatabase_SQlite_Destory();
 }
+extern "C" bool ModuleDatabase_SQLite_UserRegister(XENGINE_PROTOCOL_USERINFO* pSt_UserInfo)
+{
+	return m_DBSQlite.ModuleDatabase_SQLite_UserRegister(pSt_UserInfo);
+}
+extern "C" bool ModuleDatabase_SQLite_UserQuery(LPCXSTR lpszUserName, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo)
+{
+	return m_DBSQlite.ModuleDatabase_SQLite_UserQuery(lpszUserName, pSt_UserInfo);
+}
 /************************************************************************/
 /*                         导出的MYSQL操作函数                          */
 /************************************************************************/
@@ -49,4 +57,12 @@ extern "C" bool ModuleDatabase_MySql_Init(DATABASE_MYSQL_CONNECTINFO * pSt_MySQL
 extern "C" bool ModuleDatabase_MySql_Destory()
 {
 	return m_DBMysql.ModuleDatabase_MySql_Destory();
+}
+extern "C" bool ModuleDatabase_MySql_UserRegister(XENGINE_PROTOCOL_USERINFO* pSt_UserInfo)
+{
+	return m_DBMysql.ModuleDatabase_MySql_UserRegister(pSt_UserInfo);
+}
+extern "C" bool ModuleDatabase_MySql_UserQuery(LPCXSTR lpszUserName, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo)
+{
+	return m_DBMysql.ModuleDatabase_MySql_UserQuery(lpszUserName, pSt_UserInfo);
 }
