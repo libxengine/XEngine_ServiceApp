@@ -101,7 +101,15 @@ bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lps
 	}
 	else if (ENUM_XENGINE_COMMUNICATION_PROTOCOL_TYPE_AUTH == pSt_ProtocolHdr->unOperatorType)
 	{
-		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_AUTH_REQREGISTER == pSt_ProtocolHdr->unOperatorCode)
+		if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_AUTH_REQLOGIN == pSt_ProtocolHdr->unOperatorCode)
+		{
+			pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_AUTH_REPLOGIN; //设置为响应包
+			
+			ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, 0, _X("user login"));
+			XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求登录成功,"), lpszClientAddr);
+		}
+		else if (XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_AUTH_REQREGISTER == pSt_ProtocolHdr->unOperatorCode)
 		{
 			pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_AUTH_REPREGISTER; //设置为响应包
 
@@ -110,7 +118,7 @@ bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lps
 			{
 				ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, -1, _X("protocol is error"));
 				XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
-				XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册失败,解析内容失败:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+				XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册失败,解析内容失败:%s"), lpszClientAddr, lpszMsgBuffer);
 				return false;
 			}
 			if (1 == st_ServiceConfig.st_XSql.nDBType)
@@ -119,7 +127,7 @@ bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lps
 				{
 					ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, ModuleDB_GetLastError(), _X("register db failure"));
 					XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
-					XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册失败,写入数据库失败,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+					XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册失败,写入数据库失败,内容:%s"), lpszClientAddr, lpszMsgBuffer);
 					return false;
 				}
 			}
@@ -129,13 +137,13 @@ bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lps
 				{
 					ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, ModuleDB_GetLastError(), _X("register db failure"));
 					XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
-					XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册失败,写入数据库失败,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
+					XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册失败,写入数据库失败,内容:%s"), lpszClientAddr, lpszMsgBuffer);
 					return false;
 				}
 			}
 			ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, 0, _X("register user success"));
 			XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
-			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册写入成功,注册的用户:%s"), lpszClientAddr, nMsgLen, st_UserInfo.tszUserName);
+			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,请求注册写入成功,注册的用户:%s"), lpszClientAddr, st_UserInfo.tszUserName);
 		}
 		else
 		{
