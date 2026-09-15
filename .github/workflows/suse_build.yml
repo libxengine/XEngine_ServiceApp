@@ -50,8 +50,8 @@ jobs:
 
       - name: install system package
         run: |
-            zypper update -y
-            zypper install gcc g++ make git jq unzip wget -y
+            zypper --non-interactive update -y
+            zypper install -y gcc gcc-c++ make git jq unzip wget
 
       - name: Set TERM variable
         run: echo "TERM=xterm" >> $GITHUB_ENV
