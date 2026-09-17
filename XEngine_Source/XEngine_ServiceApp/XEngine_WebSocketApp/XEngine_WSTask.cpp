@@ -52,7 +52,7 @@ bool XEngine_WSTask_Handle(LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nM
 	//开始处理协议
 	if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_CONTINUE == enOPCode)
 	{
-
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("WEBSOCKET客户端:%s,发送继续协议给服务器处理成功,大小:%d"), lpszClientAddr, nMsgLen);
 	}
 	else if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_TEXT == enOPCode)
 	{
@@ -62,7 +62,7 @@ bool XEngine_WSTask_Handle(LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nM
 	}
 	else if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_BINARY == enOPCode)
 	{
-
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_WARN, _X("WEBSOCKET客户端:%s,发送数据二进制数据给服务器处理成功,大小:%d"), lpszClientAddr, nMsgLen);
 	}
 	else if (ENUM_XENGINE_RFCOMPONENTS_WEBSOCKET_OPCODE_CLOSE == enOPCode)
 	{
