@@ -16,7 +16,6 @@
 #else
 #include <arpa/inet.h>
 #endif
-#endif //PCH_H
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
@@ -46,3 +45,4 @@ extern XLONG DBModule_dwErrorCode;
 #pragma comment(lib,"Ws2_32")
 #pragma comment(lib,"XEngine_HelpComponents/HelpComponents_DataBase")
 #endif
+#endif //PCH_H

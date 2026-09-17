@@ -11,7 +11,6 @@
 // 添加要在此处预编译的标头
 #include "framework.h"
 #endif
-#endif //PCH_H
 #include <json/json.h>
 #include <errno.h>
 #include <XEngine_Include/XEngine_CommHdr.h>
@@ -53,3 +52,4 @@ extern XLONG ModuleProtocol_dwErrorCode;
 #endif
 #endif
 #endif
+#endif //PCH_H

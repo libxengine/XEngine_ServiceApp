@@ -92,41 +92,40 @@ bool XEngine_HTTP2Task_Handle(XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE enFrameType
 		else if (0 == _tcsxnicmp(lpszMethodGet, st_HTTPRequest.tszHttpMethod, _tcsxlen(lpszMethodGet)))
 		{
 			//编写自己的代码
-			LPCXSTR lpszMsgBuffer = _X("Hello World");
+			LPCXSTR lpszTmpBuffer = _X("Hello World");
 			//首先发送HEADERS包
 			HttpProtocol_Server2_PKTHeaderEx(xhHTTP2Packet, tszMsgBuffer, &nLen, &st_HDRParam, 6);
 			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
 			//最后发送DATA数据包
-			HttpProtocol_Server2_PKTDataEx(xhHTTP2Packet, tszMsgBuffer, &nLen, st_HDRParam.nStreamID, lpszMsgBuffer, _tcsxlen(lpszMsgBuffer));
+			HttpProtocol_Server2_PKTDataEx(xhHTTP2Packet, tszMsgBuffer, &nLen, st_HDRParam.nStreamID, lpszTmpBuffer, _tcsxlen(lpszTmpBuffer));
 			XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP2客户端:%s,发送GET请求给服务器"), lpszClientAddr);
 		}
 	}
 	else if (XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE_PRIORITY == enFrameType)
 	{
-
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP2客户端:%s,请求优先级协议成功"), lpszClientAddr);
 	}
 	else if (XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE_RST_STREAM == enFrameType)
 	{
-
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP2客户端:%s,请求流取消协议成功"), lpszClientAddr);
 	}
 	else if (XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE_SETTINGS == enFrameType)
 	{
 		//第一次登录需要发送SETTING同步
 		HttpProtocol_Server2_PKTSettingEx(xhHTTP2Packet, tszMsgBuffer, &nLen, 100, 1024000, 1024000, 8196);
 		XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
-	}
-	else if (XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE_PUSH_PROMISE == enFrameType)
-	{
-
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP2客户端:%s,请求登录同步协议成功"), lpszClientAddr);
 	}
 	else if (XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE_PING == enFrameType)
 	{
-
+		HttpProtocol_Server2_PKTPingEx(xhHTTP2Packet, tszMsgBuffer, &nLen, lpszMsgBuffer);
+		XEngine_Network_Send(lpszClientAddr, tszMsgBuffer, nLen);
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP2客户端:%s,请求PING协议成功"), lpszClientAddr);
 	}
 	else if (XENGINE_RFCCOMPONENTS_HTTP2_FRAME_TYPE_GOAWAY == enFrameType)
 	{
-
+		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("HTTP2客户端:%s,请求流终止协议成功"), lpszClientAddr);
 	}
 	else
 	{

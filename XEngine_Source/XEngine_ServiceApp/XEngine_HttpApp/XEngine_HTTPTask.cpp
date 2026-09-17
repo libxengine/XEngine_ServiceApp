@@ -57,7 +57,6 @@ XHTHREAD XCALLBACK XEngine_HTTPTask_Thread(XPVOID lParam)
 }
 bool XEngine_HTTPTask_Handle(RFCCOMPONENTS_HTTP_REQPARAM* pSt_HTTPParam, LPCXSTR lpszClientAddr, LPCXSTR lpszMsgBuffer, int nMsgLen, XCHAR** pptszListHdr, int nHdrCount)
 {
-	int nMSGLen = XPATH_4MAX;
 	LPCXSTR lpszMethodPost = _X("POST");
 	LPCXSTR lpszMethodGet = _X("GET");
 	
