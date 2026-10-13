@@ -20,6 +20,7 @@
 #include <json/json.h>
 using namespace std;
 #include <XEngine_Include/XEngine_CommHdr.h>
+#include <XEngine_Include/XEngine_CommHdr.h>
 #include <XEngine_Include/XEngine_Types.h>
 #include "ModuleConfig_Define.h"
 #include "ModuleConfig_Error.h"

@@ -87,7 +87,7 @@ bool CModuleDatabase_SQlite::ModuleDatabase_SQLite_UserRegister(XENGINE_PROTOCOL
         return false;
     }
     _xstprintf(tszSQLStatement, _X("INSERT INTO Authorize_UserInfo(UserName, Password, EmailAddr, PhoneNumber, IDCard, nUserLevel, CreateTime) values('%s','%s','%s',%lld,%lld,%d,datetime('now', 'localtime'))"), pSt_UserInfo->tszUserName, pSt_UserInfo->tszUserPass, pSt_UserInfo->tszEMailAddr, pSt_UserInfo->nPhoneNumber, pSt_UserInfo->nIDNumber, pSt_UserInfo->nUserLevel);
-    if (!DataBase_SQLite_Exec(xhSQL, tszSQLStatement))
+    if (!DataBase_SQLite_Execute(xhSQL, tszSQLStatement))
     {
         DBModule_IsErrorOccur = true;
         DBModule_dwErrorCode = DataBase_GetLastError();
@@ -124,7 +124,7 @@ bool CModuleDatabase_SQlite::ModuleDatabase_SQLite_UserQuery(LPCXSTR lpszUserNam
     
     _xstprintf(tszSQLStatement, _X("SELECT * FROM `Authorize_UserInfo` WHERE UserName = '%s'"), lpszUserName);
     //get table fields 
-    if (!DataBase_SQLite_GetTable(xhSQL, tszSQLStatement, &ppszResult, &nRow, &nColumn))
+    if (!DataBase_SQLite_ExecQuery(xhSQL, tszSQLStatement, &ppszResult, &nRow, &nColumn))
     {
         DBModule_IsErrorOccur = true;
         DBModule_dwErrorCode = DataBase_GetLastError();
@@ -171,6 +171,6 @@ bool CModuleDatabase_SQlite::ModuleDatabase_SQLite_UserQuery(LPCXSTR lpszUserNam
         nFliedValue++;
         _tcsxcpy(pSt_UserInfo->tszCreateTime, ppszResult[nFliedValue]);
     }
-    DataBase_SQLite_FreeTable(ppszResult);
+    DataBase_SQLite_FreeResult(ppszResult);
     return true;
 }

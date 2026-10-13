@@ -116,16 +116,14 @@ bool CModuleDatabase_MySql::ModuleDatabase_MySql_UserRegister(XENGINE_PROTOCOL_U
 bool CModuleDatabase_MySql::ModuleDatabase_MySql_UserQuery(LPCXSTR lpszUserName, XENGINE_PROTOCOL_USERINFO* pSt_UserInfo)
 {
 	DBModule_IsErrorOccur = false;
-	//查询
-	XNETHANDLE xhTable = 0;
-	__int64u nColumn = 0;
-	__int64u nRow = 0;
-
+	//
+	int nColumn = 0;
+	int nRow = 0;
+	XCHAR** pptszResult = NULL;
 	XCHAR tszSQLStatement[1024] = {};    //SQL语句
 
 	_xstprintf(tszSQLStatement, _X("SELECT * FROM `Authorize_UserInfo` WHERE UserName = '%s'"), lpszUserName);
-
-	if (!DataBase_MySQL_ExecuteQuery(xhSQL, &xhTable, tszSQLStatement, &nRow, &nColumn))
+	if (!DataBase_MySQL_ExecQuery(xhSQL, tszSQLStatement, &pptszResult, &nRow, &nColumn))
 	{
 		DBModule_IsErrorOccur = true;
 		DBModule_dwErrorCode = DataBase_GetLastError();
@@ -137,13 +135,11 @@ bool CModuleDatabase_MySql::ModuleDatabase_MySql_UserQuery(LPCXSTR lpszUserName,
 		DBModule_dwErrorCode = ERROR_MODULE_DATABASE_NOTFOUND;
 		return false;
 	}
-	XCHAR** pptszResult = DataBase_MySQL_GetResult(xhSQL, xhTable);
-
 	if (NULL != pSt_UserInfo)
 	{
 		memset(pSt_UserInfo, '\0', sizeof(XENGINE_PROTOCOL_USERINFO));
 		//ID
-		int nFliedValue = 0;
+		int nFliedValue = nColumn;
 		//用户名
 		nFliedValue++;
 		if (NULL != pptszResult[nFliedValue])
@@ -193,6 +189,6 @@ bool CModuleDatabase_MySql::ModuleDatabase_MySql_UserQuery(LPCXSTR lpszUserName,
 			_tcsxcpy(pSt_UserInfo->tszCreateTime, pptszResult[nFliedValue]);
 		}
 	}
-	DataBase_MySQL_FreeResult(xhSQL, xhTable);
+	DataBase_MySQL_FreeResult(pptszResult, (nRow * nColumn));
 	return true;
 }
