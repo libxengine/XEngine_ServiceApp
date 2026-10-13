@@ -33,6 +33,18 @@ jobs:
             artifact: x86-64
             name: trixie
             version: 13
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+            platform: linux/arm64
+            artifact: Arm64
+            name: bookworm
+            version: 12
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+            platform: linux/arm64
+            artifact: Arm64
+            name: trixie
+            version: 13
 
     steps:
       - name: Checkout main repository code
