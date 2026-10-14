@@ -13,6 +13,7 @@
 #endif
 #include <json/json.h>
 #include <errno.h>
+#include <cstdint>
 #include <XEngine_Include/XEngine_CommHdr.h>
 #include <XEngine_Include/XEngine_Types.h>
 #include <XEngine_Include/XEngine_ProtocolHdr.h>
