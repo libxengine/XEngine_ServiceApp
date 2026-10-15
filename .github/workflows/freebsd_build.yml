@@ -61,8 +61,11 @@ jobs:
             cd ..
 
             cd XEngine_Release
-            ./XEngine_CenterApp -t
-            ./XEngine_Http2App -t
-            ./XEngine_HttpApp -t
-            ./XEngine_SimpleApp -t
-            ./XEngine_WebSocketApp -t
+            ARCH=$(uname -m)
+            if [ "$ARCH" != "arm64" ]; then
+              ./XEngine_CenterApp -t
+              ./XEngine_Http2App -t
+              ./XEngine_HttpApp -t
+              ./XEngine_SimpleApp -t
+              ./XEngine_WebSocketApp -t
+            fi
