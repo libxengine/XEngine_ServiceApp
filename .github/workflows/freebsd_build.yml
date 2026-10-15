@@ -56,8 +56,8 @@ jobs:
 
             cd XEngine_Source
             gmake PLATFORM=freebsd RELEASE=1
-            gmake PLATFORM=freebsd FLAGS=install
-            gmake PLATFORM=freebsd FLAGS=clean
+            gmake PLATFORM=freebsd FLAGS=InstallAll
+            gmake PLATFORM=freebsd FLAGS=CleanAll
             cd ..
 
             cd XEngine_Release
