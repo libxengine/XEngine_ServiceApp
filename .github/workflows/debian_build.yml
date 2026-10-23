@@ -78,6 +78,8 @@ jobs:
       - name: make
         run: |
             cd XEngine_Source
+            ldd /usr/local/lib/libHelpComponents_DataBase.so  
+
             make
             make FLAGS=InstallAll
             make FLAGS=CleanAll
@@ -89,8 +91,6 @@ jobs:
       - name: test
         run: |
             cd XEngine_Release
-            ldd ./XEngine_CenterApp
-            ldd /usr/local/lib/libHelpComponents_DataBase.so  
             ./XEngine_CenterApp -t
             ./XEngine_Http2App -t
             ./XEngine_HttpApp -t
