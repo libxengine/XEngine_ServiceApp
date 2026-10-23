@@ -1,4 +1,4 @@
-CC = g++ -Wall -std=c++17
+CC = g++ -Wall -std=c++20
 PLATVER = 
 LOADHDR = -I ./
 LOADSO = -L ../../XEngine_ModuleConfigure -L ../../XEngine_ModuleDatabase -L ../../XEngine_ModuleProtocol           \
@@ -48,6 +48,7 @@ else ifeq ($(PLATFORM),freebsd)
 	PLATVER = -D __FREEBSD__
 	LIBEX += -lrt -ldl -lpthread
 	LOADBIN = -Wl,-rpath=./:/usr/local/lib,--disable-new-dtags
+	CC = clang++ -Wall -std=c++20
 endif
 
 all:$(OBJECTS)

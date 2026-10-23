@@ -1,4 +1,4 @@
-CC = g++ -Wall -std=c++17 -fPIC
+CC = g++ -Wall -std=c++20 -fPIC
 PLATVER = 
 FILEEXT = 
 LIBFLAG = 
@@ -53,6 +53,7 @@ else ifeq ($(PLATFORM),freebsd)
 	LIBFLAG = -shared
 	LIB += -lrt -ldl -lpthread
 	LOADBIN = -Wl,-rpath=./,--disable-new-dtags
+	CC = clang++ -Wall -std=c++20 -fPIC
 endif
 
 
